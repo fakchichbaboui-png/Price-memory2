@@ -1,1 +1,308 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Price Memory</title>
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f3f5;
+    color: #222;
+}
+header {
+    background: #111;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+header p {
+    margin: 6px 0 0;
+    color: #bbb;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 15px;
+}
+.box {
+    background: white;
+    padding: 18px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+input {
+    width: 100%;
+    padding: 13px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.add-btn {
+    background: #111;
+    color: white;
+}
+.find-btn {
+    background: #ddd;
+    color: #111;
+}
+.product {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 10px;
+}
+.product-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+.barcode {
+    color: #777;
+    font-size: 14px;
+}
+.actions {
+    display: flex;
+    gap: 8px;
+}
+.actions button {
+    margin-top: 10px;
+}
+.edit {
+    background: #ddd;
+}
+.delete {
+    background: #ffdddd;
+    color: #a00;
+}
+#message {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+}
+.empty {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>💰 Price Memory</h1>
+    <p>Save your own prices and find them later</p>
+</header>
+<div class="container">
+    <div class="box">
+        <h2>Add Product</h2>
+        <input id="name" type="text" placeholder="Product name">
+        <input id="barcode" type="text" inputmode="numeric"
+               placeholder="Barcode">
+        <input id="price" type="number" step="0.01"
+               placeholder="Your price in MAD">
+        <button class="add-btn" onclick="saveProduct()">
+            ➕ Save Product
+        </button>
+        <button class="find-btn" onclick="findProduct()">
+            🔎 Find by Barcode
+        </button>
+        <div id="message"></div>
+    </div>
+    <div class="box">
+        <h2>🔍 Search Products</h2>
+        <input id="search" type="text"
+               placeholder="Search by name or barcode"
+               oninput="displayProducts()">
+        <div id="products"></div>
+    </div>
+</div>
+<script>
+let products = JSON.parse(
+    localStorage.getItem("priceMemoryProducts")
+) || [];
+function saveProducts() {
+    localStorage.setItem(
+        "priceMemoryProducts",
+        JSON.stringify(products)
+    );
+}
+function saveProduct() {
+    const name = document.getElementById("name").value.trim();
+    const barcode = document.getElementById("barcode").value.trim();
+    const price = document.getElementById("price").value.trim();
+    if (!name || !barcode || !price) {
+        showMessage("⚠️ Fill in all the fields.");
+        return;
+    }
+    const existing = products.find(
+        product => product.barcode === barcode
+    );
+    if (existing) {
+        existing.name = name;
+        existing.price = price;
+        showMessage("✅ Product updated!");
+    } else {
+        products.push({
+            name: name,
+            barcode: barcode,
+            price: price
+        });
+        showMessage("✅ Product saved!");
+    }
+    saveProducts();
+    clearInputs();
+    displayProducts();
+}
+function findProduct() {
+    const barcode =
+        document.getElementById("barcode").value.trim();
+    if (!barcode) {
+        showMessage("⚠️ Enter a barcode first.");
+        return;
+    }
+    const product = products.find(
+        product => product.barcode === barcode
+    );
+    if (product) {
+        document.getElementById("name").value =
+            product.name;
+        document.getElementById("price").value =
+            product.price;
+        showMessage(
+            "✅ Found: " + product.name +
+            " — " + product.price + " MAD"
+        );
+    } else {
+        showMessage("❌ No product saved with this barcode.");
+    }
+}
+function displayProducts() {
+    const container =
+        document.getElementById("products");
+    const search =
+        document.getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+    const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(search) ||
+        product.barcode.includes(search)
+    );
+    container.innerHTML = "";
+    if (filtered.length === 0) {
+        container.innerHTML =
+            '<div class="empty">No products found.</div>';
+        return;
+    }
+    filtered.forEach(product => {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.innerHTML = `
+            <div class="product-name">
+                ${escapeHTML(product.name)}
+            </div>
+            <div class="price">
+                ${escapeHTML(product.price)} MAD
+            </div>
+            <div class="barcode">
+                Barcode: ${escapeHTML(product.barcode)}
+            </div>
+            <div class="actions">
+                <button class="edit"
+                    onclick="editProduct('${escapeJS(product.barcode)}')">
+                    ✏️ Edit
+                </button>
+                <button class="delete"
+                    onclick="deleteProduct('${escapeJS(product.barcode)}')">
+                    🗑️ Delete
+                </button>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
+function editProduct(barcode) {
+    const product = products.find(
+        product => product.barcode === barcode
+    );
+    if (!product) return;
+    document.getElementById("name").value =
+        product.name;
+    document.getElementById("barcode").value =
+        product.barcode;
+    document.getElementById("price").value =
+        product.price;
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+function deleteProduct(barcode) {
+    const product = products.find(
+        product => product.barcode === barcode
+    );
+    if (!product) return;
+    if (!confirm(
+        "Delete " + product.name + "?"
+    )) return;
+    products = products.filter(
+        product => product.barcode !== barcode
+    );
+    saveProducts();
+    displayProducts();
+    showMessage("🗑️ Product deleted.");
+}
+function clearInputs() {
+    document.getElementById("name").value = "";
+    document.getElementById("barcode").value = "";
+    document.getElementById("price").value = "";
+}
+function showMessage(text) {
+    const message =
+        document.getElementById("message");
+    message.textContent = text;
+    setTimeout(() => {
+        message.textContent = "";
+    }, 3000);
+}
+function escapeHTML(text) {
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+function escapeJS(text) {
+    return String(text)
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
+}
+displayProducts();
+</script>
+</body>
+</html>
