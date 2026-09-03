@@ -3,306 +3,1807 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Price Memory</title>
+
+<title>DEJALUXE | Shop</title>
+
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f2f3f5;
-    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff;
+    color: #202020;
 }
-header {
-    background: #111;
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar {
+    background: #ff7200;
     color: white;
-    padding: 20px;
-    text-align: center;
-}
-header h1 {
-    margin: 0;
-    font-size: 28px;
-}
-header p {
-    margin: 6px 0 0;
-    color: #bbb;
-}
-.container {
-    max-width: 600px;
-    margin: auto;
-    padding: 15px;
-}
-.box {
-    background: white;
-    padding: 18px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-input {
-    width: 100%;
-    padding: 13px;
-    margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 16px;
-}
-button {
-    width: 100%;
-    padding: 13px;
-    margin-top: 8px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-.add-btn {
-    background: #111;
-    color: white;
-}
-.find-btn {
-    background: #ddd;
-    color: #111;
-}
-.product {
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 15px;
-    margin-top: 10px;
-}
-.product-name {
-    font-size: 20px;
-    font-weight: bold;
-}
-.price {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 8px 0;
-}
-.barcode {
-    color: #777;
+    padding: 10px 6%;
+    display: flex;
+    justify-content: space-between;
     font-size: 14px;
 }
-.actions {
+
+.topbar span {
+    margin-left: 25px;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    height: 105px;
     display: flex;
-    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+
+    background: rgba(255,255,255,0.96);
+
+    border-bottom: 1px solid #eee;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    backdrop-filter: blur(15px);
 }
-.actions button {
-    margin-top: 10px;
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    width: 105px;
+    height: 105px;
+
+    border: 4px solid #ff7200;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    color: #ff7200;
+
+    font-weight: bold;
+    font-size: 14px;
+
+    background: white;
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
 }
-.edit {
-    background: #ddd;
+
+.logo::after {
+    content: "";
+
+    position: absolute;
+
+    width: 82px;
+    height: 82px;
+
+    border: 3px solid #ff7200;
+    border-radius: 50%;
 }
-.delete {
-    background: #ffdddd;
-    color: #a00;
+
+.logo span {
+    z-index: 2;
 }
-#message {
-    text-align: center;
-    margin: 10px 0;
+
+.logo:hover {
+    transform: rotate(6deg) scale(1.05);
+
+    box-shadow:
+        0 10px 30px rgba(255,114,0,.18);
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.menu {
+    display: flex;
+    gap: 34px;
+
+    list-style: none;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu a {
+    position: relative;
+
+    display: inline-block;
+
+    padding: 12px 0;
+
+    color: #222;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition:
+        color .25s ease;
+}
+
+
+/* Animated line */
+
+.menu a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 3px;
+
+    width: 0;
+    height: 2px;
+
+    background: #ff7200;
+
+    transform: translateX(-50%);
+
+    transition:
+        width .4s cubic-bezier(.65,0,.35,1);
+}
+
+.menu a:hover::after,
+.menu a.active::after {
+    width: 100%;
+}
+
+.menu a:hover,
+.menu a.active {
+    color: #ff7200;
+}
+
+
+/* =========================
+   ICONS
+========================= */
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    font-size: 23px;
+}
+
+.icon {
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        color .25s ease;
+}
+
+.icon:hover {
+    transform: translateY(-3px);
+    color: #ff7200;
+}
+
+.cart-wrapper {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+
+    top: -9px;
+    right: -12px;
+
+    width: 19px;
+    height: 19px;
+
+    background: #ff7200;
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 11px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     font-weight: bold;
 }
-.empty {
-    text-align: center;
-    color: #777;
-    padding: 20px;
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    height: calc(100vh - 105px);
+
+    min-height: 600px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
 }
+
+
+/* HERO IMAGE */
+
+.hero-image {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.62) 0%,
+            rgba(0,0,0,.35) 42%,
+            rgba(0,0,0,.05) 100%
+        ),
+
+        url("back-to-school.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    transform: scale(1.03);
+
+    will-change: opacity, transform;
+
+    transition:
+        transform 1s ease;
+}
+
+.hero:hover .hero-image {
+    transform: scale(1.06);
+}
+
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-text {
+    position: relative;
+
+    z-index: 2;
+
+    margin-left: 8%;
+
+    max-width: 620px;
+
+    color: white;
+}
+
+.hero-text small {
+    display: block;
+
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
+
+    opacity: .9;
+}
+
+.hero-text h1 {
+    font-size: clamp(52px, 7vw, 92px);
+
+    line-height: .94;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 28px;
+}
+
+.orange {
+    color: #ff7200;
+}
+
+.hero-text p {
+    font-size: 19px;
+
+    line-height: 1.5;
+
+    color: rgba(255,255,255,.9);
+
+    margin-bottom: 32px;
+}
+
+
+/* SHOP BUTTON */
+
+.shop-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    background: #ff7200;
+
+    color: white;
+
+    padding: 17px 32px;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+.shop-btn:hover {
+    background: white;
+
+    color: #111;
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.25);
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+.services {
+    display: grid;
+
+    grid-template-columns: repeat(4,1fr);
+
+    padding: 35px 8%;
+
+    gap: 20px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.service {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    transition:
+        transform .3s ease;
+}
+
+.service:hover {
+    transform: translateY(-4px);
+}
+
+.service-icon {
+    font-size: 28px;
+
+    color: #ff7200;
+}
+
+.service h3 {
+    font-size: 15px;
+}
+
+.service p {
+    color: #777;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    padding: 75px 8%;
+}
+
+.section-title {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 32px;
+
+    letter-spacing: -1px;
+}
+
+.view {
+    color: #ff7200;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        letter-spacing .3s ease;
+}
+
+.view:hover {
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.categories {
+    display: grid;
+
+    grid-template-columns: repeat(7,1fr);
+
+    gap: 18px;
+}
+
+.category {
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.category-circle {
+    width: 110px;
+    height: 110px;
+
+    margin: auto;
+
+    background: #f7f7f7;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 45px;
+
+    transition:
+        transform .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
+}
+
+.category:hover .category-circle {
+    background: #fff0e4;
+
+    transform:
+        translateY(-8px)
+        scale(1.04);
+
+    box-shadow:
+        0 12px 25px rgba(255,114,0,.12);
+}
+
+.category p {
+    margin-top: 14px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.products {
+    display: grid;
+
+    grid-template-columns: repeat(4,1fr);
+
+    gap: 22px;
+}
+
+.product {
+    border: 1px solid #eee;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    background: white;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.product:hover {
+    transform: translateY(-9px);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.10);
+}
+
+.product-image {
+    height: 220px;
+
+    background: #f6f6f6;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 80px;
+
+    position: relative;
+
+    transition:
+        background .3s ease;
+}
+
+.product:hover .product-image {
+    background: #fff5ed;
+}
+
+.new {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    background: #ff7200;
+
+    color: white;
+
+    padding: 6px 10px;
+
+    border-radius: 15px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.product-info {
+    padding: 17px;
+}
+
+.product-info h3 {
+    margin-bottom: 8px;
+}
+
+.stars {
+    color: #ff7200;
+
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+.add {
+    width: 100%;
+
+    margin-top: 12px;
+
+    border: none;
+
+    background: #111;
+
+    color: white;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition:
+        background .3s ease,
+        transform .25s ease;
+}
+
+.add:hover {
+    background: #ff7200;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   NEWSLETTER
+========================= */
+
+.newsletter {
+    margin: 20px 8% 70px;
+
+    padding: 55px 30px;
+
+    border-radius: 22px;
+
+    background: #ff7200;
+
+    color: white;
+
+    text-align: center;
+}
+
+.newsletter h2 {
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+.newsletter p {
+    opacity: .9;
+}
+
+.newsletter input {
+    margin-top: 22px;
+
+    width: 280px;
+
+    max-width: 80%;
+
+    padding: 14px 18px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    outline: none;
+}
+
+.newsletter button {
+    padding: 14px 25px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    margin-left: 5px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease;
+}
+
+.newsletter button:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #151515;
+
+    color: white;
+
+    padding: 55px 8%;
+
+    display: grid;
+
+    grid-template-columns: repeat(4,1fr);
+
+    gap: 30px;
+}
+
+footer h3 {
+    margin-bottom: 15px;
+}
+
+footer p {
+    color: #aaa;
+
+    margin-bottom: 8px;
+
+    cursor: pointer;
+
+    transition:
+        color .25s ease;
+}
+
+footer p:hover {
+    color: white;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .topbar {
+        font-size: 10px;
+
+        padding: 9px 5%;
+    }
+
+    .topbar span {
+        margin-left: 8px;
+    }
+
+    .navbar {
+        height: auto;
+
+        padding: 12px 5%;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+    }
+
+    .logo {
+        width: 75px;
+        height: 75px;
+
+        font-size: 10px;
+    }
+
+    .logo::after {
+        width: 58px;
+        height: 58px;
+    }
+
+    .menu {
+        order: 3;
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        gap: 25px;
+
+        padding:
+            5px 2px 8px;
+
+        scrollbar-width: none;
+    }
+
+    .menu::-webkit-scrollbar {
+        display: none;
+    }
+
+    .menu a {
+        white-space: nowrap;
+
+        font-size: 13px;
+    }
+
+    .icons {
+        gap: 12px;
+
+        font-size: 20px;
+    }
+
+    .hero {
+        height: 650px;
+
+        min-height: 650px;
+    }
+
+    .hero-image {
+        background-position: center;
+    }
+
+    .hero-text {
+        margin: 0 6%;
+    }
+
+    .hero-text h1 {
+        font-size: 50px;
+
+        letter-spacing: -2px;
+    }
+
+    .hero-text p {
+        font-size: 17px;
+    }
+
+    .services {
+        grid-template-columns: repeat(2,1fr);
+
+        padding: 28px 6%;
+    }
+
+    .categories {
+        grid-template-columns: repeat(3,1fr);
+
+        gap: 25px 10px;
+    }
+
+    .category-circle {
+        width: 80px;
+        height: 80px;
+
+        font-size: 32px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2,1fr);
+
+        gap: 12px;
+    }
+
+    .product-image {
+        height: 160px;
+
+        font-size: 55px;
+    }
+
+    .product-info {
+        padding: 12px;
+    }
+
+    .product-info h3 {
+        font-size: 15px;
+    }
+
+    .price {
+        font-size: 17px;
+    }
+
+    .newsletter {
+        margin: 20px 5% 50px;
+
+        padding: 35px 15px;
+    }
+
+    .newsletter input {
+        width: 100%;
+
+        max-width: 100%;
+    }
+
+    .newsletter button {
+        margin: 10px 0 0;
+
+        width: 100%;
+    }
+
+    footer {
+        grid-template-columns: repeat(2,1fr);
+
+        padding: 40px 6%;
+    }
+}
+
 </style>
 </head>
+
+
 <body>
-<header>
-    <h1>💰 Price Memory</h1>
-    <p>Save your own prices and find them later</p>
-</header>
-<div class="container">
-    <div class="box">
-        <h2>Add Product</h2>
-        <input id="name" type="text" placeholder="Product name">
-        <input id="barcode" type="text" inputmode="numeric"
-               placeholder="Barcode">
-        <input id="price" type="number" step="0.01"
-               placeholder="Your price in MAD">
-        <button class="add-btn" onclick="saveProduct()">
-            ➕ Save Product
-        </button>
-        <button class="find-btn" onclick="findProduct()">
-            🔎 Find by Barcode
-        </button>
-        <div id="message"></div>
+
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<div class="topbar">
+
+    <div>
+        Free delivery on orders over 500 MAD
     </div>
-    <div class="box">
-        <h2>🔍 Search Products</h2>
-        <input id="search" type="text"
-               placeholder="Search by name or barcode"
-               oninput="displayProducts()">
-        <div id="products"></div>
+
+    <div>
+        <span>Track Order</span>
+        <span>Help</span>
+        <span>EN</span>
     </div>
+
 </div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <span>DEJALUXE</span>
+    </div>
+
+
+    <ul class="menu">
+
+        <li>
+            <a href="#home" class="active">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="#shop">
+                Shop
+            </a>
+        </li>
+
+        <li>
+            <a href="#categories">
+                Categories
+            </a>
+        </li>
+
+        <li>
+            <a href="#new">
+                New Arrivals
+            </a>
+        </li>
+
+        <li>
+            <a href="#deals">
+                Deals
+            </a>
+        </li>
+
+        <li>
+            <a href="#about">
+                About Us
+            </a>
+        </li>
+
+    </ul>
+
+
+    <div class="icons">
+
+        <div class="icon">
+            ⌕
+        </div>
+
+        <div class="icon">
+            ♙
+        </div>
+
+        <div class="cart-wrapper icon">
+
+            🛒
+
+            <div
+                class="cart-count"
+                id="cartCount">
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section
+    class="hero"
+    id="home">
+
+
+    <div
+        class="hero-image"
+        id="heroImage">
+    </div>
+
+
+    <div class="hero-text">
+
+        <small>
+            DEJALUXE COLLECTION
+        </small>
+
+
+        <h1>
+
+            Back<br>
+            to<br>
+            <span class="orange">
+                school.
+            </span>
+
+        </h1>
+
+
+        <p>
+            New year. New goals.
+            Let's make it count.
+        </p>
+
+
+        <a
+            href="#shop"
+            class="shop-btn">
+
+            Shop Now
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section class="services">
+
+
+    <div class="service">
+
+        <div class="service-icon">
+            Truck
+        </div>
+
+        <div>
+
+            <h3>
+                Free Shipping
+            </h3>
+
+            <p>
+                Orders over 500 MAD
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="service">
+
+        <div class="service-icon">
+            Lock
+        </div>
+
+        <div>
+
+            <h3>
+                Secure Payment
+            </h3>
+
+            <p>
+                Safe checkout
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="service">
+
+        <div class="service-icon">
+            Return
+        </div>
+
+        <div>
+
+            <h3>
+                Easy Returns
+            </h3>
+
+            <p>
+                Simple return policy
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="service">
+
+        <div class="service-icon">
+            Help
+        </div>
+
+        <div>
+
+            <h3>
+                Support
+            </h3>
+
+            <p>
+                We're here to help
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<section
+    class="section"
+    id="categories">
+
+
+    <div class="section-title">
+
+        <h2>
+            Shop By Category
+        </h2>
+
+        <span class="view">
+            View All →
+        </span>
+
+    </div>
+
+
+    <div class="categories">
+
+
+        <div class="category">
+
+            <div class="category-circle">
+                Men
+            </div>
+
+            <p>
+                Men
+            </p>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-circle">
+                Women
+            </div>
+
+            <p>
+                Women
+            </p>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-circle">
+                Tech
+            </div>
+
+            <p>
+                Electronics
+            </p>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-circle">
+                Home
+            </div>
+
+            <p>
+                Home
+            </p>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-circle">
+                Shoes
+            </div>
+
+            <p>
+                Shoes
+            </p>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-circle">
+                Beauty
+            </div>
+
+            <p>
+                Beauty
+            </p>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-circle">
+                Gaming
+            </div>
+
+            <p>
+                Gaming
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
+<section
+    class="section"
+    id="shop">
+
+
+    <div class="section-title">
+
+        <h2>
+            New Arrivals
+        </h2>
+
+        <span class="view">
+            View All →
+        </span>
+
+    </div>
+
+
+    <div class="products">
+
+
+        <div class="product">
+
+            <div class="product-image">
+
+                Watch
+
+                <span class="new">
+                    NEW
+                </span>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Smart Watch
+                </h3>
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <div class="price">
+                    299 MAD
+                </div>
+
+                <button
+                    class="add"
+                    onclick="addToCart('Smart Watch')">
+
+                    Add to Cart
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+
+                Sneakers
+
+                <span class="new">
+                    NEW
+                </span>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Classic Sneakers
+                </h3>
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <div class="price">
+                    399 MAD
+                </div>
+
+                <button
+                    class="add"
+                    onclick="addToCart('Classic Sneakers')">
+
+                    Add to Cart
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+
+                Backpack
+
+                <span class="new">
+                    NEW
+                </span>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Urban Backpack
+                </h3>
+
+                <div class="stars">
+                    ★★★★☆
+                </div>
+
+                <div class="price">
+                    249 MAD
+                </div>
+
+                <button
+                    class="add"
+                    onclick="addToCart('Urban Backpack')">
+
+                    Add to Cart
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+
+                Headphones
+
+                <span class="new">
+                    NEW
+                </span>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Wireless Headphones
+                </h3>
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <div class="price">
+                    349 MAD
+                </div>
+
+                <button
+                    class="add"
+                    onclick="addToCart('Wireless Headphones')">
+
+                    Add to Cart
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DEALS
+========================= -->
+
+<section
+    class="section"
+    id="deals">
+
+    <div class="section-title">
+
+        <h2>
+            Today's Deals
+        </h2>
+
+        <span class="view">
+            View All →
+        </span>
+
+    </div>
+
+    <p style="color:#666;line-height:1.7;">
+
+        Discover selected products
+        at special prices.
+
+    </p>
+
+</section>
+
+
+<!-- =========================
+     NEWSLETTER
+========================= -->
+
+<section class="newsletter">
+
+    <h2>
+        Stay In The Loop
+    </h2>
+
+    <p>
+        Get notified about new products
+        and special deals.
+    </p>
+
+
+    <input
+        type="email"
+        id="emailInput"
+        placeholder="Your email address">
+
+
+    <button onclick="subscribe()">
+        Subscribe
+    </button>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer id="about">
+
+
+    <div>
+
+        <h3>
+            DEJALUXE
+        </h3>
+
+        <p>
+            Your everyday shopping destination.
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <h3>
+            Shop
+        </h3>
+
+        <p>Men</p>
+        <p>Women</p>
+        <p>Electronics</p>
+        <p>Home</p>
+
+    </div>
+
+
+    <div>
+
+        <h3>
+            Help
+        </h3>
+
+        <p>Contact Us</p>
+        <p>Shipping</p>
+        <p>Returns</p>
+        <p>FAQ</p>
+
+    </div>
+
+
+    <div>
+
+        <h3>
+            Follow Us
+        </h3>
+
+        <p>Instagram</p>
+        <p>Facebook</p>
+        <p>TikTok</p>
+
+    </div>
+
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
-let products = JSON.parse(
-    localStorage.getItem("priceMemoryProducts")
-) || [];
-function saveProducts() {
-    localStorage.setItem(
-        "priceMemoryProducts",
-        JSON.stringify(products)
-    );
+
+/* CART */
+
+let cart = 0;
+
+function addToCart(product) {
+
+    cart++;
+
+    document.getElementById(
+        "cartCount"
+    ).textContent = cart;
+
 }
-function saveProduct() {
-    const name = document.getElementById("name").value.trim();
-    const barcode = document.getElementById("barcode").value.trim();
-    const price = document.getElementById("price").value.trim();
-    if (!name || !barcode || !price) {
-        showMessage("⚠️ Fill in all the fields.");
-        return;
-    }
-    const existing = products.find(
-        product => product.barcode === barcode
-    );
-    if (existing) {
-        existing.name = name;
-        existing.price = price;
-        showMessage("✅ Product updated!");
-    } else {
-        products.push({
-            name: name,
-            barcode: barcode,
-            price: price
-        });
-        showMessage("✅ Product saved!");
-    }
-    saveProducts();
-    clearInputs();
-    displayProducts();
-}
-function findProduct() {
-    const barcode =
-        document.getElementById("barcode").value.trim();
-    if (!barcode) {
-        showMessage("⚠️ Enter a barcode first.");
-        return;
-    }
-    const product = products.find(
-        product => product.barcode === barcode
-    );
-    if (product) {
-        document.getElementById("name").value =
-            product.name;
-        document.getElementById("price").value =
-            product.price;
-        showMessage(
-            "✅ Found: " + product.name +
-            " — " + product.price + " MAD"
+
+
+/* NEWSLETTER */
+
+function subscribe() {
+
+    const email =
+        document.getElementById(
+            "emailInput"
+        ).value;
+
+    if (email.trim() === "") {
+
+        alert(
+            "Please enter your email address."
         );
-    } else {
-        showMessage("❌ No product saved with this barcode.");
-    }
-}
-function displayProducts() {
-    const container =
-        document.getElementById("products");
-    const search =
-        document.getElementById("search")
-        .value
-        .toLowerCase()
-        .trim();
-    const filtered = products.filter(product =>
-        product.name.toLowerCase().includes(search) ||
-        product.barcode.includes(search)
-    );
-    container.innerHTML = "";
-    if (filtered.length === 0) {
-        container.innerHTML =
-            '<div class="empty">No products found.</div>';
+
         return;
     }
-    filtered.forEach(product => {
-        const div = document.createElement("div");
-        div.className = "product";
-        div.innerHTML = `
-            <div class="product-name">
-                ${escapeHTML(product.name)}
-            </div>
-            <div class="price">
-                ${escapeHTML(product.price)} MAD
-            </div>
-            <div class="barcode">
-                Barcode: ${escapeHTML(product.barcode)}
-            </div>
-            <div class="actions">
-                <button class="edit"
-                    onclick="editProduct('${escapeJS(product.barcode)}')">
-                    ✏️ Edit
-                </button>
-                <button class="delete"
-                    onclick="deleteProduct('${escapeJS(product.barcode)}')">
-                    🗑️ Delete
-                </button>
-            </div>
-        `;
-        container.appendChild(div);
-    });
-}
-function editProduct(barcode) {
-    const product = products.find(
-        product => product.barcode === barcode
+
+    alert(
+        "Thank you for subscribing!"
     );
-    if (!product) return;
-    document.getElementById("name").value =
-        product.name;
-    document.getElementById("barcode").value =
-        product.barcode;
-    document.getElementById("price").value =
-        product.price;
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+
+    document.getElementById(
+        "emailInput"
+    ).value = "";
+
 }
-function deleteProduct(barcode) {
-    const product = products.find(
-        product => product.barcode === barcode
+
+
+/* =========================
+   HERO FADE EFFECT
+========================= */
+
+const heroImage =
+    document.getElementById(
+        "heroImage"
     );
-    if (!product) return;
-    if (!confirm(
-        "Delete " + product.name + "?"
-    )) return;
-    products = products.filter(
-        product => product.barcode !== barcode
+
+const hero =
+    document.querySelector(
+        ".hero"
     );
-    saveProducts();
-    displayProducts();
-    showMessage("🗑️ Product deleted.");
+
+
+function updateHero() {
+
+    const scroll =
+        window.scrollY;
+
+    const heroHeight =
+        hero.offsetHeight;
+
+
+    /*
+       Image stays visible at the top.
+       As the visitor scrolls down,
+       it gradually disappears.
+    */
+
+    let opacity =
+        1 -
+        (
+            scroll /
+            (heroHeight * 0.8)
+        );
+
+
+    opacity =
+        Math.max(
+            0,
+            Math.min(
+                1,
+                opacity
+            )
+        );
+
+
+    heroImage.style.opacity =
+        opacity;
+
 }
-function clearInputs() {
-    document.getElementById("name").value = "";
-    document.getElementById("barcode").value = "";
-    document.getElementById("price").value = "";
-}
-function showMessage(text) {
-    const message =
-        document.getElementById("message");
-    message.textContent = text;
-    setTimeout(() => {
-        message.textContent = "";
-    }, 3000);
-}
-function escapeHTML(text) {
-    return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-function escapeJS(text) {
-    return String(text)
-        .replace(/\\/g, "\\\\")
-        .replace(/'/g, "\\'");
-}
-displayProducts();
+
+
+window.addEventListener(
+    "scroll",
+    updateHero,
+    {
+        passive: true
+    }
+);
+
+updateHero();
+
+
+/* =========================
+   ACTIVE NAVIGATION
+========================= */
+
+const sections =
+    document.querySelectorAll(
+        "section[id]"
+    );
+
+const navLinks =
+    document.querySelectorAll(
+        ".menu a"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        let current = "";
+
+        sections.forEach(
+            section => {
+
+                const top =
+                    section.offsetTop -
+                    180;
+
+
+                if (
+                    window.scrollY >= top
+                ) {
+
+                    current =
+                        section.getAttribute(
+                            "id"
+                        );
+
+                }
+
+            }
+        );
+
+
+        navLinks.forEach(
+            link => {
+
+                link.classList.remove(
+                    "active"
+                );
+
+
+                if (
+                    link.getAttribute(
+                        "href"
+                    ) ===
+                    "#" + current
+                ) {
+
+                    link.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+    },
+    {
+        passive: true
+    }
+);
+
 </script>
+
 </body>
 </html>
