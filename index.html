@@ -1262,138 +1262,65 @@ try{
 
 await applyPersistence();
 
-/*
-Use redirect on mobile browsers.
-Use popup on desktop browsers.
-*/
-
-const isMobile =
-/Android|iPhone|iPad|iPod|Mobile/i.test(
-navigator.userAgent
+await signInWithPopup(
+auth,
+googleProvider
 );
 
-if(isMobile){
+}catch(error){
+
+console.error(error);
+
+if(
+error.code ===
+"auth/popup-blocked" ||
+error.code ===
+"auth/popup-closed-by-user"
+){
+
+try{
 
 await signInWithRedirect(
 auth,
 googleProvider
 );
 
+}catch(redirectError){
+
+console.error(
+redirectError
+);
+
+showError(
+"Google login could not start. Please try again."
+);
+
+}
+
 return;
 
 }
 
-/* DESKTOP */
+if(
+error.code ===
+"auth/account-exists-with-different-credential"
+){
 
-await signInWithPopup(
-auth,
-googleProvider
+showError(
+"This email already has an account with another login method."
 );
 
-document
-.getElementById("accountError")
-.style.display =
-"none";
+return;
 
-}catch(error){
+}
 
-console.error(
-"Google login error:",
-error
+showError(
+"Google login failed. Please try again."
 );
-
-handleGoogleError(error);
 
 }
 
 };
-
-
-/* GOOGLE ERROR HANDLER */
-
-function handleGoogleError(error){
-
-let message =
-"Google login failed.";
-
-switch(error.code){
-
-case "auth/popup-blocked":
-
-message =
-"Google login popup was blocked. Please allow popups and try again.";
-
-break;
-
-case "auth/popup-closed-by-user":
-
-message =
-"Google login was cancelled.";
-
-break;
-
-case "auth/account-exists-with-different-credential":
-
-message =
-"This email already has an account using another login method.";
-
-break;
-
-case "auth/unauthorized-domain":
-
-message =
-"This website domain is not authorized in Firebase.";
-
-break;
-
-case "auth/invalid-oauth-client-id":
-
-message =
-"Google OAuth configuration is invalid. Please check the Google provider in Firebase.";
-
-break;
-
-case "auth/operation-not-allowed":
-
-message =
-"Google sign-in is not enabled in Firebase.";
-
-break;
-
-case "auth/operation-not-supported-in-this-environment":
-
-message =
-"Google sign-in is not supported in this browser.";
-
-break;
-
-case "auth/network-request-failed":
-
-message =
-"Network error. Please check your internet connection.";
-
-break;
-
-default:
-
-message =
-"Google login error: " +
-(error.code || "unknown-error");
-
-if(error.message){
-
-console.error(
-"Firebase message:",
-error.message
-);
-
-}
-
-}
-
-showError(message);
-
-}
 
 
 /* HANDLE GOOGLE REDIRECT */
@@ -1401,31 +1328,26 @@ showError(message);
 getRedirectResult(auth)
 .then((result)=>{
 
-if(!result){
-
-return;
-
-}
+if(result){
 
 console.log(
-"Google redirect login successful:",
-result.user
+"Google login successful."
 );
 
-document
-.getElementById("accountError")
-.style.display =
-"none";
+}
 
 })
 .catch((error)=>{
 
-console.error(
-"Google redirect error:",
-error
+if(error){
+
+console.error(error);
+
+showError(
+"Google login failed. Please try again."
 );
 
-handleGoogleError(error);
+}
 
 });
 
@@ -1488,7 +1410,7 @@ r="4"
 fill="#888"/>
 
 <path
-d="M4 21c0-4.2 3.6 7 8-7s8 2.8 8 7"
+d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"
 fill="#888"/>
 
 </svg>
@@ -1680,6 +1602,7 @@ menu.classList.remove("open");
 }
 
 });
+
 
 </script>
 
