@@ -23,6 +23,174 @@ text-decoration:none;
 color:inherit;
 }
 
+/* =========================
+   LOGIN GATE
+========================= */
+
+body.auth-loading > *:not(#loginGate){
+visibility:hidden;
+}
+
+.login-gate{
+position:fixed;
+inset:0;
+width:100%;
+height:100vh;
+background:#fff;
+z-index:999999;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow-y:auto;
+padding:25px 20px;
+}
+
+.login-gate.hidden{
+display:none;
+}
+
+.login-gate-box{
+width:100%;
+max-width:430px;
+background:#fff;
+border-radius:15px;
+padding:32px;
+position:relative;
+box-shadow:0 20px 60px rgba(0,0,0,.10);
+border:1px solid #eee;
+}
+
+.login-logo{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+margin-bottom:22px;
+}
+
+.login-logo-circle{
+width:52px;
+height:52px;
+border-radius:50%;
+background:#ff7200;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+font-size:11px;
+letter-spacing:1px;
+}
+
+.login-logo-text{
+font-size:20px;
+font-weight:bold;
+letter-spacing:1.5px;
+}
+
+.login-gate-box h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+.login-input{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:7px;
+margin:6px 0;
+outline:none;
+font-size:14px;
+}
+
+.login-input:focus{
+border-color:#ff7200;
+}
+
+.login-remember{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:13px;
+margin:12px 0;
+color:#555;
+}
+
+.login-submit{
+width:100%;
+padding:14px;
+border:none;
+border-radius:7px;
+background:#ff7200;
+color:white;
+font-weight:bold;
+cursor:pointer;
+margin-top:8px;
+font-size:14px;
+}
+
+.login-submit:hover{
+background:#e86300;
+}
+
+.login-submit:disabled{
+opacity:.65;
+cursor:not-allowed;
+}
+
+.login-google{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:7px;
+background:white;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+font-size:14px;
+}
+
+.login-google:hover{
+background:#f8f8f8;
+}
+
+.login-switch{
+text-align:center;
+margin-top:16px;
+font-size:13px;
+color:#ff7200;
+cursor:pointer;
+}
+
+.login-error{
+color:#d93025;
+font-size:13px;
+text-align:center;
+margin-top:10px;
+line-height:1.4;
+}
+
+.login-success{
+color:#188038;
+font-size:13px;
+text-align:center;
+margin-top:10px;
+line-height:1.4;
+}
+
+.login-gate-subtitle{
+text-align:center;
+color:#777;
+font-size:13px;
+margin-top:-10px;
+margin-bottom:18px;
+}
+
+
+/* =========================
+   MAIN SITE
+========================= */
+
 .top-bar{
 height:38px;
 background:#ff7200;
@@ -227,17 +395,62 @@ font-size:20px;
 cursor:pointer;
 }
 
+
+/* =========================
+   SMOOTH HERO SLIDER
+========================= */
+
 .hero{
 min-height:650px;
-background:
-linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.28)),
-url("back-to-school.JPG") center/cover no-repeat;
+position:relative;
+overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
 color:white;
 padding:40px;
+background:#222;
+}
+
+.hero-slider{
+position:absolute;
+inset:0;
+overflow:hidden;
+z-index:0;
+}
+
+.hero-track{
+height:100%;
+width:100%;
+display:flex;
+transition:transform .9s ease;
+}
+
+.hero-slide{
+min-width:100%;
+height:100%;
+position:relative;
+flex-shrink:0;
+}
+
+.hero-slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.hero-slide::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.28);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
 }
 
 .hero-content h1{
@@ -266,6 +479,11 @@ background:#e86300;
 transform:translateY(-2px);
 }
 
+
+/* =========================
+   SERVICES
+========================= */
+
 .services{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -291,6 +509,11 @@ color:#777;
 font-size:14px;
 line-height:1.6;
 }
+
+
+/* =========================
+   NEWSLETTER
+========================= */
 
 .newsletter{
 background:#f8f8f8;
@@ -331,6 +554,11 @@ cursor:pointer;
 font-weight:bold;
 }
 
+
+/* =========================
+   FOOTER
+========================= */
+
 footer{
 background:#151515;
 color:white;
@@ -343,6 +571,11 @@ color:#aaa;
 font-size:13px;
 margin-top:10px;
 }
+
+
+/* =========================
+   ACCOUNT MODAL
+========================= */
 
 .account-modal{
 display:none;
@@ -472,6 +705,11 @@ margin-top:10px;
 display:none;
 }
 
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media(max-width:900px){
 
 .nav-links{
@@ -553,45 +791,191 @@ width:100%;
 max-width:320px;
 }
 
+.login-gate{
+padding:20px 15px;
+}
+
+.login-gate-box{
+padding:28px 24px;
+box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
 }
 </style>
 </head>
 
-<body>
+<body class="auth-loading">
+
+
+<!-- =========================
+     LOGIN GATE
+========================= -->
+
+<div id="loginGate" class="login-gate">
+
+<div class="login-gate-box">
+
+<div class="login-logo">
+
+<div class="login-logo-circle">
+DEJALUXE
+</div>
+
+<div class="login-logo-text">
+DEJALUXE
+</div>
+
+</div>
+
+<h2 id="gateTitle">
+Welcome Back
+</h2>
+
+<p id="gateSubtitle" class="login-gate-subtitle">
+Sign in to continue to DEJALUXE
+</p>
+
+
+<div id="gateNameWrapper" style="display:none;">
+
+<input
+id="gateName"
+class="login-input"
+type="text"
+placeholder="Full name"
+autocomplete="name">
+
+</div>
+
+
+<input
+id="gateEmail"
+class="login-input"
+type="email"
+placeholder="Email"
+autocomplete="email">
+
+
+<input
+id="gatePassword"
+class="login-input"
+type="password"
+placeholder="Password"
+autocomplete="current-password">
+
+
+<label class="login-remember">
+
+<input
+id="gateRemember"
+type="checkbox"
+checked>
+
+Remember Me
+
+</label>
+
+
+<button
+id="gateSubmit"
+class="login-submit"
+onclick="submitGateLogin()">
+
+Login
+
+</button>
+
+
+<button
+id="gateGoogle"
+class="login-google"
+onclick="loginGateWithGoogle()">
+
+Continue with Google
+
+</button>
+
+
+<div
+id="gateError"
+class="login-error">
+</div>
+
+
+<div
+id="gateSwitch"
+class="login-switch"
+onclick="switchGateMode()">
+
+Create an account
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     MAIN WEBSITE
+========================= -->
 
 <div class="top-bar">
-<div>Free delivery on orders over 500 MAD</div>
+
+<div>
+Free delivery on orders over 500 MAD
+</div>
 
 <div class="top-right">
+
 <span>Track Order</span>
 <span>Help</span>
 <span>EN</span>
+
 </div>
+
 </div>
+
 
 <nav>
 
-<a href="index.html" class="logo">
+<a
+href="index.html"
+class="logo">
+
 DEJALUXE
+
 </a>
+
 
 <ul class="nav-links">
 
 <li>
-<a href="index.html">Home</a>
+<a href="index.html">
+Home
+</a>
 </li>
 
 <li>
-<a href="shop.html">Shop</a>
+<a href="shop.html">
+Shop
+</a>
 </li>
 
-<li class="categories-menu" id="categoriesMenu">
+
+<li
+class="categories-menu"
+id="categoriesMenu">
+
 
 <button
 class="categories-button"
 onclick="toggleCategories()">
+
 Categories ▾
+
 </button>
+
 
 <div class="dropdown">
 
@@ -619,11 +1003,15 @@ Accessories
 
 </li>
 
+
 <li>
-<a href="#about">About Us</a>
+<a href="#about">
+About Us
+</a>
 </li>
 
 </ul>
+
 
 <div class="nav-icons">
 
@@ -631,8 +1019,11 @@ Accessories
 class="search-icon"
 onclick="toggleSearch()"
 title="Search">
+
 ⌕
+
 </span>
+
 
 <span
 id="profileAvatar"
@@ -640,14 +1031,25 @@ class="profile-icon"
 onclick="openAccount()"
 title="Account">
 
-<svg viewBox="0 0 24 24" fill="none">
-<circle cx="12" cy="8" r="4" fill="#888"/>
+
+<svg
+viewBox="0 0 24 24"
+fill="none">
+
+<circle
+cx="12"
+cy="8"
+r="4"
+fill="#888"/>
+
 <path
 d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"
 fill="#888"/>
+
 </svg>
 
 </span>
+
 
 <span
 class="cart-icon"
@@ -659,7 +1061,9 @@ title="Shop">
 <span
 class="cart-count"
 id="cartCount">
+
 0
+
 </span>
 
 </span>
@@ -667,6 +1071,7 @@ id="cartCount">
 </div>
 
 </nav>
+
 
 <div
 id="searchPanel"
@@ -680,21 +1085,49 @@ class="search-input"
 placeholder="Search products..."
 autocomplete="off">
 
+
 <button
 class="close-search"
 onclick="toggleSearch()">
+
 ×
+
 </button>
 
 </div>
 
 </div>
 
+
+<!-- HERO -->
+
 <section class="hero">
+
+
+<div class="hero-slider">
+
+<div
+class="hero-track"
+id="heroTrack">
+
+<div class="hero-slide">
+
+<img
+src="back-to-school.JPG"
+alt="DEJALUXE">
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="hero-content">
 
-<h1>DEJALUXE</h1>
+<h1>
+DEJALUXE
+</h1>
 
 <p>
 Discover luxury. Define your style.
@@ -703,20 +1136,29 @@ Discover luxury. Define your style.
 <a
 href="shop.html"
 class="shop-now">
+
 Shop Now
+
 </a>
 
 </div>
 
 </section>
 
+
+<!-- SERVICES -->
+
 <section class="services">
 
 <div class="service">
 
-<div class="service-icon">🚚</div>
+<div class="service-icon">
+🚚
+</div>
 
-<h3>Fast Delivery</h3>
+<h3>
+Fast Delivery
+</h3>
 
 <p>
 Quick delivery across Morocco.
@@ -724,11 +1166,16 @@ Quick delivery across Morocco.
 
 </div>
 
+
 <div class="service">
 
-<div class="service-icon">✨</div>
+<div class="service-icon">
+✨
+</div>
 
-<h3>Premium Quality</h3>
+<h3>
+Premium Quality
+</h3>
 
 <p>
 Carefully selected products for your lifestyle.
@@ -736,11 +1183,16 @@ Carefully selected products for your lifestyle.
 
 </div>
 
+
 <div class="service">
 
-<div class="service-icon">🔒</div>
+<div class="service-icon">
+🔒
+</div>
 
-<h3>Secure Shopping</h3>
+<h3>
+Secure Shopping
+</h3>
 
 <p>
 A simple and secure shopping experience.
@@ -749,6 +1201,9 @@ A simple and secure shopping experience.
 </div>
 
 </section>
+
+
+<!-- NEWSLETTER -->
 
 <section
 class="newsletter"
@@ -769,17 +1224,23 @@ type="email"
 id="newsletterEmail"
 placeholder="Your email">
 
-<button onclick="subscribeNewsletter()">
+<button
+onclick="subscribeNewsletter()">
+
 Subscribe
+
 </button>
 
 </div>
 
 </section>
 
+
 <footer>
 
-<h3>DEJALUXE</h3>
+<h3>
+DEJALUXE
+</h3>
 
 <p>
 Luxury made simple.
@@ -798,13 +1259,18 @@ Luxury made simple.
 id="accountModal"
 class="account-modal">
 
+
 <div class="account-box">
+
 
 <button
 class="account-close"
 onclick="closeAccount()">
+
 ×
+
 </button>
+
 
 <div id="loginSection">
 
@@ -812,11 +1278,13 @@ onclick="closeAccount()">
 Welcome Back
 </h2>
 
+
 <input
 id="nameInput"
 class="account-input"
 placeholder="Full name"
 style="display:none">
+
 
 <input
 id="emailInput"
@@ -824,11 +1292,13 @@ class="account-input"
 type="email"
 placeholder="Email">
 
+
 <input
 id="passwordInput"
 class="account-input"
 type="password"
 placeholder="Password">
+
 
 <label class="remember">
 
@@ -841,6 +1311,7 @@ Remember Me
 
 </label>
 
+
 <button
 id="accountSubmit"
 class="account-button"
@@ -850,6 +1321,7 @@ Login
 
 </button>
 
+
 <button
 class="google-button"
 onclick="loginWithGoogle()">
@@ -858,10 +1330,12 @@ Continue with Google
 
 </button>
 
+
 <div
 id="accountError"
 class="account-error">
 </div>
+
 
 <div
 id="switchText"
@@ -880,16 +1354,20 @@ id="welcomeSection"
 class="welcome-section"
 style="display:none">
 
+
 <img
 id="welcomePhoto"
 class="welcome-photo"
 alt="Profile">
 
+
 <h2 id="welcomeName">
 Welcome to DEJALUXE
 </h2>
 
+
 <p id="welcomeEmail"></p>
+
 
 <button
 class="logout-button"
@@ -926,9 +1404,463 @@ SUPABASE_PUBLISHABLE_KEY
 
 
 let createAccountMode = false;
+let gateCreateAccountMode = false;
 
 
-/* SEARCH */
+/* =========================
+   LOGIN GATE
+========================= */
+
+function showGate(){
+
+const gate =
+document.getElementById("loginGate");
+
+gate.classList.remove("hidden");
+
+document.body.classList.add("auth-loading");
+
+}
+
+
+function hideGate(){
+
+const gate =
+document.getElementById("loginGate");
+
+gate.classList.add("hidden");
+
+document.body.classList.remove("auth-loading");
+
+}
+
+
+function gateError(message){
+
+const error =
+document.getElementById("gateError");
+
+error.className =
+"login-error";
+
+error.textContent =
+message;
+
+}
+
+
+function gateSuccess(message){
+
+const error =
+document.getElementById("gateError");
+
+error.className =
+"login-success";
+
+error.textContent =
+message;
+
+}
+
+
+function clearGateMessage(){
+
+const error =
+document.getElementById("gateError");
+
+error.textContent =
+"";
+
+}
+
+
+window.switchGateMode = function(){
+
+gateCreateAccountMode =
+!gateCreateAccountMode;
+
+clearGateMessage();
+
+
+const title =
+document.getElementById("gateTitle");
+
+const subtitle =
+document.getElementById("gateSubtitle");
+
+const nameWrapper =
+document.getElementById("gateNameWrapper");
+
+const submit =
+document.getElementById("gateSubmit");
+
+const switchText =
+document.getElementById("gateSwitch");
+
+
+if(gateCreateAccountMode){
+
+title.textContent =
+"Create Account";
+
+subtitle.textContent =
+"Create your DEJALUXE account";
+
+nameWrapper.style.display =
+"block";
+
+submit.textContent =
+"Create Account";
+
+switchText.textContent =
+"Already have an account? Login";
+
+document
+.getElementById("gatePassword")
+.autocomplete =
+"new-password";
+
+}else{
+
+title.textContent =
+"Welcome Back";
+
+subtitle.textContent =
+"Sign in to continue to DEJALUXE";
+
+nameWrapper.style.display =
+"none";
+
+submit.textContent =
+"Login";
+
+switchText.textContent =
+"Create an account";
+
+document
+.getElementById("gatePassword")
+.autocomplete =
+"current-password";
+
+}
+
+};
+
+
+window.submitGateLogin = async function(){
+
+clearGateMessage();
+
+
+const email =
+document
+.getElementById("gateEmail")
+.value
+.trim();
+
+const password =
+document
+.getElementById("gatePassword")
+.value;
+
+const name =
+document
+.getElementById("gateName")
+.value
+.trim();
+
+
+if(!email){
+
+gateError(
+"Please enter your email."
+);
+
+return;
+
+}
+
+
+if(!password){
+
+gateError(
+"Please enter your password."
+);
+
+return;
+
+}
+
+
+if(gateCreateAccountMode && !name){
+
+gateError(
+"Please enter your full name."
+);
+
+return;
+
+}
+
+
+const button =
+document.getElementById("gateSubmit");
+
+button.disabled =
+true;
+
+button.textContent =
+"Please wait...";
+
+
+try{
+
+let result;
+
+
+if(gateCreateAccountMode){
+
+result =
+await supabaseClient.auth.signUp({
+
+email:email,
+
+password:password,
+
+options:{
+data:{
+full_name:name,
+name:name
+}
+}
+
+});
+
+}else{
+
+result =
+await supabaseClient.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+}
+
+
+if(result.error){
+
+throw result.error;
+
+}
+
+
+if(
+gateCreateAccountMode &&
+result.data.user &&
+!result.data.session
+){
+
+gateSuccess(
+"Account created! Please check your email to confirm your account."
+);
+
+return;
+
+}
+
+
+if(result.data.session){
+
+hideGate();
+
+}
+
+}catch(error){
+
+console.error(
+"Gate authentication error:",
+error
+);
+
+
+let message =
+"Something went wrong. Please try again.";
+
+
+if(error.message){
+
+message =
+error.message;
+
+}
+
+
+if(
+error.message &&
+error.message
+.toLowerCase()
+.includes("invalid login credentials")
+){
+
+message =
+"Incorrect email or password.";
+
+}
+
+
+gateError(message);
+
+}finally{
+
+button.disabled =
+false;
+
+button.textContent =
+gateCreateAccountMode
+? "Create Account"
+: "Login";
+
+}
+
+};
+
+
+window.loginGateWithGoogle = async function(){
+
+clearGateMessage();
+
+
+const button =
+document.getElementById("gateGoogle");
+
+button.disabled =
+true;
+
+button.textContent =
+"Connecting...";
+
+
+try{
+
+const {error} =
+await supabaseClient.auth.signInWithOAuth({
+
+provider:"google",
+
+options:{
+redirectTo:
+window.location.origin +
+window.location.pathname
+}
+
+});
+
+
+if(error){
+
+throw error;
+
+}
+
+}catch(error){
+
+console.error(
+"Google gate login error:",
+error
+);
+
+gateError(
+error.message ||
+"Google login failed. Please try again."
+);
+
+button.disabled =
+false;
+
+button.textContent =
+"Continue with Google";
+
+}
+
+};
+
+
+/* =========================
+   AUTH GATE CHECK
+========================= */
+
+async function enforceLoginGate(){
+
+showGate();
+
+try{
+
+const {
+data:{
+session
+}
+} =
+await supabaseClient.auth.getSession();
+
+
+if(session){
+
+hideGate();
+
+}else{
+
+showGate();
+
+}
+
+}catch(error){
+
+console.error(
+"Session check error:",
+error
+);
+
+showGate();
+
+}
+
+}
+
+
+enforceLoginGate();
+
+
+supabaseClient.auth.onAuthStateChange(
+(event,session)=>{
+
+const user =
+session?.user || null;
+
+
+updateProfileIcon(user);
+
+updateAccountWindow(user);
+
+
+if(user){
+
+hideGate();
+
+}else{
+
+showGate();
+
+}
+
+});
+
+
+/* =========================
+   SEARCH
+========================= */
 
 window.toggleSearch = function(){
 
@@ -936,6 +1868,7 @@ const panel =
 document.getElementById("searchPanel");
 
 panel.classList.toggle("open");
+
 
 if(panel.classList.contains("open")){
 
@@ -948,7 +1881,9 @@ document
 };
 
 
-/* CATEGORIES */
+/* =========================
+   CATEGORIES
+========================= */
 
 window.toggleCategories = function(){
 
@@ -960,7 +1895,9 @@ menu.classList.toggle("open");
 };
 
 
-/* ACCOUNT OPEN */
+/* =========================
+   ACCOUNT OPEN
+========================= */
 
 window.openAccount = function(){
 
@@ -971,7 +1908,9 @@ document
 };
 
 
-/* ACCOUNT CLOSE */
+/* =========================
+   ACCOUNT CLOSE
+========================= */
 
 window.closeAccount = function(){
 
@@ -982,12 +1921,15 @@ document
 };
 
 
-/* SWITCH LOGIN / SIGN UP */
+/* =========================
+   SWITCH ACCOUNT MODE
+========================= */
 
 window.switchAccountMode = function(){
 
 createAccountMode =
 !createAccountMode;
+
 
 const title =
 document.getElementById("accountTitle");
@@ -1004,8 +1946,12 @@ document.getElementById("switchText");
 const error =
 document.getElementById("accountError");
 
-error.textContent = "";
-error.style.display = "none";
+
+error.textContent =
+"";
+
+error.style.display =
+"none";
 
 
 if(createAccountMode){
@@ -1041,7 +1987,9 @@ switchText.textContent =
 };
 
 
-/* ERROR */
+/* =========================
+   ACCOUNT ERROR
+========================= */
 
 function showError(message){
 
@@ -1057,14 +2005,13 @@ error.style.display =
 }
 
 
-/* CLEAR ERROR */
-
 function clearError(){
 
 const error =
 document.getElementById("accountError");
 
-error.textContent = "";
+error.textContent =
+"";
 
 error.style.display =
 "none";
@@ -1072,7 +2019,9 @@ error.style.display =
 }
 
 
-/* EMAIL LOGIN / CREATE ACCOUNT */
+/* =========================
+   ACCOUNT EMAIL LOGIN
+========================= */
 
 window.submitAccount = async function(){
 
@@ -1174,8 +2123,6 @@ throw result.error;
 clearError();
 
 
-/* EMAIL CONFIRMATION */
-
 if(
 createAccountMode &&
 result.data.user &&
@@ -1213,7 +2160,9 @@ error.message;
 
 if(
 error.message &&
-error.message.toLowerCase().includes("invalid login credentials")
+error.message
+.toLowerCase()
+.includes("invalid login credentials")
 ){
 
 message =
@@ -1224,26 +2173,17 @@ message =
 
 if(
 error.message &&
-error.message.toLowerCase().includes("password")
+error.message
+.toLowerCase()
+.includes("password")
 &&
-error.message.toLowerCase().includes("weak")
+error.message
+.toLowerCase()
+.includes("weak")
 ){
 
 message =
 "Password is too weak.";
-
-}
-
-
-if(
-error.message &&
-error.message.toLowerCase().includes("email")
-&&
-error.message.toLowerCase().includes("valid")
-){
-
-message =
-"Please enter a valid email.";
 
 }
 
@@ -1255,7 +2195,9 @@ showError(message);
 };
 
 
-/* GOOGLE LOGIN */
+/* =========================
+   GOOGLE LOGIN ACCOUNT
+========================= */
 
 window.loginWithGoogle = async function(){
 
@@ -1270,10 +2212,9 @@ await supabaseClient.auth.signInWithOAuth({
 provider:"google",
 
 options:{
-
 redirectTo:
-"https://dejaluxe.netlify.app/"
-
+window.location.origin +
+window.location.pathname
 }
 
 });
@@ -1284,7 +2225,6 @@ if(error){
 throw error;
 
 }
-
 
 }catch(error){
 
@@ -1303,7 +2243,9 @@ error.message ||
 };
 
 
-/* UPDATE PROFILE ICON */
+/* =========================
+   PROFILE ICON
+========================= */
 
 function updateProfileIcon(user){
 
@@ -1384,9 +2326,9 @@ fill="#888"/>
 }
 
 }
-
-
-/* UPDATE ACCOUNT WINDOW */
+/* =========================
+   ACCOUNT WINDOW
+========================= */
 
 function updateAccountWindow(user){
 
@@ -1470,7 +2412,9 @@ welcomeSection.style.display =
 }
 
 
-/* GET CURRENT SESSION */
+/* =========================
+   CURRENT SESSION
+========================= */
 
 supabaseClient.auth
 .getSession()
@@ -1479,31 +2423,28 @@ supabaseClient.auth
 const user =
 data.session?.user || null;
 
+
 updateProfileIcon(user);
 
 updateAccountWindow(user);
+
+
+if(user){
+
+hideGate();
+
+}else{
+
+showGate();
+
+}
 
 });
 
 
-/* AUTH STATE */
-
-supabaseClient.auth
-.onAuthStateChange(
-(event,session)=>{
-
-const user =
-session?.user || null;
-
-updateProfileIcon(user);
-
-updateAccountWindow(user);
-
-}
-);
-
-
-/* LOGOUT */
+/* =========================
+   LOGOUT
+========================= */
 
 window.logout = async function(){
 
@@ -1522,6 +2463,8 @@ throw error;
 
 closeAccount();
 
+showGate();
+
 }catch(error){
 
 console.error(error);
@@ -1535,7 +2478,9 @@ showError(
 };
 
 
-/* NEWSLETTER */
+/* =========================
+   NEWSLETTER
+========================= */
 
 window.subscribeNewsletter = function(){
 
@@ -1563,12 +2508,15 @@ alert(
 "Thank you for subscribing to DEJALUXE!"
 );
 
-input.value = "";
+input.value =
+"";
 
 };
 
 
-/* CART COUNT */
+/* =========================
+   CART COUNT
+========================= */
 
 const savedCart =
 localStorage.getItem(
@@ -1586,7 +2534,9 @@ savedCart;
 }
 
 
-/* CLOSE ACCOUNT WITH BACKDROP */
+/* =========================
+   CLOSE ACCOUNT BACKDROP
+========================= */
 
 document
 .getElementById("accountModal")
@@ -1603,7 +2553,9 @@ closeAccount();
 });
 
 
-/* CLOSE CATEGORIES OUTSIDE */
+/* =========================
+   CLOSE CATEGORIES
+========================= */
 
 document.addEventListener(
 "click",
@@ -1614,13 +2566,97 @@ document.getElementById(
 "categoriesMenu"
 );
 
-if(!menu.contains(event.target)){
+
+if(
+menu &&
+!menu.contains(event.target)
+){
 
 menu.classList.remove("open");
 
 }
 
 });
+
+
+/* =========================
+   SMOOTH AUTOMATIC SLIDER
+========================= */
+
+/*
+  Add more images here later.
+
+  Example:
+
+  const heroImages = [
+    "back-to-school.JPG",
+    "image2.jpg",
+    "image3.jpg"
+  ];
+
+  The slider will automatically move
+  horizontally. No fade effect.
+*/
+
+const heroImages = [
+"back-to-school.JPG"
+];
+
+
+const heroTrack =
+document.getElementById(
+"heroTrack"
+);
+
+
+if(heroTrack && heroImages.length > 1){
+
+heroTrack.innerHTML =
+heroImages
+.map(
+(image,index)=>`
+
+<div class="hero-slide">
+
+<img
+src="${image}"
+alt="DEJALUXE ${index + 1}">
+
+</div>
+
+`
+)
+.join("");
+
+
+let currentHero =
+0;
+
+
+setInterval(
+()=>{
+
+currentHero++;
+
+if(
+currentHero >=
+heroImages.length
+){
+
+currentHero =
+0;
+
+}
+
+
+heroTrack.style.transform =
+`translateX(-${currentHero * 100}%)`;
+
+},
+5000
+);
+
+}
 
 </script>
 
