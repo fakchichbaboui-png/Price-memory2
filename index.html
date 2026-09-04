@@ -58,15 +58,13 @@ body {
     justify-content: space-between;
     padding: 0 7%;
 
-    background: rgba(255,255,255,0.96);
+    background: white;
 
     border-bottom: 1px solid #eee;
 
     position: sticky;
     top: 0;
     z-index: 1000;
-
-    backdrop-filter: blur(15px);
 }
 
 
@@ -93,10 +91,6 @@ body {
     font-size: 14px;
 
     background: white;
-
-    transition:
-        transform .4s ease,
-        box-shadow .4s ease;
 }
 
 .logo::after {
@@ -115,13 +109,6 @@ body {
     z-index: 2;
 }
 
-.logo:hover {
-    transform: rotate(6deg) scale(1.05);
-
-    box-shadow:
-        0 10px 30px rgba(255,114,0,.18);
-}
-
 
 /* =========================
    NAVIGATION
@@ -130,15 +117,16 @@ body {
 .menu {
     display: flex;
     gap: 34px;
-
     list-style: none;
+    align-items: center;
 }
 
 .menu li {
     position: relative;
 }
 
-.menu a {
+.menu a,
+.categories-button {
     position: relative;
 
     display: inline-block;
@@ -151,14 +139,20 @@ body {
 
     font-weight: 600;
 
-    transition:
-        color .25s ease;
+    background: none;
+    border: none;
+
+    font-family: inherit;
+    font-size: inherit;
+
+    cursor: pointer;
 }
 
 
-/* Animated line */
+/* Navigation underline */
 
-.menu a::after {
+.menu a::after,
+.categories-button::after {
     content: "";
 
     position: absolute;
@@ -172,18 +166,101 @@ body {
     background: #ff7200;
 
     transform: translateX(-50%);
-
-    transition:
-        width .4s cubic-bezier(.65,0,.35,1);
 }
 
 .menu a:hover::after,
-.menu a.active::after {
+.menu a.active::after,
+.categories-button:hover::after {
     width: 100%;
 }
 
 .menu a:hover,
-.menu a.active {
+.menu a.active,
+.categories-button:hover {
+    color: #ff7200;
+}
+
+
+/* =========================
+   CATEGORIES DROPDOWN
+========================= */
+
+.categories-menu {
+    position: relative;
+}
+
+.categories-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.categories-arrow {
+    font-size: 11px;
+}
+
+
+/* Dropdown */
+
+.dropdown {
+    display: none;
+
+    position: absolute;
+
+    top: 48px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 190px;
+
+    background: white;
+
+    border: 1px solid #eee;
+
+    border-radius: 10px;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,.12);
+
+    padding: 8px;
+
+    z-index: 2000;
+}
+
+
+/* Show dropdown */
+
+.categories-menu:hover .dropdown,
+.categories-menu.open .dropdown {
+    display: block;
+}
+
+
+/* Dropdown links */
+
+.dropdown a {
+    display: block;
+
+    padding: 12px 15px;
+
+    color: #222;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    border-radius: 7px;
+}
+
+.dropdown a::after {
+    display: none;
+}
+
+.dropdown a:hover {
+    background: #fff0e4;
+
     color: #ff7200;
 }
 
@@ -196,21 +273,11 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-
     font-size: 23px;
 }
 
 .icon {
     cursor: pointer;
-
-    transition:
-        transform .25s ease,
-        color .25s ease;
-}
-
-.icon:hover {
-    transform: translateY(-3px);
-    color: #ff7200;
 }
 
 .cart-wrapper {
@@ -273,7 +340,6 @@ body {
             rgba(0,0,0,.35) 42%,
             rgba(0,0,0,.05) 100%
         ),
-
         url("back-to-school.JPG");
 
     background-size: cover;
@@ -281,12 +347,10 @@ body {
     background-position: center;
 
     transform: scale(1.03);
-
-    will-change: opacity, transform;
-
-    transition:
-        transform 1s ease;
 }
+
+
+/* No fade / no opacity transition */
 
 .hero:hover .hero-image {
     transform: scale(1.06);
@@ -348,7 +412,9 @@ body {
 }
 
 
-/* SHOP BUTTON */
+/* =========================
+   SHOP BUTTON
+========================= */
 
 .shop-btn {
     display: inline-flex;
@@ -370,22 +436,12 @@ body {
     font-weight: bold;
 
     font-size: 16px;
-
-    transition:
-        transform .3s ease,
-        background .3s ease,
-        box-shadow .3s ease;
 }
 
 .shop-btn:hover {
     background: white;
 
     color: #111;
-
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,.25);
 }
 
 
@@ -411,13 +467,6 @@ body {
     align-items: center;
 
     gap: 14px;
-
-    transition:
-        transform .3s ease;
-}
-
-.service:hover {
-    transform: translateY(-4px);
 }
 
 .service-icon {
@@ -440,237 +489,11 @@ body {
 
 
 /* =========================
-   SECTIONS
-========================= */
-
-.section {
-    padding: 75px 8%;
-}
-
-.section-title {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 35px;
-}
-
-.section-title h2 {
-    font-size: 32px;
-
-    letter-spacing: -1px;
-}
-
-.view {
-    color: #ff7200;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        letter-spacing .3s ease;
-}
-
-.view:hover {
-    letter-spacing: 1px;
-}
-
-
-/* =========================
-   CATEGORIES
-========================= */
-
-.categories {
-    display: grid;
-
-    grid-template-columns: repeat(7,1fr);
-
-    gap: 18px;
-}
-
-.category {
-    text-align: center;
-
-    cursor: pointer;
-}
-
-.category-circle {
-    width: 110px;
-    height: 110px;
-
-    margin: auto;
-
-    background: #f7f7f7;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 45px;
-
-    transition:
-        transform .35s ease,
-        background .35s ease,
-        box-shadow .35s ease;
-}
-
-.category:hover .category-circle {
-    background: #fff0e4;
-
-    transform:
-        translateY(-8px)
-        scale(1.04);
-
-    box-shadow:
-        0 12px 25px rgba(255,114,0,.12);
-}
-
-.category p {
-    margin-top: 14px;
-
-    font-weight: bold;
-}
-
-
-/* =========================
-   PRODUCTS
-========================= */
-
-.products {
-    display: grid;
-
-    grid-template-columns: repeat(4,1fr);
-
-    gap: 22px;
-}
-
-.product {
-    border: 1px solid #eee;
-
-    border-radius: 15px;
-
-    overflow: hidden;
-
-    background: white;
-
-    transition:
-        transform .35s ease,
-        box-shadow .35s ease;
-}
-
-.product:hover {
-    transform: translateY(-9px);
-
-    box-shadow:
-        0 18px 40px rgba(0,0,0,.10);
-}
-
-.product-image {
-    height: 220px;
-
-    background: #f6f6f6;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 80px;
-
-    position: relative;
-
-    transition:
-        background .3s ease;
-}
-
-.product:hover .product-image {
-    background: #fff5ed;
-}
-
-.new {
-    position: absolute;
-
-    top: 12px;
-    right: 12px;
-
-    background: #ff7200;
-
-    color: white;
-
-    padding: 6px 10px;
-
-    border-radius: 15px;
-
-    font-size: 12px;
-
-    font-weight: bold;
-}
-
-.product-info {
-    padding: 17px;
-}
-
-.product-info h3 {
-    margin-bottom: 8px;
-}
-
-.stars {
-    color: #ff7200;
-
-    margin-bottom: 8px;
-}
-
-.price {
-    font-size: 20px;
-
-    font-weight: bold;
-}
-
-.add {
-    width: 100%;
-
-    margin-top: 12px;
-
-    border: none;
-
-    background: #111;
-
-    color: white;
-
-    padding: 12px;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-weight: bold;
-
-    transition:
-        background .3s ease,
-        transform .25s ease;
-}
-
-.add:hover {
-    background: #ff7200;
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================
    NEWSLETTER
 ========================= */
 
 .newsletter {
-    margin: 20px 8% 70px;
+    margin: 70px 8%;
 
     padding: 55px 30px;
 
@@ -721,13 +544,10 @@ body {
     font-weight: bold;
 
     cursor: pointer;
-
-    transition:
-        transform .25s ease;
 }
 
 .newsletter button:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 
@@ -759,9 +579,6 @@ footer p {
     margin-bottom: 8px;
 
     cursor: pointer;
-
-    transition:
-        color .25s ease;
 }
 
 footer p:hover {
@@ -777,7 +594,6 @@ footer p:hover {
 
     .topbar {
         font-size: 10px;
-
         padding: 9px 5%;
     }
 
@@ -816,8 +632,7 @@ footer p:hover {
 
         gap: 25px;
 
-        padding:
-            5px 2px 8px;
+        padding: 5px 2px 8px;
 
         scrollbar-width: none;
     }
@@ -826,10 +641,23 @@ footer p:hover {
         display: none;
     }
 
-    .menu a {
+    .menu a,
+    .categories-button {
         white-space: nowrap;
 
         font-size: 13px;
+    }
+
+    .dropdown {
+        position: fixed;
+
+        top: 145px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 200px;
     }
 
     .icons {
@@ -842,10 +670,6 @@ footer p:hover {
         height: 650px;
 
         min-height: 650px;
-    }
-
-    .hero-image {
-        background-position: center;
     }
 
     .hero-text {
@@ -868,45 +692,8 @@ footer p:hover {
         padding: 28px 6%;
     }
 
-    .categories {
-        grid-template-columns: repeat(3,1fr);
-
-        gap: 25px 10px;
-    }
-
-    .category-circle {
-        width: 80px;
-        height: 80px;
-
-        font-size: 32px;
-    }
-
-    .products {
-        grid-template-columns: repeat(2,1fr);
-
-        gap: 12px;
-    }
-
-    .product-image {
-        height: 160px;
-
-        font-size: 55px;
-    }
-
-    .product-info {
-        padding: 12px;
-    }
-
-    .product-info h3 {
-        font-size: 15px;
-    }
-
-    .price {
-        font-size: 17px;
-    }
-
     .newsletter {
-        margin: 20px 5% 50px;
+        margin: 50px 5%;
 
         padding: 35px 15px;
     }
@@ -981,11 +768,60 @@ footer p:hover {
             </a>
         </li>
 
-        <li>
-            <a href="#categories">
+
+        <!-- =========================
+             CATEGORIES TAB
+        ========================= -->
+
+        <li class="categories-menu" id="categoriesMenu">
+
+            <button
+                class="categories-button"
+                onclick="toggleCategories()">
+
                 Categories
-            </a>
+
+                <span class="categories-arrow">
+                    ▾
+                </span>
+
+            </button>
+
+
+            <div class="dropdown">
+
+                <a href="#men">
+                    Men
+                </a>
+
+                <a href="#women">
+                    Women
+                </a>
+
+                <a href="#electronics">
+                    Electronics
+                </a>
+
+                <a href="#home-category">
+                    Home
+                </a>
+
+                <a href="#shoes">
+                    Shoes
+                </a>
+
+                <a href="#beauty">
+                    Beauty
+                </a>
+
+                <a href="#gaming">
+                    Gaming
+                </a>
+
+            </div>
+
         </li>
+
 
         <li>
             <a href="#new">
@@ -1043,11 +879,7 @@ footer p:hover {
     class="hero"
     id="home">
 
-
-    <div
-        class="hero-image"
-        id="heroImage">
-    </div>
+    <div class="hero-image"></div>
 
 
     <div class="hero-text">
@@ -1061,6 +893,7 @@ footer p:hover {
 
             Back<br>
             to<br>
+
             <span class="orange">
                 school.
             </span>
@@ -1101,7 +934,7 @@ footer p:hover {
     <div class="service">
 
         <div class="service-icon">
-            Truck
+            🚚
         </div>
 
         <div>
@@ -1122,7 +955,7 @@ footer p:hover {
     <div class="service">
 
         <div class="service-icon">
-            Lock
+            🔒
         </div>
 
         <div>
@@ -1143,7 +976,7 @@ footer p:hover {
     <div class="service">
 
         <div class="service-icon">
-            Return
+            ↩
         </div>
 
         <div>
@@ -1164,7 +997,7 @@ footer p:hover {
     <div class="service">
 
         <div class="service-icon">
-            Help
+            ?
         </div>
 
         <div>
@@ -1185,365 +1018,24 @@ footer p:hover {
 
 
 <!-- =========================
-     CATEGORIES
-========================= -->
-
-<section
-    class="section"
-    id="categories">
-
-
-    <div class="section-title">
-
-        <h2>
-            Shop By Category
-        </h2>
-
-        <span class="view">
-            View All →
-        </span>
-
-    </div>
-
-
-    <div class="categories">
-
-
-        <div class="category">
-
-            <div class="category-circle">
-                Men
-            </div>
-
-            <p>
-                Men
-            </p>
-
-        </div>
-
-
-        <div class="category">
-
-            <div class="category-circle">
-                Women
-            </div>
-
-            <p>
-                Women
-            </p>
-
-        </div>
-
-
-        <div class="category">
-
-            <div class="category-circle">
-                Tech
-            </div>
-
-            <p>
-                Electronics
-            </p>
-
-        </div>
-
-
-        <div class="category">
-
-            <div class="category-circle">
-                Home
-            </div>
-
-            <p>
-                Home
-            </p>
-
-        </div>
-
-
-        <div class="category">
-
-            <div class="category-circle">
-                Shoes
-            </div>
-
-            <p>
-                Shoes
-            </p>
-
-        </div>
-
-
-        <div class="category">
-
-            <div class="category-circle">
-                Beauty
-            </div>
-
-            <p>
-                Beauty
-            </p>
-
-        </div>
-
-
-        <div class="category">
-
-            <div class="category-circle">
-                Gaming
-            </div>
-
-            <p>
-                Gaming
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     PRODUCTS
-========================= -->
-
-<section
-    class="section"
-    id="shop">
-
-
-    <div class="section-title">
-
-        <h2>
-            New Arrivals
-        </h2>
-
-        <span class="view">
-            View All →
-        </span>
-
-    </div>
-
-
-    <div class="products">
-
-
-        <div class="product">
-
-            <div class="product-image">
-
-                Watch
-
-                <span class="new">
-                    NEW
-                </span>
-
-            </div>
-
-            <div class="product-info">
-
-                <h3>
-                    Smart Watch
-                </h3>
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-
-                <div class="price">
-                    299 MAD
-                </div>
-
-                <button
-                    class="add"
-                    onclick="addToCart('Smart Watch')">
-
-                    Add to Cart
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="product">
-
-            <div class="product-image">
-
-                Sneakers
-
-                <span class="new">
-                    NEW
-                </span>
-
-            </div>
-
-            <div class="product-info">
-
-                <h3>
-                    Classic Sneakers
-                </h3>
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-
-                <div class="price">
-                    399 MAD
-                </div>
-
-                <button
-                    class="add"
-                    onclick="addToCart('Classic Sneakers')">
-
-                    Add to Cart
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="product">
-
-            <div class="product-image">
-
-                Backpack
-
-                <span class="new">
-                    NEW
-                </span>
-
-            </div>
-
-            <div class="product-info">
-
-                <h3>
-                    Urban Backpack
-                </h3>
-
-                <div class="stars">
-                    ★★★★☆
-                </div>
-
-                <div class="price">
-                    249 MAD
-                </div>
-
-                <button
-                    class="add"
-                    onclick="addToCart('Urban Backpack')">
-
-                    Add to Cart
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="product">
-
-            <div class="product-image">
-
-                Headphones
-
-                <span class="new">
-                    NEW
-                </span>
-
-            </div>
-
-            <div class="product-info">
-
-                <h3>
-                    Wireless Headphones
-                </h3>
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-
-                <div class="price">
-                    349 MAD
-                </div>
-
-                <button
-                    class="add"
-                    onclick="addToCart('Wireless Headphones')">
-
-                    Add to Cart
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     DEALS
-========================= -->
-
-<section
-    class="section"
-    id="deals">
-
-    <div class="section-title">
-
-        <h2>
-            Today's Deals
-        </h2>
-
-        <span class="view">
-            View All →
-        </span>
-
-    </div>
-
-    <p style="color:#666;line-height:1.7;">
-
-        Discover selected products
-        at special prices.
-
-    </p>
-
-</section>
-
-
-<!-- =========================
      NEWSLETTER
 ========================= -->
 
 <section class="newsletter">
 
     <h2>
-        Stay In The Loop
+        Stay in the loop
     </h2>
 
     <p>
-        Get notified about new products
-        and special deals.
+        Get the latest DejaLuxe news and offers.
     </p>
-
 
     <input
         type="email"
-        id="emailInput"
         placeholder="Your email address">
 
-
-    <button onclick="subscribe()">
+    <button>
         Subscribe
     </button>
 
@@ -1554,8 +1046,7 @@ footer p:hover {
      FOOTER
 ========================= -->
 
-<footer id="about">
-
+<footer>
 
     <div>
 
@@ -1564,7 +1055,7 @@ footer p:hover {
         </h3>
 
         <p>
-            Your everyday shopping destination.
+            Luxury shopping made simple.
         </p>
 
     </div>
@@ -1590,10 +1081,10 @@ footer p:hover {
             Help
         </h3>
 
-        <p>Contact Us</p>
-        <p>Shipping</p>
+        <p>Track Order</p>
         <p>Returns</p>
-        <p>FAQ</p>
+        <p>Shipping</p>
+        <p>Contact Us</p>
 
     </div>
 
@@ -1610,200 +1101,42 @@ footer p:hover {
 
     </div>
 
-
 </footer>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
 
-/* CART */
-
-let cart = 0;
-
-function addToCart(product) {
-
-    cart++;
-
-    document.getElementById(
-        "cartCount"
-    ).textContent = cart;
-
-}
-
-
-/* NEWSLETTER */
-
-function subscribe() {
-
-    const email =
-        document.getElementById(
-            "emailInput"
-        ).value;
-
-    if (email.trim() === "") {
-
-        alert(
-            "Please enter your email address."
-        );
-
-        return;
-    }
-
-    alert(
-        "Thank you for subscribing!"
-    );
-
-    document.getElementById(
-        "emailInput"
-    ).value = "";
-
-}
-
-
 /* =========================
-   HERO FADE EFFECT
+   CATEGORIES DROPDOWN
 ========================= */
 
-const heroImage =
-    document.getElementById(
-        "heroImage"
-    );
+function toggleCategories() {
 
-const hero =
-    document.querySelector(
-        ".hero"
-    );
+    const menu =
+        document.getElementById("categoriesMenu");
 
-
-function updateHero() {
-
-    const scroll =
-        window.scrollY;
-
-    const heroHeight =
-        hero.offsetHeight;
-
-
-    /*
-       Image stays visible at the top.
-       As the visitor scrolls down,
-       it gradually disappears.
-    */
-
-    let opacity =
-        1 -
-        (
-            scroll /
-            (heroHeight * 0.8)
-        );
-
-
-    opacity =
-        Math.max(
-            0,
-            Math.min(
-                1,
-                opacity
-            )
-        );
-
-
-    heroImage.style.opacity =
-        opacity;
+    menu.classList.toggle("open");
 
 }
 
 
-window.addEventListener(
-    "scroll",
-    updateHero,
-    {
-        passive: true
+/* Close dropdown when clicking elsewhere */
+
+document.addEventListener("click", function(event) {
+
+    const menu =
+        document.getElementById("categoriesMenu");
+
+    if (!menu.contains(event.target)) {
+
+        menu.classList.remove("open");
+
     }
-);
 
-updateHero();
-
-
-/* =========================
-   ACTIVE NAVIGATION
-========================= */
-
-const sections =
-    document.querySelectorAll(
-        "section[id]"
-    );
-
-const navLinks =
-    document.querySelectorAll(
-        ".menu a"
-    );
-
-
-window.addEventListener(
-    "scroll",
-    () => {
-
-        let current = "";
-
-        sections.forEach(
-            section => {
-
-                const top =
-                    section.offsetTop -
-                    180;
-
-
-                if (
-                    window.scrollY >= top
-                ) {
-
-                    current =
-                        section.getAttribute(
-                            "id"
-                        );
-
-                }
-
-            }
-        );
-
-
-        navLinks.forEach(
-            link => {
-
-                link.classList.remove(
-                    "active"
-                );
-
-
-                if (
-                    link.getAttribute(
-                        "href"
-                    ) ===
-                    "#" + current
-                ) {
-
-                    link.classList.add(
-                        "active"
-                    );
-
-                }
-
-            }
-        );
-
-    },
-    {
-        passive: true
-    }
-);
+});
 
 </script>
+
 
 </body>
 </html>
