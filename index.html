@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DEJALUXE | Shop</title>
+<title>DEJALUXE | Home</title>
 
 <style>
 
@@ -36,9 +38,12 @@ body {
 .topbar {
     background: #ff7200;
     color: white;
+
     padding: 10px 6%;
+
     display: flex;
     justify-content: space-between;
+
     font-size: 14px;
 }
 
@@ -53,9 +58,11 @@ body {
 
 .navbar {
     height: 105px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     padding: 0 7%;
 
     background: white;
@@ -64,6 +71,7 @@ body {
 
     position: sticky;
     top: 0;
+
     z-index: 1000;
 }
 
@@ -102,6 +110,7 @@ body {
     height: 82px;
 
     border: 3px solid #ff7200;
+
     border-radius: 50%;
 }
 
@@ -116,8 +125,11 @@ body {
 
 .menu {
     display: flex;
+
     gap: 34px;
+
     list-style: none;
+
     align-items: center;
 }
 
@@ -127,6 +139,7 @@ body {
 
 .menu a,
 .categories-button {
+
     position: relative;
 
     display: inline-block;
@@ -140,19 +153,22 @@ body {
     font-weight: 600;
 
     background: none;
+
     border: none;
 
     font-family: inherit;
-    font-size: inherit;
+
+    font-size: 15px;
 
     cursor: pointer;
 }
 
 
-/* Navigation underline */
+/* Underline */
 
 .menu a::after,
 .categories-button::after {
+
     content: "";
 
     position: absolute;
@@ -171,18 +187,20 @@ body {
 .menu a:hover::after,
 .menu a.active::after,
 .categories-button:hover::after {
+
     width: 100%;
 }
 
 .menu a:hover,
 .menu a.active,
 .categories-button:hover {
+
     color: #ff7200;
 }
 
 
 /* =========================
-   CATEGORIES DROPDOWN
+   CATEGORIES
 ========================= */
 
 .categories-menu {
@@ -190,9 +208,12 @@ body {
 }
 
 .categories-button {
+
     display: flex;
+
     align-items: center;
-    gap: 6px;
+
+    gap: 7px;
 }
 
 .categories-arrow {
@@ -200,14 +221,16 @@ body {
 }
 
 
-/* Dropdown */
+/* DROPDOWN */
 
 .dropdown {
+
     display: none;
 
     position: absolute;
 
     top: 48px;
+
     left: 50%;
 
     transform: translateX(-50%);
@@ -220,7 +243,8 @@ body {
 
     border-radius: 10px;
 
-    box-shadow: 0 15px 35px rgba(0,0,0,.12);
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.12);
 
     padding: 8px;
 
@@ -228,10 +252,11 @@ body {
 }
 
 
-/* Show dropdown */
+/* Open */
 
 .categories-menu:hover .dropdown,
 .categories-menu.open .dropdown {
+
     display: block;
 }
 
@@ -239,6 +264,7 @@ body {
 /* Dropdown links */
 
 .dropdown a {
+
     display: block;
 
     padding: 12px 15px;
@@ -259,6 +285,7 @@ body {
 }
 
 .dropdown a:hover {
+
     background: #fff0e4;
 
     color: #ff7200;
@@ -270,9 +297,13 @@ body {
 ========================= */
 
 .icons {
+
     display: flex;
+
     align-items: center;
+
     gap: 20px;
+
     font-size: 23px;
 }
 
@@ -280,11 +311,16 @@ body {
     cursor: pointer;
 }
 
+.icon:hover {
+    color: #ff7200;
+}
+
 .cart-wrapper {
     position: relative;
 }
 
 .cart-count {
+
     position: absolute;
 
     top: -9px;
@@ -294,6 +330,7 @@ body {
     height: 19px;
 
     background: #ff7200;
+
     color: white;
 
     border-radius: 50%;
@@ -301,6 +338,7 @@ body {
     font-size: 11px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -313,6 +351,7 @@ body {
 ========================= */
 
 .hero {
+
     height: calc(100vh - 105px);
 
     min-height: 600px;
@@ -322,24 +361,30 @@ body {
     overflow: hidden;
 
     display: flex;
+
     align-items: center;
 }
 
 
-/* HERO IMAGE */
+/* =========================
+   HERO IMAGE
+========================= */
 
 .hero-image {
+
     position: absolute;
 
     inset: 0;
 
     background-image:
+
         linear-gradient(
             90deg,
             rgba(0,0,0,.62) 0%,
             rgba(0,0,0,.35) 42%,
             rgba(0,0,0,.05) 100%
         ),
+
         url("back-to-school.JPG");
 
     background-size: cover;
@@ -350,18 +395,15 @@ body {
 }
 
 
-/* No fade / no opacity transition */
-
-.hero:hover .hero-image {
-    transform: scale(1.06);
-}
+/* No fade animation */
 
 
 /* =========================
-   HERO CONTENT
+   HERO TEXT
 ========================= */
 
 .hero-text {
+
     position: relative;
 
     z-index: 2;
@@ -374,6 +416,7 @@ body {
 }
 
 .hero-text small {
+
     display: block;
 
     font-size: 14px;
@@ -388,6 +431,7 @@ body {
 }
 
 .hero-text h1 {
+
     font-size: clamp(52px, 7vw, 92px);
 
     line-height: .94;
@@ -402,6 +446,7 @@ body {
 }
 
 .hero-text p {
+
     font-size: 19px;
 
     line-height: 1.5;
@@ -417,6 +462,7 @@ body {
 ========================= */
 
 .shop-btn {
+
     display: inline-flex;
 
     align-items: center;
@@ -439,6 +485,7 @@ body {
 }
 
 .shop-btn:hover {
+
     background: white;
 
     color: #111;
@@ -450,9 +497,11 @@ body {
 ========================= */
 
 .services {
+
     display: grid;
 
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
     padding: 35px 8%;
 
@@ -462,6 +511,7 @@ body {
 }
 
 .service {
+
     display: flex;
 
     align-items: center;
@@ -470,6 +520,7 @@ body {
 }
 
 .service-icon {
+
     font-size: 28px;
 
     color: #ff7200;
@@ -480,6 +531,7 @@ body {
 }
 
 .service p {
+
     color: #777;
 
     font-size: 13px;
@@ -493,6 +545,7 @@ body {
 ========================= */
 
 .newsletter {
+
     margin: 70px 8%;
 
     padding: 55px 30px;
@@ -507,6 +560,7 @@ body {
 }
 
 .newsletter h2 {
+
     font-size: 32px;
 
     margin-bottom: 10px;
@@ -517,6 +571,7 @@ body {
 }
 
 .newsletter input {
+
     margin-top: 22px;
 
     width: 280px;
@@ -533,6 +588,7 @@ body {
 }
 
 .newsletter button {
+
     padding: 14px 25px;
 
     border: none;
@@ -546,16 +602,13 @@ body {
     cursor: pointer;
 }
 
-.newsletter button:hover {
-    transform: translateY(-2px);
-}
-
 
 /* =========================
    FOOTER
 ========================= */
 
 footer {
+
     background: #151515;
 
     color: white;
@@ -564,7 +617,8 @@ footer {
 
     display: grid;
 
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
     gap: 30px;
 }
@@ -574,6 +628,7 @@ footer h3 {
 }
 
 footer p {
+
     color: #aaa;
 
     margin-bottom: 8px;
@@ -593,7 +648,9 @@ footer p:hover {
 @media (max-width: 800px) {
 
     .topbar {
+
         font-size: 10px;
+
         padding: 9px 5%;
     }
 
@@ -601,7 +658,9 @@ footer p:hover {
         margin-left: 8px;
     }
 
+
     .navbar {
+
         height: auto;
 
         padding: 12px 5%;
@@ -611,7 +670,9 @@ footer p:hover {
         gap: 12px;
     }
 
+
     .logo {
+
         width: 75px;
         height: 75px;
 
@@ -619,11 +680,14 @@ footer p:hover {
     }
 
     .logo::after {
+
         width: 58px;
         height: 58px;
     }
 
+
     .menu {
+
         order: 3;
 
         width: 100%;
@@ -632,7 +696,8 @@ footer p:hover {
 
         gap: 25px;
 
-        padding: 5px 2px 8px;
+        padding:
+            5px 2px 8px;
 
         scrollbar-width: none;
     }
@@ -641,14 +706,18 @@ footer p:hover {
         display: none;
     }
 
+
     .menu a,
     .categories-button {
+
         white-space: nowrap;
 
         font-size: 13px;
     }
 
+
     .dropdown {
+
         position: fixed;
 
         top: 145px;
@@ -660,64 +729,88 @@ footer p:hover {
         width: 200px;
     }
 
+
     .icons {
+
         gap: 12px;
 
         font-size: 20px;
     }
 
+
     .hero {
+
         height: 650px;
 
         min-height: 650px;
     }
 
+
     .hero-text {
+
         margin: 0 6%;
     }
 
+
     .hero-text h1 {
+
         font-size: 50px;
 
         letter-spacing: -2px;
     }
 
+
     .hero-text p {
+
         font-size: 17px;
     }
 
+
     .services {
-        grid-template-columns: repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
 
         padding: 28px 6%;
     }
 
+
     .newsletter {
+
         margin: 50px 5%;
 
         padding: 35px 15px;
     }
 
+
     .newsletter input {
+
         width: 100%;
 
         max-width: 100%;
     }
 
+
     .newsletter button {
+
         margin: 10px 0 0;
 
         width: 100%;
     }
 
+
     footer {
-        grid-template-columns: repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
 
         padding: 40px 6%;
     }
+
 }
 
 </style>
+
 </head>
 
 
@@ -735,9 +828,13 @@ footer p:hover {
     </div>
 
     <div>
+
         <span>Track Order</span>
+
         <span>Help</span>
+
         <span>EN</span>
+
     </div>
 
 </div>
@@ -749,31 +846,61 @@ footer p:hover {
 
 <nav class="navbar">
 
-    <div class="logo">
-        <span>DEJALUXE</span>
-    </div>
 
+    <!-- LOGO -->
+
+    <a href="index.html">
+
+        <div class="logo">
+
+            <span>
+                DEJALUXE
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <!-- MENU -->
 
     <ul class="menu">
 
+
+        <!-- HOME -->
+
         <li>
-            <a href="#home" class="active">
+
+            <a
+                href="index.html"
+                class="active">
+
                 Home
+
             </a>
+
         </li>
+
+
+        <!-- SHOP -->
 
         <li>
-            <a href="#shop">
+
+            <a href="shop.html">
+
                 Shop
+
             </a>
+
         </li>
 
 
-        <!-- =========================
-             CATEGORIES TAB
-        ========================= -->
+        <!-- CATEGORIES -->
 
-        <li class="categories-menu" id="categoriesMenu">
+        <li
+            class="categories-menu"
+            id="categoriesMenu">
+
 
             <button
                 class="categories-button"
@@ -790,69 +917,77 @@ footer p:hover {
 
             <div class="dropdown">
 
-                <a href="#men">
+
+                <a href="shop.html#men">
                     Men
                 </a>
 
-                <a href="#women">
+
+                <a href="shop.html#women">
                     Women
                 </a>
 
-                <a href="#electronics">
+
+                <a href="shop.html#electronics">
                     Electronics
                 </a>
 
-                <a href="#home-category">
+
+                <a href="shop.html#home">
                     Home
                 </a>
 
-                <a href="#shoes">
+
+                <a href="shop.html#shoes">
                     Shoes
                 </a>
 
-                <a href="#beauty">
+
+                <a href="shop.html#beauty">
                     Beauty
                 </a>
 
-                <a href="#gaming">
+
+                <a href="shop.html#gaming">
                     Gaming
                 </a>
+
 
             </div>
 
         </li>
 
 
-        <li>
-            <a href="#new">
-                New Arrivals
-            </a>
-        </li>
+        <!-- ABOUT -->
 
         <li>
-            <a href="#deals">
-                Deals
-            </a>
-        </li>
 
-        <li>
             <a href="#about">
+
                 About Us
+
             </a>
+
         </li>
+
 
     </ul>
 
 
+    <!-- ICONS -->
+
     <div class="icons">
+
 
         <div class="icon">
             ⌕
         </div>
 
+
         <div class="icon">
             ♙
         </div>
+
 
         <div class="cart-wrapper icon">
 
@@ -861,12 +996,16 @@ footer p:hover {
             <div
                 class="cart-count"
                 id="cartCount">
+
                 0
+
             </div>
 
         </div>
 
+
     </div>
+
 
 </nav>
 
@@ -879,10 +1018,12 @@ footer p:hover {
     class="hero"
     id="home">
 
+
     <div class="hero-image"></div>
 
 
     <div class="hero-text">
+
 
         <small>
             DEJALUXE COLLECTION
@@ -892,6 +1033,7 @@ footer p:hover {
         <h1>
 
             Back<br>
+
             to<br>
 
             <span class="orange">
@@ -902,13 +1044,17 @@ footer p:hover {
 
 
         <p>
+
             New year. New goals.
             Let's make it count.
+
         </p>
 
 
+        <!-- SHOP NOW -->
+
         <a
-            href="#shop"
+            href="shop.html"
             class="shop-btn">
 
             Shop Now
@@ -918,6 +1064,7 @@ footer p:hover {
             </span>
 
         </a>
+
 
     </div>
 
@@ -997,7 +1144,7 @@ footer p:hover {
     <div class="service">
 
         <div class="service-icon">
-            ?
+            ❔
         </div>
 
         <div>
@@ -1014,6 +1161,7 @@ footer p:hover {
 
     </div>
 
+
 </section>
 
 
@@ -1027,13 +1175,16 @@ footer p:hover {
         Stay in the loop
     </h2>
 
+
     <p>
         Get the latest DejaLuxe news and offers.
     </p>
 
+
     <input
         type="email"
         placeholder="Your email address">
+
 
     <button>
         Subscribe
@@ -1046,7 +1197,9 @@ footer p:hover {
      FOOTER
 ========================= -->
 
-<footer>
+<footer
+    id="about">
+
 
     <div>
 
@@ -1067,10 +1220,21 @@ footer p:hover {
             Shop
         </h3>
 
-        <p>Men</p>
-        <p>Women</p>
-        <p>Electronics</p>
-        <p>Home</p>
+        <p>
+            Men
+        </p>
+
+        <p>
+            Women
+        </p>
+
+        <p>
+            Electronics
+        </p>
+
+        <p>
+            Home
+        </p>
 
     </div>
 
@@ -1081,10 +1245,21 @@ footer p:hover {
             Help
         </h3>
 
-        <p>Track Order</p>
-        <p>Returns</p>
-        <p>Shipping</p>
-        <p>Contact Us</p>
+        <p>
+            Track Order
+        </p>
+
+        <p>
+            Returns
+        </p>
+
+        <p>
+            Shipping
+        </p>
+
+        <p>
+            Contact Us
+        </p>
 
     </div>
 
@@ -1095,48 +1270,65 @@ footer p:hover {
             Follow Us
         </h3>
 
-        <p>Instagram</p>
-        <p>Facebook</p>
-        <p>TikTok</p>
+        <p>
+            Instagram
+        </p>
+
+        <p>
+            Facebook
+        </p>
+
+        <p>
+            TikTok
+        </p>
 
     </div>
+
 
 </footer>
 
 
-<script>
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
-/* =========================
-   CATEGORIES DROPDOWN
-========================= */
+<script>
 
 function toggleCategories() {
 
     const menu =
-        document.getElementById("categoriesMenu");
+        document.getElementById(
+            "categoriesMenu"
+        );
 
     menu.classList.toggle("open");
 
 }
 
 
-/* Close dropdown when clicking elsewhere */
+/* Close dropdown when clicking outside */
 
-document.addEventListener("click", function(event) {
+document.addEventListener(
+    "click",
+    function(event) {
 
-    const menu =
-        document.getElementById("categoriesMenu");
+        const menu =
+            document.getElementById(
+                "categoriesMenu"
+            );
 
-    if (!menu.contains(event.target)) {
+        if (!menu.contains(event.target)) {
 
-        menu.classList.remove("open");
+            menu.classList.remove("open");
+
+        }
 
     }
-
-});
+);
 
 </script>
 
 
 </body>
+
 </html>
