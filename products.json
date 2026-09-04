@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "emoji": "📚",
+    "name": "Notebook Bundle",
+    "category": "books",
+    "price": "149",
+    "stars": "⭐⭐⭐⭐",
+    "description": "Premium quality notebooks"
+  },
+  {
+    "id": 2,
+    "emoji": "🎒",
+    "name": "School Backpack",
+    "category": "backpacks",
+    "price": "299",
+    "stars": "⭐⭐⭐⭐⭐",
+    "description": "Durable and comfortable backpack"
+  }
+]
