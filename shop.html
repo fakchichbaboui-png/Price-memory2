@@ -8,6 +8,8 @@
 
 <style>
 
+/* ================= RESET ================= */
+
 *{
     margin:0;
     padding:0;
@@ -170,11 +172,6 @@ nav{
     object-fit:cover;
 }
 
-.profile-icon svg{
-    width:24px;
-    height:24px;
-}
-
 .cart-icon{
     position:relative;
     cursor:pointer;
@@ -321,7 +318,114 @@ nav{
     outline:none;
 }
 
-/* ================= PRICE ================= */
+/* ================= DEVELOPER MODE ================= */
+
+.dev-tools{
+    display:none;
+    background:#fff8f1;
+    border:1px solid #ffd0a8;
+    border-radius:15px;
+    padding:25px;
+    margin-bottom:35px;
+}
+
+.dev-tools.visible{
+    display:block;
+}
+
+.dev-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:8px;
+}
+
+.dev-title{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.dev-badge{
+    background:#ff7200;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.dev-note{
+    color:#777;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.dev-form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.dev-input{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    outline:none;
+    font-family:inherit;
+    background:white;
+}
+
+.dev-input:focus{
+    border-color:#ff7200;
+}
+
+.dev-description{
+    grid-column:1/-1;
+    min-height:90px;
+    resize:vertical;
+}
+
+.dev-actions{
+    grid-column:1/-1;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:4px;
+}
+
+.dev-save{
+    border:none;
+    background:#ff7200;
+    color:white;
+    padding:13px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.dev-save:hover{
+    background:#e86300;
+}
+
+.dev-cancel{
+    display:none;
+    border:none;
+    background:#222;
+    color:white;
+    padding:13px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.dev-status{
+    color:#777;
+    font-size:13px;
+}
+
+/* ================= PRICE FILTER ================= */
 
 .price-filter{
     background:#fafafa;
@@ -495,6 +599,44 @@ nav{
     background:#e86300;
 }
 
+/* ================= DEV PRODUCT BUTTONS ================= */
+
+.dev-product-tools{
+    display:flex;
+    gap:8px;
+    margin-top:14px;
+}
+
+.dev-edit-btn{
+    border:none;
+    background:#ff7200;
+    color:white;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.dev-remove-btn{
+    border:none;
+    background:#222;
+    color:white;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.dev-edit-btn:hover{
+    background:#e86300;
+}
+
+.dev-remove-btn:hover{
+    background:#000;
+}
+
 /* ================= NO RESULTS ================= */
 
 .no-results{
@@ -526,7 +668,7 @@ nav{
     z-index:3000;
 }
 
-/* ================= ACCOUNT MODAL ================= */
+/* ================= ACCOUNT ================= */
 
 .account-modal{
     display:none;
@@ -580,14 +722,6 @@ nav{
 
 .account-input:focus{
     border-color:#ff7200;
-}
-
-.remember{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-size:13px;
-    margin:12px 0;
 }
 
 .account-button{
@@ -706,6 +840,7 @@ footer{
     .footer-grid{
         grid-template-columns:repeat(2,1fr);
     }
+
 }
 
 @media(max-width:600px){
@@ -735,19 +870,9 @@ footer{
         font-size:12px;
     }
 
-    .nav-links li:nth-child(4){
-        display:none;
-    }
-
     .nav-icons{
         gap:12px;
         font-size:19px;
-    }
-
-    .dropdown{
-        position:fixed;
-        top:120px;
-        left:50%;
     }
 
     .page-header{
@@ -758,76 +883,45 @@ footer{
         font-size:32px;
     }
 
-    .shop-container{
-        width:92%;
-        margin-top:30px;
-    }
-
-    .shop-controls{
-        align-items:flex-start;
-    }
-
-    .right-controls{
-        width:100%;
-    }
-
-    .sort-select{
-        width:100%;
-    }
-
     .products-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:12px;
+        grid-template-columns:1fr;
     }
 
-    .product-image{
-        height:190px;
+    .dev-form{
+        grid-template-columns:1fr;
     }
 
-    .product-info{
-        padding:12px;
+    .dev-description{
+        grid-column:auto;
     }
 
-    .product-name{
-        font-size:14px;
-    }
-
-    .product-description{
-        font-size:11px;
-    }
-
-    .price{
-        font-size:14px;
-    }
-
-    .add-btn{
-        padding:8px 9px;
-        font-size:10px;
+    .dev-actions{
+        grid-column:auto;
     }
 
     .footer-grid{
         grid-template-columns:1fr;
     }
+
 }
 
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
 
 <body>
-
 
 <!-- ================= TOP BAR ================= -->
 
 <div class="top-bar">
 
-    <div>
-        Free delivery on orders over 500 MAD
-    </div>
+    <span>Luxury for every moment</span>
 
     <div class="top-right">
-        <span>Track Order</span>
-        <span>Help</span>
-        <span>EN</span>
+        <span>Free Shipping</span>
+        <span>Secure Shopping</span>
     </div>
 
 </div>
@@ -837,117 +931,87 @@ footer{
 
 <nav>
 
-<a href="index.html" class="logo">
-    DEJALUXE
-</a>
+    <a href="index.html" class="logo">
+        DEJA<br>LUXE
+    </a>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="shop.html">Shop</a>
+        </li>
+
+        <li class="categories-menu">
+
+            <button class="categories-button">
+                Categories ▾
+            </button>
+
+            <div class="dropdown">
+
+                <a href="shop.html?category=Fashion">
+                    Fashion
+                </a>
+
+                <a href="shop.html?category=Beauty">
+                    Beauty
+                </a>
+
+                <a href="shop.html?category=Accessories">
+                    Accessories
+                </a>
+
+                <a href="shop.html?category=Home">
+                    Home
+                </a>
+
+            </div>
+
+        </li>
+
+        <li>
+            <a href="index.html#about">
+                About Us
+            </a>
+        </li>
+
+    </ul>
 
 
-<ul class="nav-links">
+    <div class="nav-icons">
 
-<li>
-    <a href="index.html">Home</a>
-</li>
+        <span
+            class="search-icon"
+            onclick="toggleSearch()">
+            ⌕
+        </span>
 
-<li>
-    <a href="shop.html">Shop</a>
-</li>
+        <div
+            class="profile-icon"
+            onclick="openAccount()"
+            id="profileIcon">
+            ♙
+        </div>
 
-<li class="categories-menu" id="categoriesMenu">
+        <div
+            class="cart-icon"
+            onclick="location.href='cart.html'">
 
-<button
-class="categories-button"
-onclick="toggleCategories()">
+            🛒
 
-Categories ▾
+            <span
+                class="cart-count"
+                id="cartCount">
+                0
+            </span>
 
-</button>
+        </div>
 
-<div class="dropdown">
-
-<a href="shop.html?category=all">
-All Products
-</a>
-
-<a href="shop.html?category=women">
-Women
-</a>
-
-<a href="shop.html?category=men">
-Men
-</a>
-
-<a href="shop.html?category=beauty">
-Beauty
-</a>
-
-<a href="shop.html?category=accessories">
-Accessories
-</a>
-
-</div>
-
-</li>
-
-<li>
-    <a href="index.html#about">About Us</a>
-</li>
-
-</ul>
-
-
-<div class="nav-icons">
-
-<span
-class="search-icon"
-onclick="toggleSearch()"
-title="Search">
-
-⌕
-
-</span>
-
-
-<span
-id="profileAvatar"
-class="profile-icon"
-onclick="openAccount()"
-title="Account">
-
-<svg viewBox="0 0 24 24" fill="none">
-
-<circle
-cx="12"
-cy="8"
-r="4"
-fill="#888"/>
-
-<path
-d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"
-fill="#888"/>
-
-</svg>
-
-</span>
-
-
-<span
-class="cart-icon"
-onclick="showCart()"
-title="Cart">
-
-🛒
-
-<span
-id="cartCount"
-class="cart-count">
-
-0
-
-</span>
-
-</span>
-
-</div>
+    </div>
 
 </nav>
 
@@ -955,26 +1019,23 @@ class="cart-count">
 <!-- ================= SEARCH ================= -->
 
 <div
-id="searchPanel"
-class="search-panel">
+    class="search-panel"
+    id="searchPanel">
 
-<div class="search-wrapper">
+    <div class="search-wrapper">
 
-<input
-id="searchInput"
-class="search-input"
-placeholder="Search products..."
-autocomplete="off">
+        <input
+            class="search-input"
+            id="searchInput"
+            placeholder="Search products...">
 
-<button
-class="close-search"
-onclick="toggleSearch()">
+        <button
+            class="close-search"
+            onclick="toggleSearch()">
+            ×
+        </button>
 
-×
-
-</button>
-
-</div>
+    </div>
 
 </div>
 
@@ -983,13 +1044,15 @@ onclick="toggleSearch()">
 
 <section class="page-header">
 
-<p>DEJALUXE COLLECTION</p>
+    <p>DEJALUXE COLLECTION</p>
 
-<h1>Shop All Products</h1>
+    <h1>
+        Shop All Products
+    </h1>
 
-<span>
-Discover your next favorite piece.
-</span>
+    <span>
+        Discover our carefully selected collection.
+    </span>
 
 </section>
 
@@ -999,1761 +1062,1454 @@ Discover your next favorite piece.
 <main class="shop-container">
 
 
-<div class="shop-controls">
+    <!-- ================= SHOP CONTROLS ================= -->
 
+    <div class="shop-controls">
 
-<div class="filters">
+        <div
+            class="filters"
+            id="filters">
 
-<button
-class="filter-btn active"
-data-category="all"
-onclick="setCategory('all',this)">
+            <button
+                class="filter-btn active"
+                data-category="all">
+                All
+            </button>
 
-All
+            <button
+                class="filter-btn"
+                data-category="Fashion">
+                Fashion
+            </button>
 
-</button>
+            <button
+                class="filter-btn"
+                data-category="Beauty">
+                Beauty
+            </button>
 
-<button
-class="filter-btn"
-data-category="women"
-onclick="setCategory('women',this)">
+            <button
+                class="filter-btn"
+                data-category="Accessories">
+                Accessories
+            </button>
 
-Women
+            <button
+                class="filter-btn"
+                data-category="Home">
+                Home
+            </button>
 
-</button>
+        </div>
 
-<button
-class="filter-btn"
-data-category="men"
-onclick="setCategory('men',this)">
 
-Men
+        <div class="right-controls">
 
-</button>
+            <select
+                class="sort-select"
+                id="sortSelect">
 
-<button
-class="filter-btn"
-data-category="beauty"
-onclick="setCategory('beauty',this)">
+                <option value="default">
+                    Sort by
+                </option>
 
-Beauty
+                <option value="low">
+                    Price: Low to High
+                </option>
 
-</button>
+                <option value="high">
+                    Price: High to Low
+                </option>
 
-<button
-class="filter-btn"
-data-category="accessories"
-onclick="setCategory('accessories',this)">
+                <option value="name">
+                    Name
+                </option>
 
-Accessories
+            </select>
 
-</button>
+        </div>
 
-</div>
+    </div>
 
 
-<div class="right-controls">
+    <!-- ================= DEVELOPER MODE ================= -->
 
-<select
-id="sortSelect"
-class="sort-select"
-onchange="applyFilters()">
+    <section
+        class="dev-tools"
+        id="devTools">
 
-<option value="default">
-Sort: Featured
-</option>
+        <div class="dev-header">
 
-<option value="low">
-Price: Low to High
-</option>
+            <div class="dev-title">
+                🛠 Developer Mode
+            </div>
 
-<option value="high">
-Price: High to Low
-</option>
+            <div class="dev-badge">
+                DEVELOPER
+            </div>
 
-<option value="az">
-Name: A to Z
-</option>
+        </div>
 
-<option value="za">
-Name: Z to A
-</option>
+        <p class="dev-note">
+            You are signed in as
+            <b>fakchichbaboui@gmail.com</b>.
+            You can add, edit and remove products.
+        </p>
 
-</select>
 
-</div>
+        <div class="dev-form">
 
-</div>
+            <input
+                class="dev-input"
+                id="devName"
+                type="text"
+                placeholder="Product name">
 
+            <input
+                class="dev-input"
+                id="devPrice"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="Price">
 
-<!-- ================= PRICE FILTER ================= -->
+            <input
+                class="dev-input"
+                id="devCategory"
+                list="categoryList"
+                type="text"
+                placeholder="Category">
 
-<div class="price-filter">
+            <datalist id="categoryList">
 
-<div class="price-title">
-Price Range
-</div>
+                <option value="Fashion">
+                <option value="Beauty">
+                <option value="Accessories">
+                <option value="Home">
 
-<div class="price-values">
+            </datalist>
 
-<span>
-Minimum:
-<strong>
-<span id="minPriceText">0</span> MAD
-</strong>
-</span>
 
-<span>
-Maximum:
-<strong>
-<span id="maxPriceText">2000</span> MAD
-</strong>
-</span>
+            <input
+                class="dev-input"
+                id="devImage"
+                type="text"
+                placeholder="Image filename or URL">
 
-</div>
 
+            <textarea
+                class="dev-input dev-description"
+                id="devDescription"
+                placeholder="Product description"></textarea>
 
-<div class="price-slider">
 
-<input
-type="range"
-id="minPrice"
-min="0"
-max="2000"
-value="0"
-step="10"
-oninput="priceChanged()">
+            <div class="dev-actions">
 
-<input
-type="range"
-id="maxPrice"
-min="0"
-max="2000"
-value="2000"
-step="10"
-oninput="priceChanged()">
-
-</div>
-
-</div>
-
-
-<div
-id="productCount"
-class="product-count">
-
-Showing products
-
-</div>
-
-
-<!-- ================= PRODUCTS ================= -->
-
-<div
-id="productsGrid"
-class="products-grid">
-
-
-<!-- PRODUCT 1 -->
-
-<div
-class="product-card"
-data-name="Luxury Handbag"
-data-category="women"
-data-price="450">
-
-<div class="product-image">
-
-<span class="badge">
-NEW
-</span>
-
-<div class="placeholder">
-Product image
-</div>
-
-</div>
-
-<div class="product-info">
-
-<div class="category-label">
-Women
-</div>
-
-<div class="product-name">
-Luxury Handbag
-</div>
-
-<div class="product-description">
-Elegant everyday handbag with a premium look.
-</div>
-
-<div class="product-bottom">
-
-<div class="price">
-450 MAD
-</div>
-
-<button
-class="add-btn"
-onclick="addToCart('Luxury Handbag',450)">
-
-Add
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- PRODUCT 2 -->
-
-<div
-class="product-card"
-data-name="Classic Watch"
-data-category="accessories"
-data-price="650">
-
-<div class="product-image">
-
-<span class="badge">
-BEST SELLER
-</span>
-
-<div class="placeholder">
-Product image
-</div>
-
-</div>
-
-<div class="product-info">
-
-<div class="category-label">
-Accessories
-</div>
-
-<div class="product-name">
-Classic Watch
-</div>
-
-<div class="product-description">
-Minimal luxury design for everyday style.
-</div>
-
-<div class="product-bottom">
-
-<div class="price">
-650 MAD
-</div>
-
-<button
-class="add-btn"
-onclick="addToCart('Classic Watch',650)">
-
-Add
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- PRODUCT 3 -->
-
-<div
-class="product-card"
-data-name="Premium Sneakers"
-data-category="men"
-data-price="550">
-
-<div class="product-image">
-
-<div class="placeholder">
-Product image
-</div>
-
-</div>
-
-<div class="product-info">
-
-<div class="category-label">
-Men
-</div>
-
-<div class="product-name">
-Premium Sneakers
-</div>
-
-<div class="product-description">
-Clean modern sneakers made for everyday outfits.
-</div>
-
-<div class="product-bottom">
-
-<div class="price">
-550 MAD
-</div>
-
-<button
-class="add-btn"
-onclick="addToCart('Premium Sneakers',550)">
-
-Add
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- PRODUCT 4 -->
-
-<div
-class="product-card"
-data-name="Luxury Perfume"
-data-category="beauty"
-data-price="390">
-
-<div class="product-image">
-
-<span class="badge">
-NEW
-</span>
-
-<div class="placeholder">
-Product image
-</div>
-
-</div>
-
-<div class="product-info">
-
-<div class="category-label">
-Beauty
-</div>
-
-<div class="product-name">
-Luxury Perfume
-</div>
-
-<div class="product-description">
-A refined fragrance for a sophisticated style.
-</div>
-
-<div class="product-bottom">
-
-<div class="price">
-390 MAD
-</div>
-
-<button
-class="add-btn"
-onclick="addToCart('Luxury Perfume',390)">
-
-Add
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- PRODUCT 5 -->
-
-<div
-class="product-card"
-data-name="Designer Sunglasses"
-data-category="accessories"
-data-price="320">
-
-<div class="product-image">
-
-<div class="placeholder">
-Product image
-</div>
-
-</div>
-
-<div class="product-info">
-
-<div class="category-label">
-Accessories
-</div>
-
-<div class="product-name">
-Designer Sunglasses
-</div>
-
-<div class="product-description">
-Stylish sunglasses with a premium finish.
-</div>
-
-<div class="product-bottom">
-
-<div class="price">
-320 MAD
-</div>
-
-<button
-class="add-btn"
-onclick="addToCart('Designer Sunglasses',320)">
-
-Add
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- PRODUCT 6 -->
-
-<div
-class="product-card"
-data-name="Classic Shirt"
-data-category="men"
-data-price="280">
-
-<div class="product-image">
-
-<div class="placeholder">
-Product image
-</div>
-
-</div>
-
-<div class="product-info">
-
-<div class="category-label">
-Men
-</div>
-
-<div class="product-name">
-Classic Shirt
-</div>
-
-<div class="product-description">
-A clean shirt designed for a polished look.
-</div>
-
-<div class="product-bottom">
-
-<div class="price">
-280 MAD
-</div>
-
-<button
-class="add-btn"
-onclick="addToCart('Classic Shirt',280)">
-
-Add
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- PRODUCT 7 -->
-
-<div
-class="product-card"
-data-name="Beauty Essentials"
-data-category="beauty"
-data-price="240">
-
-<div class="product-image">
-
-<div class="placeholder">
-Product image
-</div>
-
-</div>
-
-<div class="product-info">
-
-<div class="category-label">
-Beauty
-</div>
-
-<div class="product-name">
-Beauty Essentials
-</div>
-
-<div class="product-description">
-Everyday essentials for your beauty routine.
-</div>
-
-<div class="product-bottom">
-
-<div class="price">
-240 MAD
-</div>
-
-<button
-class="add-btn"
-onclick="addToCart('Beauty Essentials',240)">
-
-Add
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- PRODUCT 8 -->
-
-<div
-class="product-card"
-data-name="Elegant Dress"
-data-category="women"
-data-price="720">
-
-<div class="product-image">
-
-<span class="badge">
-NEW
-</span>
-
-<div class="placeholder">
-Product image
-</div>
-
-</div>
-
-<div class="product-info">
-
-<div class="category-label">
-Women
-</div>
-
-<div class="product-name">
-Elegant Dress
-</div>
-
-<div class="product-description">
-Elegant styling for special occasions.
-</div>
-
-<div class="product-bottom">
-
-<div class="price">
-720 MAD
-</div>
-
-<button
-class="add-btn"
-onclick="addToCart('Elegant Dress',720)">
-
-Add
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<div
-id="noResults"
-class="no-results">
-
-<h2>
-No products found
-</h2>
-
-<p>
-Try changing your search, category or price range.
-</p>
-
-</div>
-
-</main>
-
-
-<!-- ================= CART MESSAGE ================= -->
-
-<div
-id="cartMessage"
-class="cart-message">
-
-Added to your cart.
-
-</div>
-
-
-<!-- ================= ACCOUNT MODAL ================= -->
-
-<div
-id="accountModal"
-class="account-modal">
-
-<div class="account-box">
-
-<button
-class="account-close"
-onclick="closeAccount()">
-
-×
-
-</button>
-
-
-<div
-id="loginSection">
-
-<h2 id="accountTitle">
-Welcome Back
-</h2>
-
-
-<input
-id="nameInput"
-class="account-input"
-placeholder="Full name"
-style="display:none">
-
-
-<input
-id="emailInput"
-class="account-input"
-type="email"
-placeholder="Email">
-
-
-<input
-id="passwordInput"
-class="account-input"
-type="password"
-placeholder="Password">
-
-
-<label class="remember">
-
-<input
-id="rememberMe"
-type="checkbox"
-checked>
-
-Remember Me
-
-</label>
-
-
-<button
-id="accountSubmit"
-class="account-button"
-onclick="submitAccount()">
-
-Login
-
-</button>
-
-
-<button
-class="google-button"
-onclick="loginWithGoogle()">
-
-Continue with Google
-
-</button>
-
-
-<div
-id="switchText"
-class="switch-account"
-onclick="switchAccountMode()">
-
-Create an account
-
-</div>
-
-</div>
-
-
-<div
-id="welcomeSection"
-class="welcome-section"
-style="display:none">
-
-<img
-id="welcomePhoto"
-class="welcome-photo"
-alt="Profile">
-
-<h2 id="welcomeName">
-Welcome to DEJALUXE
-</h2>
-
-<p id="welcomeEmail"></p>
-
-<button
-class="logout-button"
-onclick="logout()">
-
-Log Out
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= JAVASCRIPT ================= -->
-
+                <button
+                    class="dev-save"
 <script>
 
-let currentCategory="all";
+/* =========================================================
+   SUPABASE
+========================================================= */
 
-let cartCount=
-Number(localStorage.getItem("dejaluxeCartCount")||0);
+const SUPABASE_URL =
+"https://zinpicammabuvkdtpftj.supabase.co";
 
-document.getElementById("cartCount").textContent=
-cartCount;
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_nbKKuwqFd6eSz02ayriC0w_K_sNx8JX";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
 
-/* ================= SEARCH ================= */
+/* =========================================================
+   DEVELOPER ACCOUNT
+========================================================= */
 
-function toggleSearch(){
+const DEVELOPER_EMAIL =
+"fakchichbaboui@gmail.com";
 
-    const panel=
-    document.getElementById("searchPanel");
 
-    panel.classList.toggle("open");
+/* =========================================================
+   LOCAL STORAGE
+========================================================= */
 
-    if(panel.classList.contains("open")){
+const PRODUCT_STORAGE_KEY =
+"dejaluxe_products_v2";
 
-        document
-        .getElementById("searchInput")
-        .focus();
 
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let currentUser = null;
+
+let developerMode = false;
+
+let products = [];
+
+let editingProductId = null;
+
+let activeCategory =
+new URLSearchParams(location.search)
+.get("category") || "all";
+
+
+/* =========================================================
+   DEFAULT PRODUCTS
+========================================================= */
+
+const defaultProducts = [
+
+    {
+        id:"default-1",
+
+        name:"Classic Elegance",
+
+        price:89,
+
+        category:"Fashion",
+
+        description:
+        "A timeless piece designed for effortless everyday elegance.",
+
+        image:"back-to-school.JPG"
+    },
+
+    {
+        id:"default-2",
+
+        name:"Luxury Beauty Set",
+
+        price:59,
+
+        category:"Beauty",
+
+        description:
+        "A refined beauty collection for a polished look.",
+
+        image:"back-to-school.JPG"
+    },
+
+    {
+        id:"default-3",
+
+        name:"Signature Accessory",
+
+        price:39,
+
+        category:"Accessories",
+
+        description:
+        "A stylish finishing touch for your favorite outfits.",
+
+        image:"back-to-school.JPG"
+    },
+
+    {
+        id:"default-4",
+
+        name:"Modern Home Accent",
+
+        price:75,
+
+        category:"Home",
+
+        description:
+        "A simple luxury accent that elevates your space.",
+
+        image:"back-to-school.JPG"
     }
+
+];
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-const searchInput=
-document.getElementById("searchInput");
+/* =========================================================
+   ESCAPE JAVASCRIPT STRING
+========================================================= */
 
+function escapeJS(value){
 
-searchInput.addEventListener(
-"input",
-function(){
-
-    applyFilters();
-
-});
-
-
-searchInput.addEventListener(
-"keydown",
-function(e){
-
-    if(e.key==="Escape"){
-
-        toggleSearch();
-
-    }
-
-});
-
-
-/* ================= CATEGORIES MENU ================= */
-
-function toggleCategories(){
-
-    document
-    .getElementById("categoriesMenu")
-    .classList.toggle("open");
+    return String(value ?? "")
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
 
 }
 
 
-document.addEventListener(
-"click",
-function(e){
+/* =========================================================
+   FORMAT PRICE
+========================================================= */
 
-    const menu=
-    document.getElementById("categoriesMenu");
+function formatPrice(price){
 
-    if(
-        menu &&
-        !menu.contains(e.target)
-    ){
-
-        menu.classList.remove("open");
-
-    }
-
-});
-
-
-/* ================= CATEGORY FILTER ================= */
-
-function setCategory(category,button){
-
-    currentCategory=category;
-
-    document
-    .querySelectorAll(".filter-btn")
-    .forEach(function(btn){
-
-        btn.classList.remove("active");
-
-    });
-
-    if(button){
-
-        button.classList.add("active");
-
-    }
-
-    applyFilters();
+    return "$" +
+    Number(price || 0)
+    .toFixed(2);
 
 }
 
 
-/* ================= PRICE ================= */
+/* =========================================================
+   LOAD LOCAL PRODUCTS
+========================================================= */
 
-function priceChanged(){
+function loadLocalProducts(){
 
-    let min=
-    Number(document.getElementById("minPrice").value);
+    try{
 
-    let max=
-    Number(document.getElementById("maxPrice").value);
+        const saved =
+        localStorage.getItem(
+            PRODUCT_STORAGE_KEY
+        );
 
-    if(min>max){
+        if(saved){
 
-        if(event &&
-        event.target.id==="minPrice"){
+            const parsed =
+            JSON.parse(saved);
 
-            document.getElementById("minPrice").value=max;
+            if(Array.isArray(parsed)){
 
-            min=max;
+                products = parsed;
 
-        }else{
-
-            document.getElementById("maxPrice").value=min;
-
-            max=min;
-
-        }
-
-    }
-
-    document.getElementById("minPriceText")
-    .textContent=min;
-
-    document.getElementById("maxPriceText")
-    .textContent=max;
-
-    applyFilters();
-
-}
-
-
-/* ================= FILTER EVERYTHING ================= */
-
-function applyFilters(){
-
-    const cards=
-    Array.from(
-    document.querySelectorAll(".product-card")
-    );
-
-    const search=
-    document
-    .getElementById("searchInput")
-    .value
-    .trim()
-    .toLowerCase();
-
-    const min=
-    Number(
-    document.getElementById("minPrice").value
-    );
-
-    const max=
-    Number(
-    document.getElementById("maxPrice").value
-    );
-
-    let visibleCards=[];
-
-
-    cards.forEach(function(card){
-
-        const name=
-        card.dataset.name.toLowerCase();
-
-        const category=
-        card.dataset.category.toLowerCase();
-
-        const price=
-        Number(card.dataset.price);
-
-
-        const matchesSearch=
-        !search ||
-        name.includes(search) ||
-        category.includes(search);
-
-
-        const matchesCategory=
-        currentCategory==="all" ||
-        category===currentCategory;
-
-
-        const matchesPrice=
-        price>=min &&
-        price<=max;
-
-
-        const visible=
-        matchesSearch &&
-        matchesCategory &&
-        matchesPrice;
-
-
-        card.style.display=
-        visible ? "" : "none";
-
-
-        if(visible){
-
-            visibleCards.push(card);
-
-        }
-
-    });
-
-
-    /* SORT */
-
-    const sort=
-    document
-    .getElementById("sortSelect")
-    .value;
-
-
-    visibleCards.sort(function(a,b){
-
-        const priceA=
-        Number(a.dataset.price);
-
-        const priceB=
-        Number(b.dataset.price);
-
-        const nameA=
-        a.dataset.name.toLowerCase();
-
-        const nameB=
-        b.dataset.name.toLowerCase();
-
-
-        if(sort==="low"){
-
-            return priceA-priceB;
-
-        }
-
-        if(sort==="high"){
-
-            return priceB-priceA;
-
-        }
-
-        if(sort==="az"){
-
-            return nameA.localeCompare(nameB);
-
-        }
-
-        if(sort==="za"){
-
-            return nameB.localeCompare(nameA);
-
-        }
-
-        return 0;
-
-    });
-
-
-    const grid=
-    document.getElementById("productsGrid");
-
-
-    visibleCards.forEach(function(card){
-
-        grid.appendChild(card);
-
-    });
-
-
-    document
-    .getElementById("productCount")
-    .textContent=
-    "Showing "+
-    visibleCards.length+
-    " product"+
-    (visibleCards.length===1?"":"s");
-
-
-    document
-    .getElementById("noResults")
-    .style.display=
-    visibleCards.length===0
-    ? "block"
-    : "none";
-
-}
-
-
-/* ================= URL FILTERS ================= */
-
-function loadURLFilters(){
-
-    const params=
-    new URLSearchParams(
-    window.location.search
-    );
-
-
-    const category=
-    params.get("category");
-
-    const search=
-    params.get("search");
-
-
-    if(search){
-
-        document
-        .getElementById("searchInput")
-        .value=search;
-
-        document
-        .getElementById("searchPanel")
-        .classList.add("open");
-
-    }
-
-
-    if(
-        category &&
-        ["all","women","men","beauty","accessories"]
-        .includes(category)
-    ){
-
-        currentCategory=category;
-
-
-        document
-        .querySelectorAll(".filter-btn")
-        .forEach(function(button){
-
-            button.classList.remove("active");
-
-            if(
-                button.dataset.category===category
-            ){
-
-                button.classList.add("active");
+                return;
 
             }
+
+        }
+
+    }catch(error){
+
+        console.error(
+            "Could not load local products:",
+            error
+        );
+
+    }
+
+
+    products =
+    [...defaultProducts];
+
+
+    saveLocalProducts();
+
+}
+
+
+/* =========================================================
+   SAVE LOCAL PRODUCTS
+========================================================= */
+
+function saveLocalProducts(){
+
+    try{
+
+        localStorage.setItem(
+            PRODUCT_STORAGE_KEY,
+            JSON.stringify(products)
+        );
+
+    }catch(error){
+
+        console.error(
+            "Could not save products:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD PRODUCTS FROM SUPABASE
+========================================================= */
+
+async function loadProducts(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+        .from("products")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
+
+
+        if(
+            !error &&
+            Array.isArray(data) &&
+            data.length > 0
+        ){
+
+            products =
+            data.map(product => ({
+
+                id:product.id,
+
+                name:product.name,
+
+                price:Number(product.price),
+
+                category:
+                product.category ||
+                "Other",
+
+                description:
+                product.description ||
+                "",
+
+                image:
+                product.image ||
+                "back-to-school.JPG"
+
+            }));
+
+            return;
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Supabase products unavailable."
+        );
+
+    }
+
+
+    /*
+       If the Supabase products table isn't
+       available yet, use local storage.
+    */
+
+    loadLocalProducts();
+
+}
+
+
+/* =========================================================
+   SAVE PRODUCT
+========================================================= */
+
+async function saveProduct(product){
+
+    /*
+       Try Supabase first.
+    */
+
+    try{
+
+        const payload = {
+
+            name:product.name,
+
+            price:product.price,
+
+            category:product.category,
+
+            description:product.description,
+
+            image:product.image
+
+        };
+
+
+        /*
+           EDIT EXISTING PRODUCT
+        */
+
+        if(product.id){
+
+            const {
+                error
+            } =
+            await supabaseClient
+            .from("products")
+            .update(payload)
+            .eq(
+                "id",
+                product.id
+            );
+
+
+            if(!error){
+
+                await loadProducts();
+
+                return true;
+
+            }
+
+        }
+
+
+        /*
+           ADD NEW PRODUCT
+        */
+
+        const {
+            error
+        } =
+        await supabaseClient
+        .from("products")
+        .insert(payload);
+
+
+        if(!error){
+
+            await loadProducts();
+
+            return true;
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Using local product storage."
+        );
+
+    }
+
+
+    /*
+       FALLBACK:
+       Save locally if Supabase table
+       isn't ready.
+    */
+
+    const index =
+    products.findIndex(
+        item =>
+        String(item.id) ===
+        String(product.id)
+    );
+
+
+    if(index >= 0){
+
+        products[index] =
+        product;
+
+    }else{
+
+        products.unshift({
+
+            ...product,
+
+            id:
+            "local-" +
+            Date.now()
 
         });
 
     }
 
 
-    applyFilters();
+    saveLocalProducts();
+
+    return true;
 
 }
 
 
-/* ================= CART ================= */
+/* =========================================================
+   REMOVE PRODUCT
+========================================================= */
 
-function addToCart(name,price){
+async function removeProduct(productId){
 
-    cartCount++;
+    /*
+       Try deleting from Supabase.
+    */
 
-    localStorage.setItem(
-    "dejaluxeCartCount",
-    cartCount
+    try{
+
+        const {
+            error
+        } =
+        await supabaseClient
+        .from("products")
+        .delete()
+        .eq(
+            "id",
+            productId
+        );
+
+
+        if(!error){
+
+            await loadProducts();
+
+            return true;
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Using local deletion."
+        );
+
+    }
+
+
+    /*
+       Local fallback.
+    */
+
+    products =
+    products.filter(
+        product =>
+        String(product.id) !==
+        String(productId)
     );
 
-    document
-    .getElementById("cartCount")
-    .textContent=cartCount;
 
+    saveLocalProducts();
 
-    const message=
-    document.getElementById("cartMessage");
-
-    message.textContent=
-    name+
-    " added to your cart.";
-
-    message.style.display="block";
-
-
-    clearTimeout(window.cartTimer);
-
-
-    window.cartTimer=
-    setTimeout(function(){
-
-        message.style.display="none";
-
-    },2200);
+    return true;
 
 }
 
 
-function showCart(){
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
 
-    if(cartCount===0){
+function renderProducts(){
 
-        alert(
-        "Your cart is empty."
-        );
+    const grid =
+    document.getElementById(
+        "productsGrid"
+    );
 
-    }else{
 
-        alert(
-        "You have "+
-        cartCount+
-        " item"+
-        (cartCount===1?"":"s")+
-        " in your cart."
-        );
+    const noResults =
+    document.getElementById(
+        "noResults"
+    );
+
+
+    const productCount =
+    document.getElementById(
+        "productCount"
+    );
+
+
+    if(!grid){
+
+        return;
 
     }
 
-}
+
+    const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
 
 
-/* ================= ACCOUNT ================= */
-
-let accountSignup=false;
-
-
-function openAccount(){
-
-    document
-    .getElementById("accountModal")
-    .classList.add("open");
-
-}
+    const searchText =
+    searchInput ?
+    searchInput.value
+    .trim()
+    .toLowerCase()
+    : "";
 
 
-function closeAccount(){
-
-    document
-    .getElementById("accountModal")
-    .classList.remove("open");
-
-}
+    const minRange =
+    document.getElementById(
+        "minRange"
+    );
 
 
-function switchAccountMode(){
-
-    accountSignup=!accountSignup;
-
-
-    const title=
-    document.getElementById("accountTitle");
-
-    const name=
-    document.getElementById("nameInput");
-
-    const button=
-    document.getElementById("accountSubmit");
-
-    const switchText=
-    document.getElementById("switchText");
+    const maxRange =
+    document.getElementById(
+        "maxRange"
+    );
 
 
-    if(accountSignup){
-
-        title.textContent=
-        "Create Account";
-
-        name.style.display="block";
-
-        button.textContent=
-        "Create Account";
-
-        switchText.textContent=
-        "Already have an account";
-
-    }else{
-
-        title.textContent=
-        "Welcome Back";
-
-        name.style.display="none";
-
-        button.textContent=
-        "Login";
-
-        switchText.textContent=
-        "Create an account";
-
-    }
-
-}
+    const minPrice =
+    Number(
+        minRange ?
+        minRange.value :
+        0
+    );
 
 
-function submitAccount(){
-
-    const email=
-    document
-    .getElementById("emailInput")
-    .value
-    .trim();
-
-
-    const password=
-    document
-    .getElementById("passwordInput")
-    .value;
+    const maxPrice =
+    Number(
+        maxRange ?
+        maxRange.value :
+        500
+    );
 
 
-    const name=
-    document
-    .getElementById("nameInput")
-    .value
-    .trim();
+    let filtered =
+    products.filter(product => {
+
+        const categoryMatch =
+        activeCategory === "all" ||
+        product.category ===
+        activeCategory;
 
 
-    if(accountSignup){
+        const priceMatch =
+        Number(product.price) >=
+        minPrice &&
+        Number(product.price) <=
+        maxPrice;
 
-        createEmailAccount(
-        name,
-        email,
-        password
+
+        const searchMatch =
+        (
+            product.name +
+            " " +
+            product.description +
+            " " +
+            product.category
+        )
+        .toLowerCase()
+        .includes(searchText);
+
+
+        return (
+            categoryMatch &&
+            priceMatch &&
+            searchMatch
         );
 
-    }else{
+    });
 
-        loginWithEmail(
-        email,
-        password
+
+    /*
+       SORT
+    */
+
+    const sortSelect =
+    document.getElementById(
+        "sortSelect"
+    );
+
+
+    const sort =
+    sortSelect ?
+    sortSelect.value :
+    "default";
+
+
+    if(sort === "low"){
+
+        filtered.sort(
+            (a,b) =>
+            Number(a.price) -
+            Number(b.price)
         );
 
     }
 
-}
 
+    if(sort === "high"){
 
-function showWelcome(user){
-
-    document
-    .getElementById("loginSection")
-    .style.display="none";
-
-
-    document
-    .getElementById("welcomeSection")
-    .style.display="block";
-
-
-    document
-    .getElementById("welcomeName")
-    .textContent=
-    user.displayName ||
-    "Welcome to DEJALUXE";
-
-
-    document
-    .getElementById("welcomeEmail")
-    .textContent=
-    user.email || "";
-
-
-    const photo=
-    document.getElementById("welcomePhoto");
-
-
-    if(user.photoURL){
-
-        photo.src=user.photoURL;
-
-    }else{
-
-        photo.src=
-        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%23888'/%3E%3Cpath d='M15 95c0-25 20-40 35-40s35 15 35 40' fill='%23888'/%3E%3C/svg%3E";
+        filtered.sort(
+            (a,b) =>
+            Number(b.price) -
+            Number(a.price)
+        );
 
     }
 
-}
+
+    if(sort === "name"){
+
+        filtered.sort(
+            (a,b) =>
+            String(a.name)
+            .localeCompare(
+                String(b.name)
+            )
+        );
+
+    }
 
 
-function showLogin(){
+    /*
+       COUNT
+    */
 
-    document
-    .getElementById("loginSection")
-    .style.display="block";
-
-
-    document
-    .getElementById("welcomeSection")
-    .style.display="none";
-
-}
-
-
-function setAvatarLoggedOut(){
-
-    const avatar=
-    document.getElementById("profileAvatar");
+    productCount.textContent =
+    filtered.length +
+    " product" +
+    (
+        filtered.length === 1
+        ? ""
+        : "s"
+    );
 
 
-    avatar.innerHTML=`
+    /*
+       NO RESULTS
+    */
 
-    <svg viewBox="0 0 24 24" fill="none">
+    if(filtered.length === 0){
 
-        <circle
-        cx="12"
-        cy="8"
-        r="4"
-        fill="#888"/>
+        grid.innerHTML = "";
 
-        <path
-        d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"
-        fill="#888"/>
+        noResults.style.display =
+        "block";
 
-    </svg>
+        return;
 
-    `;
-
-}
+    }
 
 
-function setAvatarLoggedIn(user){
-
-    const avatar=
-    document.getElementById("profileAvatar");
+    noResults.style.display =
+    "none";
 
 
-    if(user.photoURL){
+    /*
+       PRODUCT CARDS
+    */
 
-        avatar.innerHTML=`
+    grid.innerHTML =
+    filtered
+    .map(product => {
 
-        <img
-        src="${user.photoURL}"
-        alt="Profile"
-        referrerpolicy="no-referrer">
+        const image =
+        product.image ||
+        "back-to-school.JPG";
+
+
+        return `
+
+        <article
+            class="product-card"
+        >
+
+            <div
+                class="product-image"
+            >
+
+                <img
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(product.name)}"
+                    onerror="this.src='back-to-school.JPG'"
+                >
+
+                <span class="badge">
+                    DEJALUXE
+                </span>
+
+            </div>
+
+
+            <div
+                class="product-info"
+            >
+
+                <div
+                    class="category-label"
+                >
+                    ${escapeHTML(product.category)}
+                </div>
+
+
+                <div
+                    class="product-name"
+                >
+                    ${escapeHTML(product.name)}
+                </div>
+
+
+                <div
+                    class="product-description"
+                >
+                    ${escapeHTML(product.description)}
+                </div>
+
+
+                <div
+                    class="product-bottom"
+                >
+
+                    <span
+                        class="price"
+                    >
+                        ${formatPrice(product.price)}
+                    </span>
+
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart('${escapeJS(product.id)}')"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
+
+
+                ${
+                    developerMode
+                    ?
+
+                    `
+
+                    <div
+                        class="dev-product-tools"
+                    >
+
+                        <button
+                            class="dev-edit-btn"
+                            onclick="editProduct('${escapeJS(product.id)}')"
+                        >
+                            Edit
+                        </button>
+
+
+                        <button
+                            class="dev-remove-btn"
+                            onclick="deleteProduct('${escapeJS(product.id)}')"
+                        >
+                            Remove
+                        </button>
+
+                    </div>
+
+                    `
+
+                    :
+
+                    ""
+
+                }
+
+            </div>
+
+        </article>
 
         `;
 
-    }else{
-
-        setAvatarLoggedOut();
-
-    }
+    })
+    .join("");
 
 }
 
-</script>
+
+/* =========================================================
+   DEVELOPER MODE CHECK
+========================================================= */
+
+function checkDeveloperMode(user){
+
+    if(!user){
+
+        return false;
+
+    }
 
 
-<!-- ================= FIREBASE ================= -->
+    const email =
+    String(
+        user.email || ""
+    )
+    .trim()
+    .toLowerCase();
 
-<script type="module">
 
-import {
-    initializeApp
+    return (
+        email ===
+        DEVELOPER_EMAIL
+        .toLowerCase()
+    );
+
 }
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 
-import {
-    getAuth,
-    GoogleAuthProvider,
-    signInWithPopup,
-    signInWithRedirect,
-    getRedirectResult,
-    onAuthStateChanged,
-    signOut,
-    setPersistence,
-    browserLocalPersistence,
-    browserSessionPersistence,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    updateProfile
+/* =========================================================
+   SHOW / HIDE DEVELOPER MODE
+========================================================= */
+
+function updateDeveloperMode(){
+
+    const tools =
+    document.getElementById(
+        "devTools"
+    );
+
+
+    if(tools){
+
+        tools.classList.toggle(
+            "visible",
+            developerMode
+        );
+
+    }
+
+
+    renderProducts();
+
 }
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-const firebaseConfig={
+/* =========================================================
+   DEVELOPER SAVE BUTTON
+========================================================= */
 
-    apiKey:
-    "AIzaSyCwF4Qtb9aImC49gpKtz_MGLK4bhWHJlLw",
+async function handleDeveloperSave(){
 
-    authDomain:
-    "dejaluxe-629c4.firebaseapp.com",
+    /*
+       SECURITY CHECK
+    */
 
-    projectId:
-    "dejaluxe-629c4",
-
-    storageBucket:
-    "dejaluxe-629c4.firebasestorage.app",
-
-    messagingSenderId:
-    "836825136632",
-
-    appId:
-    "1:836825136632:web:41e974a7e4148beba4aa0d",
-
-    measurementId:
-    "G-M0EPRQ0K5L"
-
-};
-
-
-const app=
-initializeApp(firebaseConfig);
-
-
-const auth=
-getAuth(app);
-
-
-const googleProvider=
-new GoogleAuthProvider();
-
-
-/* AUTH STATE */
-
-onAuthStateChanged(
-auth,
-function(user){
-
-    if(user){
-
-        setAvatarLoggedIn(user);
-
-        showWelcome(user);
-
-    }else{
-
-        setAvatarLoggedOut();
-
-        showLogin();
-
-    }
-
-});
-
-
-/* GOOGLE LOGIN */
-
-window.loginWithGoogle=
-async function(){
-
-    try{
-
-        const remember=
-        document
-        .getElementById("rememberMe")
-        .checked;
-
-
-        await setPersistence(
-        auth,
-        remember
-        ? browserLocalPersistence
-        : browserSessionPersistence
-        );
-
-
-        if(window.innerWidth<=700){
-
-            await signInWithRedirect(
-            auth,
-            googleProvider
-            );
-
-        }else{
-
-            await signInWithPopup(
-            auth,
-            googleProvider
-            );
-
-        }
-
-
-    }catch(error){
-
-        console.error(error);
+    if(!developerMode){
 
         alert(
-        firebaseError(error)
+            "Developer Mode is not available for this account."
         );
+
+        return;
 
     }
 
-};
+
+    const name =
+    document.getElementById(
+        "devName"
+    ).value.trim();
 
 
-/* EMAIL LOGIN */
-
-window.loginWithEmail=
-async function(email,password){
-
-    try{
-
-        if(!email || !password){
-
-            alert(
-            "Please enter your email and password."
-            );
-
-            return;
-
-        }
+    const price =
+    Number(
+        document.getElementById(
+            "devPrice"
+        ).value
+    );
 
 
-        const remember=
-        document
-        .getElementById("rememberMe")
-        .checked;
+    const category =
+    document.getElementById(
+        "devCategory"
+    ).value.trim() ||
+    "Other";
 
 
-        await setPersistence(
-        auth,
-        remember
-        ? browserLocalPersistence
-        : browserSessionPersistence
-        );
+    const image =
+    document.getElementById(
+        "devImage"
+    ).value.trim() ||
+    "back-to-school.JPG";
 
 
-        await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-        );
+    const description =
+    document.getElementById(
+        "devDescription"
+    ).value.trim();
 
 
-    }catch(error){
+    const status =
+    document.getElementById(
+        "devStatus"
+    );
 
-        console.error(error);
 
-        alert(
-        firebaseError(error)
-        );
+    if(!name){
+
+        status.textContent =
+        "Please enter a product name.";
+
+        return;
 
     }
 
-};
 
+    if(
+        !Number.isFinite(price) ||
+        price < 0
+    ){
 
-/* CREATE ACCOUNT */
+        status.textContent =
+        "Please enter a valid price.";
 
-window.createEmailAccount=
-async function(
-name,
-email,
-password
-){
-
-    try{
-
-        if(!email || !password){
-
-            alert(
-            "Please enter your email and password."
-            );
-
-            return;
-
-        }
-
-
-        const remember=
-        document
-        .getElementById("rememberMe")
-        .checked;
-
-
-        await setPersistence(
-        auth,
-        remember
-        ? browserLocalPersistence
-        : browserSessionPersistence
-        );
-
-
-        const result=
-        await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-        );
-
-
-        if(name){
-
-            await updateProfile(
-            result.user,
-            {
-                displayName:name
-            }
-            );
-
-        }
-
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-        firebaseError(error)
-        );
+        return;
 
     }
 
-};
 
+    const product = {
 
-/* LOGOUT */
+        id:
+        editingProductId,
 
-window.logout=
-async function(){
+        name:name,
 
-    try{
+        price:price,
 
-        await signOut(auth);
+        category:category,
 
-        closeAccount();
+        image:image,
 
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-        firebaseError(error)
-        );
-
-    }
-
-};
-
-
-/* REDIRECT RESULT */
-
-getRedirectResult(auth)
-.catch(function(error){
-
-    if(error){
-
-        console.log(
-        firebaseError(error)
-        );
-
-    }
-
-});
-
-
-/* FIREBASE ERROR MESSAGES */
-
-function firebaseError(error){
-
-    const errors={
-
-        "auth/invalid-email":
-        "Please enter a valid email address.",
-
-        "auth/missing-password":
-        "Please enter your password.",
-
-        "auth/weak-password":
-        "Password must be at least 6 characters.",
-
-        "auth/email-already-in-use":
-        "This email is already registered.",
-
-        "auth/invalid-credential":
-        "Incorrect email or password.",
-
-        "auth/user-not-found":
-        "No account was found with this email.",
-
-        "auth/wrong-password":
-        "Incorrect email or password.",
-
-        "auth/popup-closed-by-user":
-        "Google login was cancelled.",
-
-        "auth/popup-blocked":
-        "Google login was blocked by your browser.",
-
-        "auth/operation-not-allowed":
-        "This sign-in method is not enabled in Firebase.",
-
-        "auth/account-exists-with-different-credential":
-        "An account already exists with this email using another sign-in method."
+        description:description
 
     };
 
 
-    return errors[error.code] ||
-    error.message ||
-    "Something went wrong.";
+    status.textContent =
+    "Saving...";
+
+
+    const success =
+    await saveProduct(
+        product
+    );
+
+
+    if(success){
+
+        status.textContent =
+        editingProductId
+        ?
+        "Product updated."
+        :
+        "Product added.";
+
+
+        clearDeveloperForm();
+
+
+        await loadProducts();
+
+        renderProducts();
+
+
+        setTimeout(() => {
+
+            status.textContent =
+            "";
+
+        },2500);
+
+    }
 
 }
 
-</script>
+
+/* =========================================================
+   EDIT PRODUCT
+========================================================= */
+
+function editProduct(productId){
+
+    if(!developerMode){
+
+        return;
+
+    }
 
 
-<!-- ================= URL FILTER INITIALIZATION ================= -->
+    const product =
+    products.find(
+        item =>
+        String(item.id) ===
+        String(productId)
+    );
 
-<script>
 
-loadURLFilters();
+    if(!product){
 
-</script>
+        return;
+
+    }
 
 
-</body>
-</html>
+    editingProductId =
+    product.id;
+
+
+    document.getElementById(
+        "devName"
+    ).value =
+    product.name || "";
+
+
+    document.getElementById(
+        "devPrice"
+    ).value =
+    product.price || "";
+
+
+    document.getElementById(
+        "devCategory"
+    ).value =
+    product.category || "";
+
+
+    document.getElementById(
+        "devImage"
+    ).value =
+    product.image || "";
+
+
+    document.getElementById(
+        "devDescription"
+    ).value =
+    product.description || "";
+
+
+    document.getElementById(
+        "devSave"
+    ).textContent =
+    "Save Changes";
+
+
+    document.getElementById(
+        "devCancel"
+    ).style.display =
+    "inline-block";
+
+
+    document.getElementById(
+        "devTools"
+    ).scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
+/* =========================================================
+   CLEAR DEVELOPER FORM
+========================================================= */
+
+function clearDeveloperForm(){
+
+    editingProductId =
+    null;
+
+
+    document.getElementById(
+        "devName"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "devPrice"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "devCategory"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "devImage"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "devDescription"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "devSave"
+    ).textContent =
+    "Add Product";
+
+
+    document.getElementById(
+        "devCancel"
+    ).style.display =
+    "none";
+
+}
+
+
+/* =========================================================
+   DELETE PRODUCT
+========================================================= */
+
+async function deleteProduct(productId){
+
+    if(!developerMode){
+
+        return;
+
+    }
+
+
+    const product =
+    products.find(
+        item =>
+        String(item.id) ===
+        String(productId)
+    );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    const confirmed =
+    confirm(
+        'Remove "' +
+        product.name +
+        '" from the shop?'
+    );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    const status =
+    document.getElementById(
+        "devStatus"
+    );
+
+
+    status.textContent =
+    "Removing...";
+
+
+    await removeProduct(
+        productId
+    );
+
+
+    status.textContent =
+    "Product removed.";
+
+
+    await loadProducts();
+
+    renderProducts();
+
+
+    setTimeout(() => {
+
+        status.textContent =
+        "";
+
+    },2500);
+
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+function getCart(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                "cart"
+            ) || "[]"
+        );
+
+    }catch(error){
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================================================
+   UPDATE CART COUNT
+========================================================= */
+
+function updateCartCount(){
+
+    const cart =
+    getCart();
+
+
+    const count =
+    document.getElementById(
+        "cartCount"
+    );
+
+
+    if(count){
+
+        count.textContent =
+        cart.length;
+
+    }
+
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+function addToCart(productId){
+
+    const product =
+    products.find(
+        item =>
+        String(item.id) ===
+        String(productId)
+    );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    const cart =
+    get
