@@ -3,2251 +3,1403 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>DEJALUXE</title>
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body{
+font-family:Arial,Helvetica,sans-serif;
+color:#222;
+background:#fff;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #222;
-    background: white;
+a{
+text-decoration:none;
+color:inherit;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+.top-bar{
+height:38px;
+background:#ff7200;
+color:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 5%;
+font-size:13px;
 }
 
-
-/* ================= TOP BAR ================= */
-
-.top-bar {
-    height: 38px;
-    background: #ff7200;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 5%;
-
-    font-size: 13px;
+.top-right{
+display:flex;
+gap:25px;
 }
 
-.top-right {
-    display: flex;
-    gap: 25px;
+nav{
+height:82px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 5%;
+background:white;
+border-bottom:1px solid #eee;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
-
-/* ================= NAVBAR ================= */
-
-nav {
-    height: 82px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 5%;
-
-    background: white;
-
-    border-bottom: 1px solid #eee;
-
-    position: sticky;
-    top: 0;
-
-    z-index: 1000;
+.logo{
+width:52px;
+height:52px;
+border-radius:50%;
+background:#ff7200;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+font-size:12px;
+letter-spacing:1px;
+cursor:pointer;
+flex-shrink:0;
 }
 
-
-/* ================= LOGO ================= */
-
-.logo {
-    width: 52px;
-    height: 52px;
-
-    border-radius: 50%;
-
-    background: #ff7200;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 13px;
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    flex-shrink: 0;
+.nav-links{
+display:flex;
+align-items:center;
+gap:38px;
+list-style:none;
+font-size:15px;
 }
 
-
-/* ================= NAV LINKS ================= */
-
-.nav-links {
-    display: flex;
-    align-items: center;
-
-    gap: 38px;
-
-    list-style: none;
-
-    font-size: 15px;
+.nav-links a:hover{
+color:#ff7200;
 }
 
-.nav-links a:hover {
-    color: #ff7200;
+.categories-menu{
+position:relative;
 }
 
-
-/* ================= CATEGORIES ================= */
-
-.categories-menu {
-    position: relative;
+.categories-button{
+border:none;
+background:none;
+font-size:15px;
+cursor:pointer;
+font-family:inherit;
+padding:10px 0;
 }
 
-.categories-button {
-    border: none;
-    background: none;
-
-    font-family: inherit;
-    font-size: 15px;
-
-    cursor: pointer;
-
-    padding: 10px 0;
+.categories-button:hover{
+color:#ff7200;
 }
 
-.categories-button:hover {
-    color: #ff7200;
+.dropdown{
+display:none;
+position:absolute;
+top:45px;
+left:50%;
+transform:translateX(-50%);
+width:190px;
+background:white;
+border:1px solid #eee;
+border-radius:10px;
+box-shadow:0 15px 35px rgba(0,0,0,.12);
+padding:8px;
+z-index:2000;
 }
 
-.dropdown {
-    display: none;
-
-    position: absolute;
-
-    top: 45px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 190px;
-
-    background: white;
-
-    border: 1px solid #eee;
-
-    border-radius: 10px;
-
-    box-shadow: 0 15px 35px rgba(0,0,0,.12);
-
-    padding: 8px;
-
-    z-index: 2000;
+.dropdown a{
+display:block;
+padding:11px 13px;
+border-radius:7px;
+font-size:14px;
 }
 
-.dropdown a {
-    display: block;
-
-    padding: 11px 13px;
-
-    border-radius: 7px;
-
-    font-size: 14px;
-}
-
-.dropdown a:hover {
-    background: #fff2e8;
-    color: #ff7200;
+.dropdown a:hover{
+background:#fff2e8;
+color:#ff7200;
 }
 
 .categories-menu:hover .dropdown,
-.categories-menu.open .dropdown {
-    display: block;
+.categories-menu.open .dropdown{
+display:block;
 }
 
-
-/* ================= NAV ICONS ================= */
-
-.nav-icons {
-    display: flex;
-    align-items: center;
-
-    gap: 20px;
-
-    font-size: 22px;
+.nav-icons{
+display:flex;
+align-items:center;
+gap:20px;
+font-size:22px;
 }
 
-.search-icon,
-.profile-icon,
-.cart-icon {
-    cursor: pointer;
+.search-icon{
+cursor:pointer;
+font-size:23px;
 }
 
-.cart-icon {
-    position: relative;
+.profile-icon{
+width:34px;
+height:34px;
+border-radius:50%;
+overflow:hidden;
+background:#eee;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+flex-shrink:0;
 }
-
-.cart-count {
-    position: absolute;
-
-    top: -9px;
-    right: -10px;
-
-    width: 19px;
-    height: 19px;
 
-    border-radius: 50%;
-
-    background: #ff7200;
-    color: white;
-
-    font-size: 11px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.profile-icon img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
 }
-
-
-/* ================= SEARCH ================= */
-
-.search-panel {
-    display: none;
-
-    background: white;
 
-    border-bottom: 1px solid #eee;
-
-    padding: 18px 5%;
+.profile-icon svg{
+width:24px;
+height:24px;
 }
 
-.search-panel.open {
-    display: block;
+.cart-icon{
+position:relative;
+cursor:pointer;
 }
 
-.search-wrapper {
-    max-width: 900px;
-    margin: auto;
-
-    position: relative;
+.cart-count{
+position:absolute;
+top:-9px;
+right:-10px;
+width:19px;
+height:19px;
+background:#ff7200;
+color:white;
+border-radius:50%;
+font-size:11px;
+display:flex;
+align-items:center;
+justify-content:center;
 }
-
-.search-input {
-    width: 100%;
-
-    padding: 15px 50px 15px 20px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 30px;
-
-    font-size: 15px;
 
-    outline: none;
+.search-panel{
+display:none;
+background:white;
+border-bottom:1px solid #eee;
+padding:18px 5%;
 }
 
-.search-input:focus {
-    border-color: #ff7200;
+.search-panel.open{
+display:block;
 }
 
-.close-search {
-    position: absolute;
-
-    right: 18px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    border: none;
-
-    background: none;
-
-    font-size: 21px;
-
-    cursor: pointer;
+.search-wrapper{
+max-width:900px;
+margin:auto;
+position:relative;
 }
-
-
-/* ================= HERO ================= */
 
-.hero {
-    height: 650px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    display: flex;
-    align-items: center;
-
-    background: #222;
+.search-input{
+width:100%;
+padding:15px 50px 15px 20px;
+border:1px solid #ddd;
+border-radius:30px;
+font-size:15px;
+outline:none;
 }
-
-.hero img {
-    position: absolute;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
 
-    transform: scale(1.03);
+.search-input:focus{
+border-color:#ff7200;
 }
 
-.hero-overlay {
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0,0,0,.72),
-            rgba(0,0,0,.25),
-            rgba(0,0,0,.05)
-        );
+.close-search{
+position:absolute;
+right:18px;
+top:50%;
+transform:translateY(-50%);
+border:none;
+background:none;
+font-size:20px;
+cursor:pointer;
 }
-
-.hero-content {
-    position: relative;
 
-    z-index: 2;
-
-    width: 90%;
-    max-width: 1200px;
-
-    margin: auto;
-
-    color: white;
+.hero{
+min-height:650px;
+background:
+linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.28)),
+url("back-to-school.JPG") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:40px;
 }
-
-.hero-small {
-    color: #ff7200;
 
-    font-size: 14px;
-
-    font-weight: bold;
-
-    letter-spacing: 3px;
-
-    margin-bottom: 15px;
+.hero-content h1{
+font-size:64px;
+letter-spacing:3px;
+margin-bottom:15px;
 }
 
-.hero h1 {
-    font-size: 70px;
-
-    line-height: 1.05;
-
-    margin-bottom: 20px;
+.hero-content p{
+font-size:20px;
+margin-bottom:28px;
 }
-
-.hero p {
-    max-width: 500px;
-
-    color: #eee;
 
-    font-size: 17px;
-
-    line-height: 1.6;
-
-    margin-bottom: 30px;
+.shop-now{
+display:inline-block;
+background:#ff7200;
+color:white;
+padding:15px 32px;
+border-radius:7px;
+font-weight:bold;
+transition:.2s;
 }
-
-.shop-btn {
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 18px;
-
-    background: #ff7200;
-
-    color: white;
-
-    padding: 15px 25px;
 
-    border-radius: 5px;
-
-    font-weight: bold;
-
-    transition: .2s;
+.shop-now:hover{
+background:#e86300;
+transform:translateY(-2px);
 }
 
-.shop-btn:hover {
-    background: #e86300;
+.services{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+padding:75px 8%;
+text-align:center;
 }
 
-.shop-btn span {
-    font-size: 20px;
+.service{
+padding:25px;
 }
-
 
-/* ================= SERVICES ================= */
-
-.services {
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    border-bottom: 1px solid #eee;
+.service-icon{
+font-size:35px;
 }
-
-.service {
-    padding: 30px 20px;
 
-    text-align: center;
-
-    border-right: 1px solid #eee;
+.service h3{
+margin:15px 0 10px;
 }
 
-.service:last-child {
-    border-right: none;
+.service p{
+color:#777;
+font-size:14px;
+line-height:1.6;
 }
 
-.service-icon {
-    font-size: 25px;
-
-    margin-bottom: 10px;
+.newsletter{
+background:#f8f8f8;
+text-align:center;
+padding:70px 20px;
 }
-
-.service h3 {
-    font-size: 14px;
 
-    margin-bottom: 7px;
+.newsletter h2{
+margin-bottom:12px;
 }
 
-.service p {
-    color: #888;
-
-    font-size: 12px;
+.newsletter p{
+color:#777;
+margin-bottom:22px;
 }
-
-
-/* ================= NEWSLETTER ================= */
-
-.newsletter {
-    background: #f7f7f7;
 
-    text-align: center;
-
-    padding: 75px 20px;
+.newsletter-form{
+display:flex;
+justify-content:center;
+gap:8px;
 }
 
-.newsletter h2 {
-    font-size: 32px;
-
-    margin-bottom: 12px;
+.newsletter input{
+width:300px;
+padding:14px 18px;
+border:1px solid #ddd;
+border-radius:7px;
+outline:none;
 }
-
-.newsletter p {
-    color: #777;
 
-    font-size: 14px;
-
-    margin-bottom: 25px;
+.newsletter button{
+border:none;
+background:#ff7200;
+color:white;
+padding:14px 22px;
+border-radius:7px;
+cursor:pointer;
+font-weight:bold;
 }
-
-.newsletter-form {
-    max-width: 500px;
 
-    margin: auto;
-
-    display: flex;
+footer{
+background:#151515;
+color:white;
+padding:55px 5% 25px;
+text-align:center;
 }
-
-.newsletter-form input {
-    flex: 1;
 
-    border: 1px solid #ddd;
-
-    border-right: none;
-
-    border-radius: 5px 0 0 5px;
-
-    padding: 14px;
-
-    outline: none;
+footer p{
+color:#aaa;
+font-size:13px;
+margin-top:10px;
 }
-
-.newsletter-form button {
-    border: none;
-
-    background: #ff7200;
-
-    color: white;
-
-    padding: 0 22px;
 
-    border-radius: 0 5px 5px 0;
-
-    cursor: pointer;
-
-    font-weight: bold;
+.account-modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+z-index:5000;
+align-items:center;
+justify-content:center;
+padding:20px;
 }
-
 
-/* ================= FOOTER ================= */
-
-footer {
-    background: #151515;
-
-    color: white;
-
-    padding: 55px 5% 25px;
+.account-modal.open{
+display:flex;
 }
-
-.footer-grid {
-    max-width: 1200px;
 
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-
-    gap: 40px;
+.account-box{
+background:white;
+width:100%;
+max-width:430px;
+border-radius:15px;
+padding:32px;
+position:relative;
+box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
-
-.footer-column h3 {
-    margin-bottom: 15px;
 
-    font-size: 16px;
+.account-close{
+position:absolute;
+right:18px;
+top:12px;
+border:none;
+background:none;
+font-size:28px;
+cursor:pointer;
+color:#555;
 }
 
-.footer-column p,
-.footer-column a {
-    color: #aaa;
-
-    font-size: 13px;
-
-    line-height: 2;
+.account-box h2{
+text-align:center;
+margin-bottom:20px;
 }
 
-.footer-column a:hover {
-    color: #ff7200;
+.account-input{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:7px;
+margin:6px 0;
+outline:none;
 }
-
-.footer-bottom {
-    max-width: 1200px;
-
-    margin: 40px auto 0;
 
-    padding-top: 20px;
-
-    border-top: 1px solid #333;
-
-    text-align: center;
-
-    color: #777;
-
-    font-size: 12px;
+.account-input:focus{
+border-color:#ff7200;
 }
-
-
-/* ================================================= */
-/* ACCOUNT SYSTEM */
-/* ================================================= */
-
-.account-overlay {
-    display: none;
 
-    position: fixed;
-
-    inset: 0;
-
-    background: rgba(0,0,0,.55);
-
-    z-index: 5000;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
+.remember{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:13px;
+margin:12px 0;
 }
 
-.account-overlay.open {
-    display: flex;
+.account-button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:7px;
+background:#ff7200;
+color:white;
+font-weight:bold;
+cursor:pointer;
+margin-top:8px;
 }
-
-.account-box {
-    width: 100%;
-    max-width: 420px;
-
-    background: white;
-
-    border-radius: 15px;
 
-    padding: 30px;
-
-    position: relative;
-
-    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+.google-button{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:7px;
+background:white;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
 }
-
-.account-close {
-    position: absolute;
-
-    right: 18px;
-    top: 15px;
-
-    border: none;
-
-    background: none;
-
-    font-size: 25px;
 
-    cursor: pointer;
-
-    color: #777;
+.switch-account{
+text-align:center;
+margin-top:16px;
+font-size:13px;
+color:#ff7200;
+cursor:pointer;
 }
-
-.account-logo {
-    width: 58px;
-    height: 58px;
-
-    border-radius: 50%;
-
-    background: #ff7200;
-
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin: 0 auto 18px;
 
-    font-size: 12px;
-    font-weight: bold;
-
-    letter-spacing: 1px;
+.welcome-section{
+text-align:center;
 }
-
-.account-box h2 {
-    text-align: center;
-
-    font-size: 25px;
 
-    margin-bottom: 8px;
+.welcome-photo{
+width:85px;
+height:85px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:12px;
 }
 
-.account-subtitle {
-    text-align: center;
-
-    color: #888;
-
-    font-size: 13px;
-
-    margin-bottom: 25px;
+.welcome-section p{
+color:#777;
+margin:7px;
 }
-
-.account-form label {
-    display: block;
 
-    font-size: 12px;
-
-    font-weight: bold;
-
-    margin-bottom: 7px;
+.logout-button{
+border:none;
+background:#222;
+color:white;
+padding:12px 28px;
+border-radius:7px;
+cursor:pointer;
+margin-top:18px;
 }
-
-.account-form input {
-    width: 100%;
-
-    padding: 13px;
 
-    border: 1px solid #ddd;
+@media(max-width:900px){
 
-    border-radius: 7px;
-
-    outline: none;
-
-    margin-bottom: 15px;
-
-    font-size: 14px;
+.nav-links{
+gap:15px;
+font-size:13px;
 }
 
-.account-form input:focus {
-    border-color: #ff7200;
+.services{
+grid-template-columns:1fr;
 }
-
-.remember-row {
-    display: flex;
 
-    align-items: center;
-
-    gap: 8px;
-
-    margin-bottom: 18px;
-
-    font-size: 13px;
-
-    color: #555;
 }
 
-.remember-row input {
-    width: auto;
+@media(max-width:600px){
 
-    margin: 0;
+.top-bar{
+padding:0 15px;
+font-size:10px;
 }
-
-.account-submit {
-    width: 100%;
-
-    border: none;
-
-    background: #ff7200;
 
-    color: white;
-
-    padding: 14px;
-
-    border-radius: 7px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    font-size: 14px;
+.top-right{
+gap:10px;
 }
 
-.account-submit:hover {
-    background: #e86300;
+nav{
+height:72px;
+padding:0 15px;
 }
-
-.account-switch {
-    text-align: center;
-
-    margin-top: 20px;
-
-    font-size: 13px;
 
-    color: #777;
+.logo{
+width:46px;
+height:46px;
+font-size:10px;
 }
 
-.account-switch button {
-    border: none;
-
-    background: none;
-
-    color: #ff7200;
-
-    cursor: pointer;
-
-    font-weight: bold;
+.nav-links{
+gap:12px;
+font-size:12px;
 }
-
-.account-error {
-    display: none;
-
-    background: #fff0eb;
-
-    color: #d94c00;
 
-    padding: 10px;
-
-    border-radius: 6px;
-
-    font-size: 12px;
-
-    margin-bottom: 15px;
+.nav-icons{
+gap:12px;
+font-size:19px;
 }
-
 
-/* ================= RECOGNIZED ACCOUNT ================= */
-
-.account-welcome {
-    display: none;
+.nav-links li:last-child{
+display:none;
 }
 
-.account-welcome h2 {
-    margin-bottom: 10px;
+.dropdown{
+position:fixed;
+top:115px;
 }
-
-.account-welcome p {
-    color: #777;
-
-    font-size: 14px;
-
-    line-height: 1.6;
 
-    margin-bottom: 22px;
+.hero{
+min-height:500px;
 }
 
-.logout-btn {
-    width: 100%;
-
-    padding: 13px;
-
-    background: #222;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 7px;
-
-    cursor: pointer;
-
-    font-weight: bold;
+.hero-content h1{
+font-size:42px;
 }
 
-.logout-btn:hover {
-    background: #444;
+.hero-content p{
+font-size:16px;
 }
-
-
-/* ================= CART MESSAGE ================= */
-
-.cart-message {
-    position: fixed;
-
-    bottom: 25px;
-    right: 25px;
-
-    background: #222;
-
-    color: white;
-
-    padding: 14px 20px;
 
-    border-radius: 8px;
-
-    font-size: 13px;
-
-    display: none;
-
-    z-index: 6000;
+.newsletter-form{
+flex-direction:column;
+align-items:center;
 }
-
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 900px) {
-
-    .nav-links {
-        gap: 15px;
-        font-size: 13px;
-    }
 
-    .hero h1 {
-        font-size: 55px;
-    }
-
-    .services {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .service:nth-child(2) {
-        border-right: none;
-    }
-
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.newsletter input{
+width:100%;
+max-width:320px;
 }
-
-
-@media (max-width: 600px) {
-
-    .top-bar {
-        padding: 0 15px;
-        font-size: 10px;
-    }
-
-    .top-right {
-        gap: 10px;
-    }
-
-    nav {
-        height: 72px;
 
-        padding: 0 15px;
-    }
-
-    .logo {
-        width: 46px;
-        height: 46px;
-
-        font-size: 10px;
-    }
-
-    .nav-links {
-        gap: 12px;
-
-        font-size: 12px;
-    }
-
-    .nav-links li:last-child {
-        display: none;
-    }
-
-    .nav-icons {
-        gap: 12px;
-
-        font-size: 19px;
-    }
-
-    .dropdown {
-        position: fixed;
-
-        top: 120px;
-
-        left: 50%;
-
-        width: 200px;
-    }
-
-    .hero {
-        height: 570px;
-    }
-
-    .hero-content {
-        width: 90%;
-    }
-
-    .hero h1 {
-        font-size: 45px;
-    }
-
-    .hero p {
-        font-size: 14px;
-    }
-
-    .services {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .service {
-        padding: 25px 10px;
-    }
-
-    .newsletter {
-        padding: 55px 15px;
-    }
-
-    .newsletter h2 {
-        font-size: 27px;
-    }
-
-    .newsletter-form {
-        display: block;
-    }
-
-    .newsletter-form input {
-        width: 100%;
-
-        border: 1px solid #ddd;
-
-        border-radius: 5px;
-
-        margin-bottom: 10px;
-    }
-
-    .newsletter-form button {
-        width: 100%;
-
-        padding: 14px;
-
-        border-radius: 5px;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .account-box {
-        padding: 25px 20px;
-    }
+.newsletter button{
+width:100%;
+max-width:320px;
 }
 
+}
 </style>
 </head>
 
-
 <body>
 
-
-<!-- ================================================= -->
-<!-- TOP BAR -->
-<!-- ================================================= -->
-
 <div class="top-bar">
-
-    <div>
-        Free delivery on orders over 500 MAD
-    </div>
-
-    <div class="top-right">
-
-        <span>Track Order</span>
-
-        <span>Help</span>
-
-        <span>EN</span>
-
-    </div>
-
+<div>Free delivery on orders over 500 MAD</div>
+<div class="top-right">
+<span>Track Order</span>
+<span>Help</span>
+<span>EN</span>
 </div>
-
-
-<!-- ================================================= -->
-<!-- NAVBAR -->
-<!-- ================================================= -->
+</div>
 
 <nav>
 
+<a href="index.html" class="logo">
+DEJALUXE
+</a>
 
-    <!-- LOGO -->
-    <a href="index.html" class="logo">
-        DEJALUXE
-    </a>
+<ul class="nav-links">
 
+<li>
+<a href="index.html">Home</a>
+</li>
 
-    <!-- NAVIGATION -->
+<li>
+<a href="shop.html">Shop</a>
+</li>
 
-    <ul class="nav-links">
+<li class="categories-menu" id="categoriesMenu">
 
-        <li>
-            <a href="index.html">
-                Home
-            </a>
-        </li>
+<button class="categories-button" onclick="toggleCategories()">
+Categories ▾
+</button>
 
+<div class="dropdown">
 
-        <li>
-            <a href="shop.html">
-                Shop
-            </a>
-        </li>
+<a href="shop.html?category=all">
+All Products
+</a>
 
+<a href="shop.html?category=women">
+Women
+</a>
 
-        <li class="categories-menu" id="categoriesMenu">
+<a href="shop.html?category=men">
+Men
+</a>
 
-            <button
-                class="categories-button"
-                onclick="toggleCategories()"
-            >
-                Categories ▾
-            </button>
+<a href="shop.html?category=beauty">
+Beauty
+</a>
 
-
-            <div class="dropdown">
-
-                <a href="shop.html">
-                    All Products
-                </a>
-
-                <a href="shop.html">
-                    Men
-                </a>
-
-                <a href="shop.html">
-                    Women
-                </a>
-
-                <a href="shop.html">
-                    Electronics
-                </a>
-
-                <a href="shop.html">
-                    Home
-                </a>
-
-                <a href="shop.html">
-                    Shoes
-                </a>
-
-                <a href="shop.html">
-                    Beauty
-                </a>
-
-                <a href="shop.html">
-                    Gaming
-                </a>
-
-            </div>
-
-        </li>
-
-
-        <li>
-            <a href="#about">
-                About Us
-            </a>
-        </li>
-
-    </ul>
-
-
-    <!-- ICONS -->
-
-    <div class="nav-icons">
-
-
-        <!-- SEARCH -->
-
-        <span
-            class="search-icon"
-            onclick="toggleSearch()"
-            title="Search"
-        >
-            ⌕
-        </span>
-
-
-        <!-- PROFILE -->
-
-        <span
-            class="profile-icon"
-            onclick="openAccount()"
-            title="Account"
-        >
-            ♙
-        </span>
-
-
-        <!-- CART -->
-
-        <span
-            class="cart-icon"
-            title="Cart"
-        >
-
-            🛒
-
-            <span
-                class="cart-count"
-                id="cartCount"
-            >
-                0
-            </span>
-
-        </span>
-
-    </div>
-
-</nav>
-
-
-<!-- ================================================= -->
-<!-- SEARCH -->
-<!-- ================================================= -->
-
-<div
-    class="search-panel"
-    id="searchPanel"
->
-
-    <div class="search-wrapper">
-
-        <input
-            type="text"
-            class="search-input"
-            placeholder="Search products..."
-            id="mainSearch"
-            onkeydown="searchProducts(event)"
-        >
-
-        <button
-            class="close-search"
-            onclick="toggleSearch()"
-        >
-            ×
-        </button>
-
-    </div>
+<a href="shop.html?category=accessories">
+Accessories
+</a>
 
 </div>
 
+</li>
 
-<!-- ================================================= -->
-<!-- HERO -->
-<!-- ================================================= -->
+<li>
+<a href="#about">About Us</a>
+</li>
+
+</ul>
+
+<div class="nav-icons">
+
+<span
+class="search-icon"
+onclick="toggleSearch()"
+title="Search">
+⌕
+</span>
+
+<span
+id="profileAvatar"
+class="profile-icon"
+onclick="openAccount()"
+title="Account">
+
+<svg viewBox="0 0 24 24" fill="none">
+<circle cx="12" cy="8" r="4" fill="#888"/>
+<path
+d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"
+fill="#888"/>
+</svg>
+
+</span>
+
+<span
+class="cart-icon"
+onclick="location.href='shop.html'"
+title="Shop">
+
+🛒
+
+<span class="cart-count" id="cartCount">
+0
+</span>
+
+</span>
+
+</div>
+
+</nav>
+
+<div
+id="searchPanel"
+class="search-panel">
+
+<div class="search-wrapper">
+
+<input
+id="searchInput"
+class="search-input"
+placeholder="Search products..."
+autocomplete="off">
+
+<button
+class="close-search"
+onclick="toggleSearch()">
+×
+</button>
+
+</div>
+
+</div>
 
 <section class="hero">
 
+<div class="hero-content">
 
-    <img
-        src="back-to-school.JPG"
-        alt="Back to school"
-    >
+<h1>DEJALUXE</h1>
 
+<p>
+Discover luxury. Define your style.
+</p>
 
-    <div class="hero-overlay"></div>
+<a
+href="shop.html"
+class="shop-now">
+Shop Now
+</a>
 
-
-    <div class="hero-content">
-
-        <div class="hero-small">
-            DEJALUXE COLLECTION
-        </div>
-
-
-        <h1>
-            Back to school.
-        </h1>
-
-
-        <p>
-            Discover stylish essentials, useful technology
-            and everyday products selected for you.
-        </p>
-
-
-        <a
-            href="shop.html"
-            class="shop-btn"
-        >
-
-            Shop Now
-
-            <span>
-                →
-            </span>
-
-        </a>
-
-    </div>
+</div>
 
 </section>
-
-
-<!-- ================================================= -->
-<!-- SERVICES -->
-<!-- ================================================= -->
 
 <section class="services">
 
+<div class="service">
 
-    <div class="service">
+<div class="service-icon">🚚</div>
 
-        <div class="service-icon">
-            🚚
-        </div>
+<h3>Fast Delivery</h3>
 
-        <h3>
-            Free Shipping
-        </h3>
+<p>
+Quick delivery across Morocco.
+</p>
 
-        <p>
-            On orders over 500 MAD
-        </p>
+</div>
 
-    </div>
+<div class="service">
 
+<div class="service-icon">✨</div>
 
-    <div class="service">
+<h3>Premium Quality</h3>
 
-        <div class="service-icon">
-            🔒
-        </div>
+<p>
+Carefully selected products for your lifestyle.
+</p>
 
-        <h3>
-            Secure Payment
-        </h3>
+</div>
 
-        <p>
-            Safe and secure checkout
-        </p>
+<div class="service">
 
-    </div>
+<div class="service-icon">🔒</div>
 
+<h3>Secure Shopping</h3>
 
-    <div class="service">
+<p>
+A simple and secure shopping experience.
+</p>
 
-        <div class="service-icon">
-            ↩
-        </div>
-
-        <h3>
-            Easy Returns
-        </h3>
-
-        <p>
-            Simple return process
-        </p>
-
-    </div>
-
-
-    <div class="service">
-
-        <div class="service-icon">
-            💬
-        </div>
-
-        <h3>
-            Support
-        </h3>
-
-        <p>
-            We're here to help
-        </p>
-
-    </div>
+</div>
 
 </section>
 
+<section
+class="newsletter"
+id="about">
 
-<!-- ================================================= -->
-<!-- NEWSLETTER -->
-<!-- ================================================= -->
+<h2>
+Stay in the DEJALUXE world
+</h2>
 
-<section class="newsletter">
+<p>
+Get news, offers and new arrivals.
+</p>
 
-    <h2>
-        Stay in the loop
-    </h2>
+<div class="newsletter-form">
 
-    <p>
-        Subscribe to receive DEJALUXE news and offers.
-    </p>
+<input
+type="email"
+id="newsletterEmail"
+placeholder="Your email">
 
+<button onclick="subscribeNewsletter()">
+Subscribe
+</button>
 
-    <form
-        class="newsletter-form"
-        onsubmit="subscribeNewsletter(event)"
-    >
-
-        <input
-            type="email"
-            placeholder="Your email address"
-            required
-        >
-
-        <button type="submit">
-            Subscribe
-        </button>
-
-    </form>
+</div>
 
 </section>
 
+<footer>
 
-<!-- ================================================= -->
-<!-- FOOTER -->
-<!-- ================================================= -->
+<h3>DEJALUXE</h3>
 
-<footer id="about">
+<p>
+Luxury made simple.
+</p>
 
-
-    <div class="footer-grid">
-
-
-        <div class="footer-column">
-
-            <h3>
-                DEJALUXE
-            </h3>
-
-            <p>
-                Discover quality products,
-                modern style and everyday essentials.
-            </p>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>
-                Shop
-            </h3>
-
-            <a href="shop.html">
-                All Products
-            </a>
-
-            <br>
-
-            <a href="shop.html">
-                Men
-            </a>
-
-            <br>
-
-            <a href="shop.html">
-                Women
-            </a>
-
-            <br>
-
-            <a href="shop.html">
-                Electronics
-            </a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>
-                Help
-            </h3>
-
-            <a href="#">
-                Track Order
-            </a>
-
-            <br>
-
-            <a href="#">
-                Returns
-            </a>
-
-            <br>
-
-            <a href="#">
-                Shipping
-            </a>
-
-            <br>
-
-            <a href="#">
-                Contact Us
-            </a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>
-                Account
-            </h3>
-
-            <a
-                href="#"
-                onclick="openAccount(); return false;"
-            >
-                My Account
-            </a>
-
-            <br>
-
-            <a
-                href="shop.html"
-            >
-                Shop
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        © 2026 DEJALUXE.
-        All rights reserved.
-
-    </div>
+<p>
+© 2026 DEJALUXE. All rights reserved.
+</p>
 
 </footer>
 
 
-<!-- ================================================= -->
 <!-- ACCOUNT MODAL -->
-<!-- ================================================= -->
 
 <div
-    class="account-overlay"
-    id="accountOverlay"
-    onclick="closeAccountOutside(event)"
->
+id="accountModal"
+class="account-modal">
 
+<div class="account-box">
 
-    <div class="account-box">
+<button
+class="account-close"
+onclick="closeAccount()">
+×
+</button>
 
+<div
+id="loginSection">
 
-        <button
-            class="account-close"
-            onclick="closeAccount()"
-        >
-            ×
-        </button>
+<h2 id="accountTitle">
+Welcome Back
+</h2>
 
+<input
+id="nameInput"
+class="account-input"
+placeholder="Full name"
+style="display:none">
 
-        <!-- LOGIN / CREATE ACCOUNT -->
+<input
+id="emailInput"
+class="account-input"
+type="email"
+placeholder="Email">
 
-        <div id="loginSection">
+<input
+id="passwordInput"
+class="account-input"
+type="password"
+placeholder="Password">
 
+<label class="remember">
 
-            <div class="account-logo">
-                DEJALUXE
-            </div>
+<input
+id="rememberMe"
+type="checkbox"
+checked>
 
+Remember Me
 
-            <h2 id="accountTitle">
-                Welcome back
-            </h2>
+</label>
 
+<button
+id="accountSubmit"
+class="account-button"
+onclick="submitAccount()">
 
-            <p
-                class="account-subtitle"
-                id="accountSubtitle"
-            >
-                Log in to your DEJALUXE account.
-            </p>
+Login
 
+</button>
 
-            <div
-                class="account-error"
-                id="accountError"
-            ></div>
+<button
+class="google-button"
+onclick="loginWithGoogle()">
 
+Continue with Google
 
-            <form
-                class="account-form"
-                onsubmit="handleAccountSubmit(event)"
-            >
+</button>
 
+<div
+id="switchText"
+class="switch-account"
+onclick="switchAccountMode()">
 
-                <!-- NAME -->
+Create an account
 
-                <div id="nameField" style="display:none;">
-
-                    <label>
-                        Your name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nameInput"
-                        placeholder="Enter your name"
-                    >
-
-                </div>
-
-
-                <!-- EMAIL -->
-
-                <label>
-                    Email
-                </label>
-
-                <input
-                    type="email"
-                    id="emailInput"
-                    placeholder="Enter your email"
-                    required
-                >
-
-
-                <!-- PASSWORD -->
-
-                <label>
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    id="passwordInput"
-                    placeholder="Enter your password"
-                    required
-                >
-
-
-                <!-- REMEMBER -->
-
-                <div class="remember-row">
-
-                    <input
-                        type="checkbox"
-                        id="rememberMe"
-                    >
-
-                    <label for="rememberMe">
-                        Remember me
-                    </label>
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="account-submit"
-                    id="accountSubmit"
-                >
-                    Log In
-                </button>
-
-            </form>
-
-
-            <div class="account-switch">
-
-                <span id="switchText">
-                    Don't have an account?
-                </span>
-
-                <button
-                    onclick="switchAccountMode()"
-                    id="switchButton"
-                >
-                    Create one
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- RECOGNIZED ACCOUNT -->
-
-        <div
-            class="account-welcome"
-            id="welcomeSection"
-        >
-
-            <div class="account-logo">
-                DEJALUXE
-            </div>
-
-
-            <h2>
-                Welcome back! 👋
-            </h2>
-
-
-            <p id="welcomeText">
-                Welcome to DEJALUXE.
-            </p>
-
-
-            <button
-                class="logout-btn"
-                onclick="logout()"
-            >
-                Log Out
-            </button>
-
-        </div>
-
-
-    </div>
+</div>
 
 </div>
 
 
-<!-- ================================================= -->
-<!-- CART MESSAGE -->
-<!-- ================================================= -->
-
 <div
-    class="cart-message"
-    id="cartMessage"
->
-    Added to cart ✓
+id="welcomeSection"
+class="welcome-section"
+style="display:none">
+
+<img
+id="welcomePhoto"
+class="welcome-photo"
+alt="Profile">
+
+<h2 id="welcomeName">
+Welcome to DEJALUXE
+</h2>
+
+<p id="welcomeEmail"></p>
+
+<button
+class="logout-button"
+onclick="logout()">
+
+Log Out
+
+</button>
+
+</div>
+
+</div>
+
 </div>
 
 
 <script>
 
+function toggleSearch(){
 
-/* ================================================= */
-/* CATEGORY MENU */
-/* ================================================= */
+const panel=document.getElementById("searchPanel");
 
-function toggleCategories() {
+panel.classList.toggle("open");
 
-    const menu =
-        document.getElementById("categoriesMenu");
+if(panel.classList.contains("open")){
+document.getElementById("searchInput").focus();
+}
 
-    menu.classList.toggle("open");
+}
+
+document.getElementById("searchInput").addEventListener("keydown",function(e){
+
+if(e.key==="Enter"){
+
+const value=this.value.trim();
+
+if(value){
+location.href="shop.html?search="+encodeURIComponent(value);
+}
+
+}
+
+});
+
+
+function toggleCategories(){
+
+document
+.getElementById("categoriesMenu")
+.classList.toggle("open");
 
 }
 
 
-/* ================================================= */
-/* SEARCH */
-/* ================================================= */
+document.addEventListener("click",function(e){
 
-function toggleSearch() {
+const menu=document.getElementById("categoriesMenu");
 
-    const panel =
-        document.getElementById("searchPanel");
+if(menu && !menu.contains(e.target)){
+menu.classList.remove("open");
+}
 
-    panel.classList.toggle("open");
+});
 
 
-    if (panel.classList.contains("open")) {
+function subscribeNewsletter(){
 
-        setTimeout(function() {
+const email=document.getElementById("newsletterEmail").value.trim();
 
-            document
-                .getElementById("mainSearch")
-                .focus();
+if(!email){
+alert("Please enter your email.");
+return;
+}
 
-        }, 100);
+alert("Thank you for subscribing to DEJALUXE!");
 
-    }
+document.getElementById("newsletterEmail").value="";
 
 }
 
 
-function searchProducts(event) {
-
-    if (event.key === "Enter") {
-
-        const search =
-            document
-            .getElementById("mainSearch")
-            .value
-            .trim();
+let accountSignup=false;
 
 
-        if (search !== "") {
+function openAccount(){
 
-            window.location.href =
-                "shop.html?search=" +
-                encodeURIComponent(search);
-
-        }
-
-    }
+document
+.getElementById("accountModal")
+.classList.add("open");
 
 }
 
 
-/* ================================================= */
-/* ACCOUNT VARIABLES */
-/* ================================================= */
+function closeAccount(){
 
-let accountMode = "login";
-
-
-/* ================================================= */
-/* OPEN ACCOUNT */
-/* ================================================= */
-
-function openAccount() {
-
-    const overlay =
-        document.getElementById("accountOverlay");
-
-
-    overlay.classList.add("open");
-
-
-    checkSavedAccount();
+document
+.getElementById("accountModal")
+.classList.remove("open");
 
 }
 
 
-/* ================================================= */
-/* CLOSE ACCOUNT */
-/* ================================================= */
+function switchAccountMode(){
 
-function closeAccount() {
+accountSignup=!accountSignup;
 
-    document
-        .getElementById("accountOverlay")
-        .classList.remove("open");
+const title=document.getElementById("accountTitle");
+const name=document.getElementById("nameInput");
+const button=document.getElementById("accountSubmit");
+const switchText=document.getElementById("switchText");
+
+if(accountSignup){
+
+title.textContent="Create Account";
+name.style.display="block";
+button.textContent="Create Account";
+switchText.textContent="Already have an account";
+
+}else{
+
+title.textContent="Welcome Back";
+name.style.display="none";
+button.textContent="Login";
+switchText.textContent="Create an account";
+
+}
 
 }
 
 
-function closeAccountOutside(event) {
+function submitAccount(){
 
-    if (
-        event.target ===
-        document.getElementById("accountOverlay")
-    ) {
+const email=
+document.getElementById("emailInput").value.trim();
 
-        closeAccount();
+const password=
+document.getElementById("passwordInput").value;
 
-    }
+const name=
+document.getElementById("nameInput").value.trim();
+
+if(accountSignup){
+
+createEmailAccount(
+name,
+email,
+password
+);
+
+}else{
+
+loginWithEmail(
+email,
+password
+);
+
+}
 
 }
 
 
-/* ================================================= */
-/* SWITCH LOGIN / CREATE */
-/* ================================================= */
+function showWelcome(user){
 
-function switchAccountMode() {
+document.getElementById("loginSection").style.display="none";
 
-    const title =
-        document.getElementById("accountTitle");
+document.getElementById("welcomeSection").style.display="block";
 
-    const subtitle =
-        document.getElementById("accountSubtitle");
+document.getElementById("welcomeName").textContent=
+user.displayName || "Welcome to DEJALUXE";
 
-    const nameField =
-        document.getElementById("nameField");
+document.getElementById("welcomeEmail").textContent=
+user.email || "";
 
-    const submit =
-        document.getElementById("accountSubmit");
+const photo=
+document.getElementById("welcomePhoto");
 
-    const switchText =
-        document.getElementById("switchText");
+if(user.photoURL){
 
-    const switchButton =
-        document.getElementById("switchButton");
+photo.src=user.photoURL;
 
+}else{
 
-    if (accountMode === "login") {
+photo.src=
+"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%23888'/%3E%3Cpath d='M15 95c0-25 20-40 35-40s35 15 35 40' fill='%23888'/%3E%3C/svg%3E";
 
-        accountMode = "signup";
-
-
-        title.textContent =
-            "Create your account";
-
-        subtitle.textContent =
-            "Join DEJALUXE and save your preferences.";
-
-        nameField.style.display =
-            "block";
-
-        document
-            .getElementById("nameInput")
-            .required = true;
-
-        submit.textContent =
-            "Create Account";
-
-        switchText.textContent =
-            "Already have an account?";
-
-        switchButton.textContent =
-            "Log in";
-
-    } else {
-
-        accountMode = "login";
-
-
-        title.textContent =
-            "Welcome back";
-
-        subtitle.textContent =
-            "Log in to your DEJALUXE account.";
-
-        nameField.style.display =
-            "none";
-
-        document
-            .getElementById("nameInput")
-            .required = false;
-
-        submit.textContent =
-            "Log In";
-
-        switchText.textContent =
-            "Don't have an account?";
-
-        switchButton.textContent =
-            "Create one";
-
-    }
-
-
-    clearAccountError();
+}
 
 }
 
 
-/* ================================================= */
-/* ACCOUNT SUBMIT */
-/* ================================================= */
+function showLogin(){
 
-function handleAccountSubmit(event) {
+document.getElementById("loginSection").style.display="block";
 
-    event.preventDefault();
-
-
-    const name =
-        document
-        .getElementById("nameInput")
-        .value
-        .trim();
-
-
-    const email =
-        document
-        .getElementById("emailInput")
-        .value
-        .trim();
-
-
-    const password =
-        document
-        .getElementById("passwordInput")
-        .value;
-
-
-    const remember =
-        document
-        .getElementById("rememberMe")
-        .checked;
-
-
-    if (accountMode === "signup") {
-
-
-        if (name === "") {
-
-            showAccountError(
-                "Please enter your name."
-            );
-
-            return;
-
-        }
-
-
-        const account = {
-
-            name: name,
-
-            email: email,
-
-            password: password
-
-        };
-
-
-        /*
-         * Demo account storage.
-         * For a real online store this will later
-         * be replaced by secure authentication.
-         */
-
-        localStorage.setItem(
-            "dejaluxeAccount",
-            JSON.stringify(account)
-        );
-
-
-        if (remember) {
-
-            localStorage.setItem(
-                "dejaluxeRemember",
-                "true"
-            );
-
-        } else {
-
-            localStorage.removeItem(
-                "dejaluxeRemember"
-            );
-
-        }
-
-
-        showWelcome(name);
-
-        return;
-
-    }
-
-
-    /* LOGIN */
-
-
-    const saved =
-        localStorage.getItem(
-            "dejaluxeAccount"
-        );
-
-
-    if (!saved) {
-
-        showAccountError(
-            "No account found. Please create an account first."
-        );
-
-        return;
-
-    }
-
-
-    const account =
-        JSON.parse(saved);
-
-
-    if (
-        email !== account.email ||
-        password !== account.password
-    ) {
-
-        showAccountError(
-            "Incorrect email or password."
-        );
-
-        return;
-
-    }
-
-
-    if (remember) {
-
-        localStorage.setItem(
-            "dejaluxeRemember",
-            "true"
-        );
-
-    } else {
-
-        localStorage.removeItem(
-            "dejaluxeRemember"
-        );
-
-    }
-
-
-    showWelcome(account.name);
+document.getElementById("welcomeSection").style.display="none";
 
 }
 
 
-/* ================================================= */
-/* CHECK SAVED ACCOUNT */
-/* ================================================= */
+function setAvatarLoggedOut(){
 
-function checkSavedAccount() {
+const avatar=document.getElementById("profileAvatar");
 
-    const saved =
-        localStorage.getItem(
-            "dejaluxeAccount"
-        );
+avatar.innerHTML=`
 
+<svg viewBox="0 0 24 24" fill="none">
 
-    const remembered =
-        localStorage.getItem(
-            "dejaluxeRemember"
-        );
+<circle
+cx="12"
+cy="8"
+r="4"
+fill="#888"/>
 
+<path
+d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"
+fill="#888"/>
 
-    if (
-        saved &&
-        remembered === "true"
-    ) {
+</svg>
 
-        const account =
-            JSON.parse(saved);
-
-        showWelcome(account.name);
-
-    } else {
-
-        showLogin();
-
-    }
+`;
 
 }
 
 
-/* ================================================= */
-/* SHOW LOGIN */
-/* ================================================= */
+function setAvatarLoggedIn(user){
 
-function showLogin() {
+const avatar=document.getElementById("profileAvatar");
 
-    document
-        .getElementById("loginSection")
-        .style.display = "block";
+if(user.photoURL){
 
+avatar.innerHTML=`
 
-    document
-        .getElementById("welcomeSection")
-        .style.display = "none";
+<img
+src="${user.photoURL}"
+alt="Profile"
+referrerpolicy="no-referrer">
+
+`;
+
+}else{
+
+setAvatarLoggedOut();
+
+}
 
 }
 
 
-/* ================================================= */
-/* SHOW WELCOME */
-/* ================================================= */
-
-function showWelcome(name) {
-
-    document
-        .getElementById("loginSection")
-        .style.display = "none";
+</script>
 
 
-    document
-        .getElementById("welcomeSection")
-        .style.display = "block";
+<!-- FIREBASE -->
+
+<script type="module">
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 
-    document
-        .getElementById("welcomeText")
-        .textContent =
-        "You're signed in as " + name + ". Your DEJALUXE account is recognized on this device.";
+import {
+getAuth,
+GoogleAuthProvider,
+signInWithPopup,
+signInWithRedirect,
+getRedirectResult,
+onAuthStateChanged,
+signOut,
+setPersistence,
+browserLocalPersistence,
+browserSessionPersistence,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+updateProfile
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+const firebaseConfig={
+
+apiKey:"AIzaSyCwF4Qtb9aImC49gpKtz_MGLK4bhWHJlLw",
+
+authDomain:"dejaluxe-629c4.firebaseapp.com",
+
+projectId:"dejaluxe-629c4",
+
+storageBucket:"dejaluxe-629c4.firebasestorage.app",
+
+messagingSenderId:"836825136632",
+
+appId:"1:836825136632:web:41e974a7e4148beba4aa0d",
+
+measurementId:"G-M0EPRQ0K5L"
+
+};
+
+
+const app=initializeApp(firebaseConfig);
+
+const auth=getAuth(app);
+
+const googleProvider=new GoogleAuthProvider();
+
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+setAvatarLoggedIn(user);
+
+showWelcome(user);
+
+}else{
+
+setAvatarLoggedOut();
+
+showLogin();
 
 }
 
-
-/* ================================================= */
-/* LOGOUT */
-/* ================================================= */
-
-function logout() {
-
-    localStorage.removeItem(
-        "dejaluxeRemember"
-    );
+});
 
 
-    showLogin();
+window.loginWithGoogle=async function(){
 
+try{
 
-    document
-        .getElementById("emailInput")
-        .value = "";
+const remember=
+document.getElementById("rememberMe").checked;
 
-    document
-        .getElementById("passwordInput")
-        .value = "";
-
-}
-
-
-/* ================================================= */
-/* ACCOUNT ERROR */
-/* ================================================= */
-
-function showAccountError(message) {
-
-    const error =
-        document.getElementById("accountError");
-
-
-    error.textContent = message;
-
-    error.style.display = "block";
-
-}
-
-
-function clearAccountError() {
-
-    document
-        .getElementById("accountError")
-        .style.display = "none";
-
-}
-
-
-/* ================================================= */
-/* CLOSE DROPDOWN WHEN CLICKING OUTSIDE */
-/* ================================================= */
-
-document.addEventListener(
-    "click",
-    function(event) {
-
-        const menu =
-            document.getElementById(
-                "categoriesMenu"
-            );
-
-
-        if (
-            menu &&
-            !menu.contains(event.target)
-        ) {
-
-            menu.classList.remove("open");
-
-        }
-
-    }
+await setPersistence(
+auth,
+remember
+? browserLocalPersistence
+: browserSessionPersistence
 );
 
 
-/* ================================================= */
-/* NEWSLETTER */
-/* ================================================= */
+if(window.innerWidth<=700){
 
-function subscribeNewsletter(event) {
+await signInWithRedirect(
+auth,
+googleProvider
+);
 
-    event.preventDefault();
+}else{
 
-
-    alert(
-        "Thank you for subscribing to DEJALUXE!"
-    );
+await signInWithPopup(
+auth,
+googleProvider
+);
 
 }
 
+}catch(error){
 
-/* ================================================= */
-/* INITIAL CART */
-/* ================================================= */
+console.error(error);
 
-let cartCount = 0;
+alert(firebaseError(error));
 
+}
 
-/* ================================================= */
-/* PAGE LOAD */
-/* ================================================= */
-
-window.addEventListener(
-    "load",
-    function() {
-
-        /*
-         * If the user previously chose
-         * Remember Me, we know who they are.
-         */
-
-        const saved =
-            localStorage.getItem(
-                "dejaluxeAccount"
-            );
-
-        const remembered =
-            localStorage.getItem(
-                "dejaluxeRemember"
-            );
+};
 
 
-        if (
-            saved &&
-            remembered === "true"
-        ) {
+window.loginWithEmail=async function(email,password){
 
-            const account =
-                JSON.parse(saved);
+try{
 
+if(!email || !password){
 
-            /*
-             * Optional visual recognition:
-             * the account is ready when the
-             * user taps the profile icon.
-             */
+alert("Please enter your email and password.");
 
-            console.log(
-                "Recognized DEJALUXE account:",
-                account.name
-            );
+return;
 
-        }
+}
 
-    }
+const remember=
+document.getElementById("rememberMe").checked;
+
+await setPersistence(
+auth,
+remember
+? browserLocalPersistence
+: browserSessionPersistence
 );
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+}catch(error){
+
+console.error(error);
+
+alert(firebaseError(error));
+
+}
+
+};
+
+
+window.createEmailAccount=async function(
+name,
+email,
+password
+){
+
+try{
+
+if(!email || !password){
+
+alert("Please enter your email and password.");
+
+return;
+
+}
+
+const remember=
+document.getElementById("rememberMe").checked;
+
+await setPersistence(
+auth,
+remember
+? browserLocalPersistence
+: browserSessionPersistence
+);
+
+const result=
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+if(name){
+
+await updateProfile(
+result.user,
+{
+displayName:name
+}
+);
+
+}
+
+}catch(error){
+
+console.error(error);
+
+alert(firebaseError(error));
+
+}
+
+};
+
+
+window.logout=async function(){
+
+try{
+
+await signOut(auth);
+
+closeAccount();
+
+}catch(error){
+
+console.error(error);
+
+}
+
+};
+
+
+getRedirectResult(auth)
+.catch(error=>{
+
+console.log(firebaseError(error));
+
+});
+
+
+function firebaseError(error){
+
+const errors={
+
+"auth/invalid-email":
+"Please enter a valid email address.",
+
+"auth/missing-password":
+"Please enter your password.",
+
+"auth/weak-password":
+"Password must be at least 6 characters.",
+
+"auth/email-already-in-use":
+"This email is already registered.",
+
+"auth/invalid-credential":
+"Incorrect email or password.",
+
+"auth/user-not-found":
+"No account was found with this email.",
+
+"auth/wrong-password":
+"Incorrect email or password.",
+
+"auth/popup-closed-by-user":
+"Google login was cancelled.",
+
+"auth/popup-blocked":
+"Google login was blocked by your browser.",
+
+"auth/operation-not-allowed":
+"This sign-in method is not enabled in Firebase.",
+
+"auth/account-exists-with-different-credential":
+"An account already exists with this email using another sign-in method."
+
+};
+
+return errors[error.code] ||
+error.message ||
+"Something went wrong.";
+
+}
 
 </script>
 
