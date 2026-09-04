@@ -6,7 +6,11 @@
 <title>DEJALUXE</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
 body{
 font-family:Arial,Helvetica,sans-serif;
@@ -460,6 +464,14 @@ cursor:pointer;
 margin-top:18px;
 }
 
+.account-error{
+color:#d93025;
+font-size:13px;
+text-align:center;
+margin-top:10px;
+display:none;
+}
+
 @media(max-width:900px){
 
 .nav-links{
@@ -549,6 +561,7 @@ max-width:320px;
 
 <div class="top-bar">
 <div>Free delivery on orders over 500 MAD</div>
+
 <div class="top-right">
 <span>Track Order</span>
 <span>Help</span>
@@ -574,7 +587,9 @@ DEJALUXE
 
 <li class="categories-menu" id="categoriesMenu">
 
-<button class="categories-button" onclick="toggleCategories()">
+<button
+class="categories-button"
+onclick="toggleCategories()">
 Categories ▾
 </button>
 
@@ -641,7 +656,9 @@ title="Shop">
 
 🛒
 
-<span class="cart-count" id="cartCount">
+<span
+class="cart-count"
+id="cartCount">
 0
 </span>
 
@@ -789,8 +806,7 @@ onclick="closeAccount()">
 ×
 </button>
 
-<div
-id="loginSection">
+<div id="loginSection">
 
 <h2 id="accountTitle">
 Welcome Back
@@ -843,6 +859,11 @@ Continue with Google
 </button>
 
 <div
+id="accountError"
+class="account-error">
+</div>
+
+<div
 id="switchText"
 class="switch-account"
 onclick="switchAccountMode()">
@@ -885,251 +906,11 @@ Log Out
 </div>
 
 
-<script>
-
-function toggleSearch(){
-
-const panel=document.getElementById("searchPanel");
-
-panel.classList.toggle("open");
-
-if(panel.classList.contains("open")){
-document.getElementById("searchInput").focus();
-}
-
-}
-
-document.getElementById("searchInput").addEventListener("keydown",function(e){
-
-if(e.key==="Enter"){
-
-const value=this.value.trim();
-
-if(value){
-location.href="shop.html?search="+encodeURIComponent(value);
-}
-
-}
-
-});
-
-
-function toggleCategories(){
-
-document
-.getElementById("categoriesMenu")
-.classList.toggle("open");
-
-}
-
-
-document.addEventListener("click",function(e){
-
-const menu=document.getElementById("categoriesMenu");
-
-if(menu && !menu.contains(e.target)){
-menu.classList.remove("open");
-}
-
-});
-
-
-function subscribeNewsletter(){
-
-const email=document.getElementById("newsletterEmail").value.trim();
-
-if(!email){
-alert("Please enter your email.");
-return;
-}
-
-alert("Thank you for subscribing to DEJALUXE!");
-
-document.getElementById("newsletterEmail").value="";
-
-}
-
-
-let accountSignup=false;
-
-
-function openAccount(){
-
-document
-.getElementById("accountModal")
-.classList.add("open");
-
-}
-
-
-function closeAccount(){
-
-document
-.getElementById("accountModal")
-.classList.remove("open");
-
-}
-
-
-function switchAccountMode(){
-
-accountSignup=!accountSignup;
-
-const title=document.getElementById("accountTitle");
-const name=document.getElementById("nameInput");
-const button=document.getElementById("accountSubmit");
-const switchText=document.getElementById("switchText");
-
-if(accountSignup){
-
-title.textContent="Create Account";
-name.style.display="block";
-button.textContent="Create Account";
-switchText.textContent="Already have an account";
-
-}else{
-
-title.textContent="Welcome Back";
-name.style.display="none";
-button.textContent="Login";
-switchText.textContent="Create an account";
-
-}
-
-}
-
-
-function submitAccount(){
-
-const email=
-document.getElementById("emailInput").value.trim();
-
-const password=
-document.getElementById("passwordInput").value;
-
-const name=
-document.getElementById("nameInput").value.trim();
-
-if(accountSignup){
-
-createEmailAccount(
-name,
-email,
-password
-);
-
-}else{
-
-loginWithEmail(
-email,
-password
-);
-
-}
-
-}
-
-
-function showWelcome(user){
-
-document.getElementById("loginSection").style.display="none";
-
-document.getElementById("welcomeSection").style.display="block";
-
-document.getElementById("welcomeName").textContent=
-user.displayName || "Welcome to DEJALUXE";
-
-document.getElementById("welcomeEmail").textContent=
-user.email || "";
-
-const photo=
-document.getElementById("welcomePhoto");
-
-if(user.photoURL){
-
-photo.src=user.photoURL;
-
-}else{
-
-photo.src=
-"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%23888'/%3E%3Cpath d='M15 95c0-25 20-40 35-40s35 15 35 40' fill='%23888'/%3E%3C/svg%3E";
-
-}
-
-}
-
-
-function showLogin(){
-
-document.getElementById("loginSection").style.display="block";
-
-document.getElementById("welcomeSection").style.display="none";
-
-}
-
-
-function setAvatarLoggedOut(){
-
-const avatar=document.getElementById("profileAvatar");
-
-avatar.innerHTML=`
-
-<svg viewBox="0 0 24 24" fill="none">
-
-<circle
-cx="12"
-cy="8"
-r="4"
-fill="#888"/>
-
-<path
-d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"
-fill="#888"/>
-
-</svg>
-
-`;
-
-}
-
-
-function setAvatarLoggedIn(user){
-
-const avatar=document.getElementById("profileAvatar");
-
-if(user.photoURL){
-
-avatar.innerHTML=`
-
-<img
-src="${user.photoURL}"
-alt="Profile"
-referrerpolicy="no-referrer">
-
-`;
-
-}else{
-
-setAvatarLoggedOut();
-
-}
-
-}
-
-
-</script>
-
-
-<!-- FIREBASE -->
-
 <script type="module">
 
 import {
 initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
 getAuth,
@@ -1145,164 +926,249 @@ browserSessionPersistence,
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
 updateProfile
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-const firebaseConfig={
+const firebaseConfig = {
 
-apiKey:"AIzaSyCwF4Qtb9aImC49gpKtz_MGLK4bhWHJlLw",
+apiKey:
+"AIzaSyCwF4Qtb9aImC49gpKtz_MGLK4bhWHJlLw",
 
-authDomain:"dejaluxe-629c4.firebaseapp.com",
+authDomain:
+"dejaluxe-629c4.firebaseapp.com",
 
-projectId:"dejaluxe-629c4",
+projectId:
+"dejaluxe-629c4",
 
-storageBucket:"dejaluxe-629c4.firebasestorage.app",
+storageBucket:
+"dejaluxe-629c4.firebasestorage.app",
 
-messagingSenderId:"836825136632",
+messagingSenderId:
+"836825136632",
 
-appId:"1:836825136632:web:41e974a7e4148beba4aa0d",
+appId:
+"1:836825136632:web:41e974a7e4148beba4aa0d",
 
-measurementId:"G-M0EPRQ0K5L"
+measurementId:
+"G-M0EPRQ0K5L"
 
 };
 
 
-const app=initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const auth=getAuth(app);
+const auth = getAuth(app);
 
-const googleProvider=new GoogleAuthProvider();
+const googleProvider =
+new GoogleAuthProvider();
 
 
-onAuthStateChanged(auth,(user)=>{
+let createAccountMode = false;
 
-if(user){
 
-setAvatarLoggedIn(user);
+/* SEARCH */
 
-showWelcome(user);
+window.toggleSearch = function(){
 
-}else{
+const panel =
+document.getElementById("searchPanel");
 
-setAvatarLoggedOut();
+panel.classList.toggle("open");
 
-showLogin();
+if(panel.classList.contains("open")){
+
+document
+.getElementById("searchInput")
+.focus();
 
 }
 
-});
+};
 
 
-window.loginWithGoogle=async function(){
+/* CATEGORIES */
 
-try{
+window.toggleCategories = function(){
 
-const remember=
+const menu =
+document.getElementById("categoriesMenu");
+
+menu.classList.toggle("open");
+
+};
+
+
+/* ACCOUNT OPEN */
+
+window.openAccount = function(){
+
+document
+.getElementById("accountModal")
+.classList.add("open");
+
+};
+
+
+/* ACCOUNT CLOSE */
+
+window.closeAccount = function(){
+
+document
+.getElementById("accountModal")
+.classList.remove("open");
+
+};
+
+
+/* SWITCH LOGIN / CREATE ACCOUNT */
+
+window.switchAccountMode = function(){
+
+createAccountMode =
+!createAccountMode;
+
+const title =
+document.getElementById("accountTitle");
+
+const name =
+document.getElementById("nameInput");
+
+const submit =
+document.getElementById("accountSubmit");
+
+const switchText =
+document.getElementById("switchText");
+
+const error =
+document.getElementById("accountError");
+
+error.style.display = "none";
+
+error.textContent = "";
+
+if(createAccountMode){
+
+title.textContent =
+"Create Account";
+
+name.style.display =
+"block";
+
+submit.textContent =
+"Create Account";
+
+switchText.textContent =
+"Already have an account? Login";
+
+}else{
+
+title.textContent =
+"Welcome Back";
+
+name.style.display =
+"none";
+
+submit.textContent =
+"Login";
+
+switchText.textContent =
+"Create an account";
+
+}
+
+};
+
+
+/* ERROR MESSAGE */
+
+function showError(message){
+
+const error =
+document.getElementById("accountError");
+
+error.textContent = message;
+
+error.style.display =
+"block";
+
+}
+
+
+/* REMEMBER ME */
+
+async function applyPersistence(){
+
+const remember =
 document.getElementById("rememberMe").checked;
+
+if(remember){
 
 await setPersistence(
 auth,
-remember
-? browserLocalPersistence
-: browserSessionPersistence
-);
-
-
-if(window.innerWidth<=700){
-
-await signInWithRedirect(
-auth,
-googleProvider
+browserLocalPersistence
 );
 
 }else{
 
-await signInWithPopup(
+await setPersistence(
 auth,
-googleProvider
+browserSessionPersistence
 );
 
 }
 
-}catch(error){
-
-console.error(error);
-
-alert(firebaseError(error));
-
 }
 
-};
 
+/* EMAIL LOGIN / SIGNUP */
 
-window.loginWithEmail=async function(email,password){
+window.submitAccount = async function(){
 
-try{
+const email =
+document.getElementById("emailInput")
+.value
+.trim();
 
-if(!email || !password){
+const password =
+document.getElementById("passwordInput")
+.value;
 
-alert("Please enter your email and password.");
+const name =
+document.getElementById("nameInput")
+.value
+.trim();
+
+if(!email){
+
+showError("Please enter your email.");
 
 return;
 
 }
 
-const remember=
-document.getElementById("rememberMe").checked;
+if(!password){
 
-await setPersistence(
-auth,
-remember
-? browserLocalPersistence
-: browserSessionPersistence
-);
-
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-}catch(error){
-
-console.error(error);
-
-alert(firebaseError(error));
-
-}
-
-};
-
-
-window.createEmailAccount=async function(
-name,
-email,
-password
-){
-
-try{
-
-if(!email || !password){
-
-alert("Please enter your email and password.");
+showError("Please enter your password.");
 
 return;
 
 }
 
-const remember=
-document.getElementById("rememberMe").checked;
+if(createAccountMode && !name){
 
-await setPersistence(
-auth,
-remember
-? browserLocalPersistence
-: browserSessionPersistence
-);
+showError("Please enter your full name.");
 
-const result=
+return;
+
+}
+
+try{
+
+await applyPersistence();
+
+if(createAccountMode){
+
+const result =
 await createUserWithEmailAndPassword(
 auth,
 email,
@@ -1320,18 +1186,321 @@ displayName:name
 
 }
 
+}else{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+}
+
+document
+.getElementById("accountError")
+.style.display =
+"none";
+
 }catch(error){
 
 console.error(error);
 
-alert(firebaseError(error));
+let message =
+"Something went wrong. Please try again.";
+
+switch(error.code){
+
+case "auth/email-already-in-use":
+message =
+"This email is already registered.";
+break;
+
+case "auth/invalid-email":
+message =
+"Please enter a valid email.";
+break;
+
+case "auth/weak-password":
+message =
+"Password must be at least 6 characters.";
+break;
+
+case "auth/invalid-credential":
+message =
+"Incorrect email or password.";
+break;
+
+case "auth/user-not-found":
+message =
+"No account found with this email.";
+break;
+
+case "auth/wrong-password":
+message =
+"Incorrect password.";
+break;
+
+case "auth/too-many-requests":
+message =
+"Too many attempts. Try again later.";
+break;
+
+}
+
+showError(message);
 
 }
 
 };
 
 
-window.logout=async function(){
+/* GOOGLE LOGIN */
+
+window.loginWithGoogle = async function(){
+
+try{
+
+await applyPersistence();
+
+await signInWithPopup(
+auth,
+googleProvider
+);
+
+}catch(error){
+
+console.error(error);
+
+if(
+error.code ===
+"auth/popup-blocked" ||
+error.code ===
+"auth/popup-closed-by-user"
+){
+
+try{
+
+await signInWithRedirect(
+auth,
+googleProvider
+);
+
+}catch(redirectError){
+
+console.error(
+redirectError
+);
+
+showError(
+"Google login could not start. Please try again."
+);
+
+}
+
+return;
+
+}
+
+if(
+error.code ===
+"auth/account-exists-with-different-credential"
+){
+
+showError(
+"This email already has an account with another login method."
+);
+
+return;
+
+}
+
+showError(
+"Google login failed. Please try again."
+);
+
+}
+
+};
+
+
+/* HANDLE GOOGLE REDIRECT */
+
+getRedirectResult(auth)
+.then((result)=>{
+
+if(result){
+
+console.log(
+"Google login successful."
+);
+
+}
+
+})
+.catch((error)=>{
+
+if(error){
+
+console.error(error);
+
+showError(
+"Google login failed. Please try again."
+);
+
+}
+
+});
+
+
+/* UPDATE PROFILE ICON */
+
+function updateProfileIcon(user){
+
+const avatar =
+document.getElementById("profileAvatar");
+
+if(!user){
+
+avatar.innerHTML = `
+
+<svg
+viewBox="0 0 24 24"
+fill="none">
+
+<circle
+cx="12"
+cy="8"
+r="4"
+fill="#888"/>
+
+<path
+d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"
+fill="#888"/>
+
+</svg>
+
+`;
+
+return;
+
+}
+
+if(user.photoURL){
+
+avatar.innerHTML = `
+
+<img
+src="${user.photoURL}"
+alt="Profile">
+
+`;
+
+}else{
+
+avatar.innerHTML = `
+
+<svg
+viewBox="0 0 24 24"
+fill="none">
+
+<circle
+cx="12"
+cy="8"
+r="4"
+fill="#888"/>
+
+<path
+d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"
+fill="#888"/>
+
+</svg>
+
+`;
+
+}
+
+}
+
+
+/* UPDATE ACCOUNT WINDOW */
+
+function updateAccountWindow(user){
+
+const loginSection =
+document.getElementById("loginSection");
+
+const welcomeSection =
+document.getElementById("welcomeSection");
+
+if(user){
+
+loginSection.style.display =
+"none";
+
+welcomeSection.style.display =
+"block";
+
+const name =
+document.getElementById("welcomeName");
+
+const email =
+document.getElementById("welcomeEmail");
+
+const photo =
+document.getElementById("welcomePhoto");
+
+name.textContent =
+user.displayName ||
+"Welcome to DEJALUXE";
+
+email.textContent =
+user.email || "";
+
+if(user.photoURL){
+
+photo.src =
+user.photoURL;
+
+photo.style.display =
+"block";
+
+}else{
+
+photo.style.display =
+"none";
+
+}
+
+}else{
+
+loginSection.style.display =
+"block";
+
+welcomeSection.style.display =
+"none";
+
+}
+
+}
+
+
+/* AUTH STATE */
+
+onAuthStateChanged(
+auth,
+(user)=>{
+
+updateProfileIcon(user);
+
+updateAccountWindow(user);
+
+}
+);
+
+
+/* LOGOUT */
+
+window.logout = async function(){
 
 try{
 
@@ -1348,58 +1517,92 @@ console.error(error);
 };
 
 
-getRedirectResult(auth)
-.catch(error=>{
+/* NEWSLETTER */
 
-console.log(firebaseError(error));
+window.subscribeNewsletter = function(){
+
+const input =
+document.getElementById(
+"newsletterEmail"
+);
+
+const email =
+input.value.trim();
+
+if(!email){
+
+alert(
+"Please enter your email."
+);
+
+return;
+
+}
+
+alert(
+"Thank you for subscribing to DEJALUXE!"
+);
+
+input.value = "";
+
+};
+
+
+/* CART COUNT */
+
+const savedCart =
+localStorage.getItem(
+"cartCount"
+);
+
+if(savedCart){
+
+document.getElementById(
+"cartCount"
+).textContent =
+savedCart;
+
+}
+
+
+/* CLOSE ACCOUNT WHEN CLICKING BACKDROP */
+
+document
+.getElementById("accountModal")
+.addEventListener(
+"click",
+function(event){
+
+if(event.target === this){
+
+closeAccount();
+
+}
 
 });
 
 
-function firebaseError(error){
+/* CLOSE CATEGORY WHEN CLICKING OUTSIDE */
 
-const errors={
+document.addEventListener(
+"click",
+function(event){
 
-"auth/invalid-email":
-"Please enter a valid email address.",
+const menu =
+document.getElementById(
+"categoriesMenu"
+);
 
-"auth/missing-password":
-"Please enter your password.",
+if(
+!menu.contains(event.target)
+){
 
-"auth/weak-password":
-"Password must be at least 6 characters.",
-
-"auth/email-already-in-use":
-"This email is already registered.",
-
-"auth/invalid-credential":
-"Incorrect email or password.",
-
-"auth/user-not-found":
-"No account was found with this email.",
-
-"auth/wrong-password":
-"Incorrect email or password.",
-
-"auth/popup-closed-by-user":
-"Google login was cancelled.",
-
-"auth/popup-blocked":
-"Google login was blocked by your browser.",
-
-"auth/operation-not-allowed":
-"This sign-in method is not enabled in Firebase.",
-
-"auth/account-exists-with-different-credential":
-"An account already exists with this email using another sign-in method."
-
-};
-
-return errors[error.code] ||
-error.message ||
-"Something went wrong.";
+menu.classList.remove("open");
 
 }
+
+});
+
 
 </script>
 
