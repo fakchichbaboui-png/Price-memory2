@@ -906,61 +906,23 @@ Log Out
 </div>
 
 
-<script type="module">
+<!-- SUPABASE -->
 
-import {
-initializeApp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-import {
-getAuth,
-GoogleAuthProvider,
-signInWithPopup,
-signInWithRedirect,
-getRedirectResult,
-onAuthStateChanged,
-signOut,
-setPersistence,
-browserLocalPersistence,
-browserSessionPersistence,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-updateProfile
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+<script>
 
+const SUPABASE_URL =
+"https://zinpicammabuvkdtpftj.supabase.co";
 
-const firebaseConfig = {
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_nbKKuwqFd6eSz02ayriC0w_K_sNx8JX";
 
-apiKey:
-"AIzaSyCwF4Qtb9aImC49gpKtz_MGLK4bhWHJlLw",
-
-authDomain:
-"dejaluxe-629c4.firebaseapp.com",
-
-projectId:
-"dejaluxe-629c4",
-
-storageBucket:
-"dejaluxe-629c4.firebasestorage.app",
-
-messagingSenderId:
-"836825136632",
-
-appId:
-"1:836825136632:web:41e974a7e4148beba4aa0d",
-
-measurementId:
-"G-M0EPRQ0K5L"
-
-};
-
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const googleProvider =
-new GoogleAuthProvider();
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+);
 
 
 let createAccountMode = false;
@@ -1020,7 +982,7 @@ document
 };
 
 
-/* SWITCH LOGIN / CREATE ACCOUNT */
+/* SWITCH LOGIN / SIGN UP */
 
 window.switchAccountMode = function(){
 
@@ -1042,9 +1004,9 @@ document.getElementById("switchText");
 const error =
 document.getElementById("accountError");
 
+error.textContent = "";
 error.style.display = "none";
 
-error.textContent = "";
 
 if(createAccountMode){
 
@@ -1079,14 +1041,15 @@ switchText.textContent =
 };
 
 
-/* ERROR MESSAGE */
+/* ERROR */
 
 function showError(message){
 
 const error =
 document.getElementById("accountError");
 
-error.textContent = message;
+error.textContent =
+message;
 
 error.style.display =
 "block";
@@ -1094,158 +1057,196 @@ error.style.display =
 }
 
 
-/* REMEMBER ME */
+/* CLEAR ERROR */
 
-async function applyPersistence(){
+function clearError(){
 
-const remember =
-document.getElementById("rememberMe").checked;
+const error =
+document.getElementById("accountError");
 
-if(remember){
+error.textContent = "";
 
-await setPersistence(
-auth,
-browserLocalPersistence
-);
-
-}else{
-
-await setPersistence(
-auth,
-browserSessionPersistence
-);
-
-}
+error.style.display =
+"none";
 
 }
 
 
-/* EMAIL LOGIN / SIGNUP */
+/* EMAIL LOGIN / CREATE ACCOUNT */
 
 window.submitAccount = async function(){
 
 const email =
-document.getElementById("emailInput")
+document
+.getElementById("emailInput")
 .value
 .trim();
 
 const password =
-document.getElementById("passwordInput")
+document
+.getElementById("passwordInput")
 .value;
 
 const name =
-document.getElementById("nameInput")
+document
+.getElementById("nameInput")
 .value
 .trim();
 
+
 if(!email){
 
-showError("Please enter your email.");
+showError(
+"Please enter your email."
+);
 
 return;
 
 }
+
 
 if(!password){
 
-showError("Please enter your password.");
+showError(
+"Please enter your password."
+);
 
 return;
 
 }
+
 
 if(createAccountMode && !name){
 
-showError("Please enter your full name.");
+showError(
+"Please enter your full name."
+);
 
 return;
 
 }
 
+
 try{
 
-await applyPersistence();
+let result;
+
 
 if(createAccountMode){
 
-const result =
-await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
+result =
+await supabaseClient.auth.signUp({
 
-if(name){
+email:email,
 
-await updateProfile(
-result.user,
-{
-displayName:name
+password:password,
+
+options:{
+data:{
+full_name:name,
+name:name
 }
-);
-
 }
+
+});
 
 }else{
 
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
+result =
+await supabaseClient.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
 
 }
 
-document
-.getElementById("accountError")
-.style.display =
-"none";
+
+if(result.error){
+
+throw result.error;
+
+}
+
+
+clearError();
+
+
+/* EMAIL CONFIRMATION */
+
+if(
+createAccountMode &&
+result.data.user &&
+!result.data.session
+){
+
+showError(
+"Account created! Please check your email to confirm your account."
+);
+
+return;
+
+}
+
 
 }catch(error){
 
-console.error(error);
+console.error(
+"Supabase auth error:",
+error
+);
+
 
 let message =
 "Something went wrong. Please try again.";
 
-switch(error.code){
 
-case "auth/email-already-in-use":
-message =
-"This email is already registered.";
-break;
+if(error.message){
 
-case "auth/invalid-email":
 message =
-"Please enter a valid email.";
-break;
-
-case "auth/weak-password":
-message =
-"Password must be at least 6 characters.";
-break;
-
-case "auth/invalid-credential":
-message =
-"Incorrect email or password.";
-break;
-
-case "auth/user-not-found":
-message =
-"No account found with this email.";
-break;
-
-case "auth/wrong-password":
-message =
-"Incorrect password.";
-break;
-
-case "auth/too-many-requests":
-message =
-"Too many attempts. Try again later.";
-break;
+error.message;
 
 }
+
+
+if(
+error.message &&
+error.message.toLowerCase().includes("invalid login credentials")
+){
+
+message =
+"Incorrect email or password.";
+
+}
+
+
+if(
+error.message &&
+error.message.toLowerCase().includes("password")
+&&
+error.message.toLowerCase().includes("weak")
+){
+
+message =
+"Password is too weak.";
+
+}
+
+
+if(
+error.message &&
+error.message.toLowerCase().includes("email")
+&&
+error.message.toLowerCase().includes("valid")
+){
+
+message =
+"Please enter a valid email.";
+
+}
+
 
 showError(message);
 
@@ -1260,61 +1261,40 @@ window.loginWithGoogle = async function(){
 
 try{
 
-await applyPersistence();
+clearError();
 
-await signInWithPopup(
-auth,
-googleProvider
-);
+
+const {error} =
+await supabaseClient.auth.signInWithOAuth({
+
+provider:"google",
+
+options:{
+
+redirectTo:
+"https://dejaluxe.netlify.app/"
+
+}
+
+});
+
+
+if(error){
+
+throw error;
+
+}
+
 
 }catch(error){
 
-console.error(error);
-
-if(
-error.code ===
-"auth/popup-blocked" ||
-error.code ===
-"auth/popup-closed-by-user"
-){
-
-try{
-
-await signInWithRedirect(
-auth,
-googleProvider
-);
-
-}catch(redirectError){
-
 console.error(
-redirectError
+"Google login error:",
+error
 );
 
 showError(
-"Google login could not start. Please try again."
-);
-
-}
-
-return;
-
-}
-
-if(
-error.code ===
-"auth/account-exists-with-different-credential"
-){
-
-showError(
-"This email already has an account with another login method."
-);
-
-return;
-
-}
-
-showError(
+error.message ||
 "Google login failed. Please try again."
 );
 
@@ -1323,41 +1303,15 @@ showError(
 };
 
 
-/* HANDLE GOOGLE REDIRECT */
-
-getRedirectResult(auth)
-.then((result)=>{
-
-if(result){
-
-console.log(
-"Google login successful."
-);
-
-}
-
-})
-.catch((error)=>{
-
-if(error){
-
-console.error(error);
-
-showError(
-"Google login failed. Please try again."
-);
-
-}
-
-});
-
-
 /* UPDATE PROFILE ICON */
 
 function updateProfileIcon(user){
 
 const avatar =
-document.getElementById("profileAvatar");
+document.getElementById(
+"profileAvatar"
+);
+
 
 if(!user){
 
@@ -1385,12 +1339,22 @@ return;
 
 }
 
-if(user.photoURL){
+
+const metadata =
+user.user_metadata || {};
+
+
+const photo =
+metadata.avatar_url ||
+metadata.picture;
+
+
+if(photo){
 
 avatar.innerHTML = `
 
 <img
-src="${user.photoURL}"
+src="${photo}"
 alt="Profile">
 
 `;
@@ -1427,10 +1391,15 @@ fill="#888"/>
 function updateAccountWindow(user){
 
 const loginSection =
-document.getElementById("loginSection");
+document.getElementById(
+"loginSection"
+);
 
 const welcomeSection =
-document.getElementById("welcomeSection");
+document.getElementById(
+"welcomeSection"
+);
+
 
 if(user){
 
@@ -1440,26 +1409,43 @@ loginSection.style.display =
 welcomeSection.style.display =
 "block";
 
-const name =
-document.getElementById("welcomeName");
 
-const email =
-document.getElementById("welcomeEmail");
+const metadata =
+user.user_metadata || {};
 
-const photo =
-document.getElementById("welcomePhoto");
 
-name.textContent =
-user.displayName ||
+document.getElementById(
+"welcomeName"
+).textContent =
+
+metadata.full_name ||
+metadata.name ||
+user.email ||
 "Welcome to DEJALUXE";
 
-email.textContent =
+
+document.getElementById(
+"welcomeEmail"
+).textContent =
+
 user.email || "";
 
-if(user.photoURL){
+
+const photo =
+document.getElementById(
+"welcomePhoto"
+);
+
+
+const photoUrl =
+metadata.avatar_url ||
+metadata.picture;
+
+
+if(photoUrl){
 
 photo.src =
-user.photoURL;
+photoUrl;
 
 photo.style.display =
 "block";
@@ -1484,11 +1470,30 @@ welcomeSection.style.display =
 }
 
 
+/* GET CURRENT SESSION */
+
+supabaseClient.auth
+.getSession()
+.then(({data})=>{
+
+const user =
+data.session?.user || null;
+
+updateProfileIcon(user);
+
+updateAccountWindow(user);
+
+});
+
+
 /* AUTH STATE */
 
-onAuthStateChanged(
-auth,
-(user)=>{
+supabaseClient.auth
+.onAuthStateChange(
+(event,session)=>{
+
+const user =
+session?.user || null;
 
 updateProfileIcon(user);
 
@@ -1504,13 +1509,26 @@ window.logout = async function(){
 
 try{
 
-await signOut(auth);
+const {error} =
+await supabaseClient.auth.signOut();
+
+
+if(error){
+
+throw error;
+
+}
+
 
 closeAccount();
 
 }catch(error){
 
 console.error(error);
+
+showError(
+"Could not log out. Please try again."
+);
 
 }
 
@@ -1529,6 +1547,7 @@ document.getElementById(
 const email =
 input.value.trim();
 
+
 if(!email){
 
 alert(
@@ -1538,6 +1557,7 @@ alert(
 return;
 
 }
+
 
 alert(
 "Thank you for subscribing to DEJALUXE!"
@@ -1555,6 +1575,7 @@ localStorage.getItem(
 "cartCount"
 );
 
+
 if(savedCart){
 
 document.getElementById(
@@ -1565,7 +1586,7 @@ savedCart;
 }
 
 
-/* CLOSE ACCOUNT WHEN CLICKING BACKDROP */
+/* CLOSE ACCOUNT WITH BACKDROP */
 
 document
 .getElementById("accountModal")
@@ -1582,7 +1603,7 @@ closeAccount();
 });
 
 
-/* CLOSE CATEGORY WHEN CLICKING OUTSIDE */
+/* CLOSE CATEGORIES OUTSIDE */
 
 document.addEventListener(
 "click",
@@ -1593,16 +1614,13 @@ document.getElementById(
 "categoriesMenu"
 );
 
-if(
-!menu.contains(event.target)
-){
+if(!menu.contains(event.target)){
 
 menu.classList.remove("open");
 
 }
 
 });
-
 
 </script>
 
