@@ -20,12 +20,19 @@ body {
     background: #fff;
 }
 
+body.auth-loading {
+    overflow: hidden;
+}
+
 a {
     text-decoration: none;
     color: inherit;
 }
 
-/* TOP BAR */
+/* =========================
+   TOP BAR
+   ========================= */
+
 .top-bar {
     height: 38px;
     background: #ff7200;
@@ -42,7 +49,10 @@ a {
     gap: 25px;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+   ========================= */
+
 nav {
     height: 82px;
     display: flex;
@@ -84,7 +94,10 @@ nav {
     color: #ff7200;
 }
 
-/* CATEGORIES */
+/* =========================
+   CATEGORIES
+   ========================= */
+
 .categories-menu {
     position: relative;
 }
@@ -134,7 +147,10 @@ nav {
     display: block;
 }
 
-/* NAV ICONS */
+/* =========================
+   NAV ICONS
+   ========================= */
+
 .nav-icons {
     display: flex;
     align-items: center;
@@ -186,7 +202,10 @@ nav {
     justify-content: center;
 }
 
-/* SEARCH */
+/* =========================
+   SEARCH
+   ========================= */
+
 .search-panel {
     display: none;
     background: white;
@@ -228,7 +247,10 @@ nav {
     cursor: pointer;
 }
 
-/* PAGE HEADER */
+/* =========================
+   PAGE HEADER
+   ========================= */
+
 .page-header {
     background: #f8f8f8;
     text-align: center;
@@ -254,14 +276,16 @@ nav {
     font-size: 15px;
 }
 
-/* SHOP */
+/* =========================
+   SHOP
+   ========================= */
+
 .shop-container {
     width: 90%;
     max-width: 1250px;
     margin: 45px auto 80px;
 }
 
-/* FILTER BAR */
 .shop-controls {
     display: flex;
     justify-content: space-between;
@@ -308,7 +332,10 @@ nav {
     outline: none;
 }
 
-/* DEVELOPER MODE */
+/* =========================
+   DEVELOPER PANEL
+   ========================= */
+
 .dev-tools {
     display: none;
     background: #fff8f1;
@@ -413,7 +440,10 @@ nav {
     font-size: 12px;
 }
 
-/* PRICE FILTER */
+/* =========================
+   PRICE FILTER
+   ========================= */
+
 .price-filter {
     background: #fafafa;
     border: 1px solid #eee;
@@ -476,7 +506,10 @@ nav {
     border: 3px solid white;
 }
 
-/* PRODUCTS */
+/* =========================
+   PRODUCTS
+   ========================= */
+
 .product-count {
     color: #777;
     font-size: 13px;
@@ -590,7 +623,10 @@ nav {
     background: #e86300;
 }
 
-/* DEV PRODUCT BUTTONS */
+/* =========================
+   DEV PRODUCT BUTTONS
+   ========================= */
+
 .dev-product-tools {
     display: none;
     gap: 8px;
@@ -623,7 +659,10 @@ nav {
     font-weight: bold;
 }
 
-/* NO RESULTS */
+/* =========================
+   NO RESULTS
+   ========================= */
+
 .no-results {
     display: none;
     text-align: center;
@@ -638,7 +677,10 @@ nav {
     color: #777;
 }
 
-/* CART MESSAGE */
+/* =========================
+   CART MESSAGE
+   ========================= */
+
 .cart-message {
     position: fixed;
     bottom: 25px;
@@ -649,10 +691,13 @@ nav {
     border-radius: 8px;
     font-size: 13px;
     display: none;
-    z-index: 3000;
+    z-index: 6000;
 }
 
-/* ACCOUNT MODAL */
+/* =========================
+   ACCOUNT MODAL
+   ========================= */
+
 .account-modal {
     display: none;
     position: fixed;
@@ -680,31 +725,17 @@ nav {
 
 .account-close {
     position: absolute;
-    top: 15px;
     right: 18px;
+    top: 15px;
     border: none;
     background: none;
-    font-size: 25px;
+    font-size: 24px;
     cursor: pointer;
-    color: #777;
 }
 
-.account-logo {
-    width: 55px;
-    height: 55px;
-    background: #ff7200;
-    border-radius: 50%;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 18px;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.account-box h2 {
+.account-title {
     text-align: center;
+    font-size: 25px;
     margin-bottom: 8px;
 }
 
@@ -715,21 +746,25 @@ nav {
     margin-bottom: 25px;
 }
 
-.account-input {
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-input {
     width: 100%;
-    padding: 13px 14px;
+    padding: 13px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    margin-bottom: 12px;
     outline: none;
 }
 
-.account-input:focus {
+.login-input:focus {
     border-color: #ff7200;
 }
 
-.account-submit {
-    width: 100%;
+.login-btn {
     border: none;
     background: #ff7200;
     color: white;
@@ -737,104 +772,88 @@ nav {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    margin-bottom: 12px;
+}
+
+.login-btn:hover {
+    background: #e86300;
 }
 
 .google-btn {
-    width: 100%;
     border: 1px solid #ddd;
     background: white;
+    color: #222;
     padding: 13px;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
 }
 
-.account-switch {
-    text-align: center;
-    font-size: 13px;
-    color: #777;
-    margin-top: 18px;
+.google-btn:hover {
+    background: #f7f7f7;
 }
 
-.account-switch button {
+.login-divider {
+    text-align: center;
+    color: #aaa;
+    font-size: 12px;
+    margin: 15px 0;
+}
+
+.signup-btn {
     border: none;
     background: none;
     color: #ff7200;
     cursor: pointer;
+    font-size: 13px;
     font-weight: bold;
 }
 
-.account-status {
-    min-height: 20px;
-    text-align: center;
-    font-size: 12px;
-    color: #d33;
-    margin-top: 10px;
-}
+/* =========================
+   FOOTER
+   ========================= */
 
-.logged-user {
-    text-align: center;
-}
-
-.logged-avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
-}
-
-.logout-btn {
-    width: 100%;
-    border: none;
-    background: #222;
-    color: white;
-    padding: 13px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-/* FOOTER */
 footer {
     background: #222;
     color: white;
     padding: 45px 5%;
-    margin-top: 80px;
 }
 
-.footer-grid {
+.footer-content {
     max-width: 1250px;
     margin: auto;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 40px;
 }
 
-.footer-brand h2 {
+.footer-title {
+    font-size: 20px;
     margin-bottom: 12px;
 }
 
-.footer-brand p,
-.footer-column a {
-    color: #aaa;
+.footer-text {
+    color: #bbb;
     font-size: 13px;
     line-height: 1.7;
 }
 
-.footer-column {
+.footer-heading {
+    font-size: 14px;
+    margin-bottom: 14px;
+}
+
+.footer-links {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 9px;
 }
 
-.footer-column h3 {
-    font-size: 14px;
-    margin-bottom: 8px;
+.footer-links a {
+    color: #bbb;
+    font-size: 13px;
 }
 
-.footer-column a:hover {
+.footer-links a:hover {
     color: #ff7200;
 }
 
@@ -847,33 +866,170 @@ footer {
     font-size: 12px;
 }
 
-/* MOBILE */
-@media (max-width: 1000px) {
-    .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+/* =========================
+   AUTH GATE
+   ========================= */
+
+.auth-gate {
+    position: fixed;
+    inset: 0;
+    background: white;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-gate.hidden {
+    display: none;
+}
+
+.auth-gate-box {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.12);
+    border: 1px solid #eee;
+}
+
+.auth-logo {
+    width: 62px;
+    height: 62px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #ff7200;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.auth-input:focus {
+    border-color: #ff7200;
+}
+
+.auth-login {
+    width: 100%;
+    border: none;
+    background: #ff7200;
+    color: white;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.auth-google {
+    width: 100%;
+    border: 1px solid #ddd;
+    background: white;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.auth-divider {
+    text-align: center;
+    color: #aaa;
+    font-size: 12px;
+    margin: 15px 0;
+}
+
+.auth-signup {
+    width: 100%;
+    border: 1px solid #ff7200;
+    background: white;
+    color: #ff7200;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 900px) {
 
     .nav-links {
-        gap: 20px;
+        gap: 15px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 600px) {
+
+    .top-bar {
+        font-size: 10px;
+    }
+
+    .top-right {
+        gap: 8px;
+    }
+
     nav {
-        height: 72px;
+        padding: 0 4%;
     }
 
     .nav-links {
         display: none;
     }
 
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
+    .nav-icons {
+        gap: 12px;
     }
 
-    .product-image {
-        height: 190px;
+    .page-header {
+        padding: 45px 15px;
+    }
+
+    .page-header h1 {
+        font-size: 32px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
     }
 
     .dev-form {
@@ -885,123 +1041,200 @@ footer {
         grid-column: auto;
     }
 
-    .footer-grid {
+    .footer-content {
         grid-template-columns: 1fr;
     }
 
-    .top-bar {
-        font-size: 11px;
-    }
-
-    .top-right {
-        gap: 10px;
-    }
-
-    .page-header h1 {
-        font-size: 32px;
-    }
-
-    .dropdown {
-        position: fixed;
-        top: 120px;
-    }
-}
-
-@media (max-width: 450px) {
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .product-info {
-        padding: 12px;
-    }
-
-    .product-name {
-        font-size: 14px;
-    }
-
-    .price {
-        font-size: 15px;
-    }
-
-    .add-btn {
-        padding: 8px 9px;
-        font-size: 10px;
-    }
-
-    .account-box {
+    .auth-gate-box {
         padding: 25px 20px;
     }
 }
 </style>
 </head>
 
-<body>
+<body class="auth-loading">
+
+<!-- =========================
+     LOGIN GATE
+     ========================= -->
+
+<div class="auth-gate" id="authGate">
+
+    <div class="auth-gate-box">
+
+        <div class="auth-logo">
+            DEJA
+        </div>
+
+        <h1 class="auth-title">
+            Welcome to DEJALUXE
+        </h1>
+
+        <p class="auth-subtitle">
+            Sign in to access the DEJALUXE store.
+        </p>
+
+        <div class="auth-form">
+
+            <input
+                type="email"
+                id="gateEmail"
+                class="auth-input"
+                placeholder="Email"
+                autocomplete="email"
+            >
+
+            <input
+                type="password"
+                id="gatePassword"
+                class="auth-input"
+                placeholder="Password"
+                autocomplete="current-password"
+            >
+
+            <button
+                class="auth-login"
+                type="button"
+                onclick="gateLogin()"
+            >
+                Login
+            </button>
+
+            <button
+                class="auth-google"
+                type="button"
+                onclick="googleLogin()"
+            >
+                Continue with Google
+            </button>
+
+            <div class="auth-divider">
+                OR
+            </div>
+
+            <button
+                class="auth-signup"
+                type="button"
+                onclick="gateSignup()"
+            >
+                Create Account
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TOP BAR
+     ========================= -->
 
 <div class="top-bar">
-    <div>Free delivery on orders over 500 MAD</div>
+
+    <div>
+        Free delivery on orders over 500 MAD
+    </div>
 
     <div class="top-right">
         <span>Track Order</span>
         <span>Help</span>
         <span>EN</span>
     </div>
+
 </div>
+
+
+<!-- =========================
+     NAVBAR
+     ========================= -->
 
 <nav>
 
-    <div class="logo" onclick="goHome()">DEJA</div>
+    <a href="index.html" class="logo">
+        DEJA
+    </a>
 
     <ul class="nav-links">
 
         <li>
-            <a href="index.html">Home</a>
+            <a href="index.html">
+                Home
+            </a>
         </li>
 
         <li>
-            <a href="shop.html">Shop</a>
+            <a href="shop.html">
+                Shop
+            </a>
         </li>
 
         <li class="categories-menu" id="categoriesMenu">
 
             <button
                 class="categories-button"
-                onclick="toggleCategories(event)"
+                type="button"
+                onclick="toggleCategories()"
             >
-                Categories ▾
+                Categories
             </button>
 
             <div class="dropdown">
 
-                <a href="shop.html" onclick="filterCategory('all')">
+                <a
+                    href="#"
+                    onclick="filterCategory('all'); return false;"
+                >
                     All Products
                 </a>
 
-                <a href="shop.html?category=Men">
+                <a
+                    href="#"
+                    onclick="filterCategory('Men'); return false;"
+                >
                     Men
                 </a>
 
-                <a href="shop.html?category=Women">
+                <a
+                    href="#"
+                    onclick="filterCategory('Women'); return false;"
+                >
                     Women
                 </a>
 
-                <a href="shop.html?category=Electronics">
+                <a
+                    href="#"
+                    onclick="filterCategory('Electronics'); return false;"
+                >
                     Electronics
                 </a>
 
-                <a href="shop.html?category=Home">
+                <a
+                    href="#"
+                    onclick="filterCategory('Home'); return false;"
+                >
                     Home
                 </a>
 
-                <a href="shop.html?category=Shoes">
+                <a
+                    href="#"
+                    onclick="filterCategory('Shoes'); return false;"
+                >
                     Shoes
                 </a>
 
-                <a href="shop.html?category=Beauty">
+                <a
+                    href="#"
+                    onclick="filterCategory('Beauty'); return false;"
+                >
                     Beauty
                 </a>
 
-                <a href="shop.html?category=Gaming">
+                <a
+                    href="#"
+                    onclick="filterCategory('Gaming'); return false;"
+                >
                     Gaming
                 </a>
 
@@ -1010,7 +1243,9 @@ footer {
         </li>
 
         <li>
-            <a href="#">About Us</a>
+            <a href="#">
+                About Us
+            </a>
         </li>
 
     </ul>
@@ -1021,37 +1256,55 @@ footer {
             class="search-icon"
             onclick="toggleSearch()"
             title="Search"
-        >⌕</span>
+        >
+            ⌕
+        </span>
 
-        <div
+        <span
             class="profile-icon"
             id="profileIcon"
             onclick="openAccount()"
-        >♙</div>
+            title="Profile"
+        >
+            ♙
+        </span>
 
-        <div
+        <span
             class="cart-icon"
-            onclick="goCart()"
+            onclick="showCart()"
+            title="Cart"
         >
             🛒
+
             <span
                 class="cart-count"
                 id="cartCount"
-            >0</span>
-        </div>
+            >
+                0
+            </span>
+
+        </span>
 
     </div>
 
 </nav>
 
-<div class="search-panel" id="searchPanel">
+
+<!-- =========================
+     SEARCH PANEL
+     ========================= -->
+
+<div
+    class="search-panel"
+    id="searchPanel"
+>
 
     <div class="search-wrapper">
 
         <input
-            id="searchInput"
-            class="search-input"
             type="text"
+            class="search-input"
+            id="searchInput"
             placeholder="Search products..."
             oninput="filterProducts()"
         >
@@ -1059,17 +1312,29 @@ footer {
         <button
             class="close-search"
             onclick="toggleSearch()"
-        >×</button>
+            type="button"
+        >
+            ×
+        </button>
 
     </div>
 
 </div>
 
+
+<!-- =========================
+     PAGE HEADER
+     ========================= -->
+
 <section class="page-header">
 
-    <p>DEJALUXE COLLECTION</p>
+    <p>
+        DEJALUXE COLLECTION
+    </p>
 
-    <h1>All Products</h1>
+    <h1>
+        All Products
+    </h1>
 
     <span>
         Discover everything available in our store.
@@ -1077,7 +1342,14 @@ footer {
 
 </section>
 
+
+<!-- =========================
+     SHOP
+     ========================= -->
+
 <main class="shop-container">
+
+    <!-- DEVELOPER PANEL -->
 
     <section
         class="dev-tools"
@@ -1097,28 +1369,29 @@ footer {
         </div>
 
         <p class="dev-note">
-            Add or edit products directly from DEJALUXE.
+            Add, edit and remove products from the DEJALUXE store.
         </p>
 
         <div class="dev-form">
 
             <input
-                id="productName"
-                class="dev-input"
                 type="text"
+                id="devName"
+                class="dev-input"
                 placeholder="Product name"
             >
 
             <input
-                id="productPrice"
-                class="dev-input"
                 type="number"
-                min="0"
+                id="devPrice"
+                class="dev-input"
                 placeholder="Price in MAD"
+                min="0"
+                step="0.01"
             >
 
             <select
-                id="productCategory"
+                id="devCategory"
                 class="dev-input"
             >
                 <option value="Men">Men</option>
@@ -1131,14 +1404,14 @@ footer {
             </select>
 
             <input
-                id="productImage"
+                type="text"
+                id="devImage"
                 class="dev-input"
-                type="url"
                 placeholder="Image URL"
             >
 
             <textarea
-                id="productDescription"
+                id="devDescription"
                 class="dev-input dev-description"
                 placeholder="Product description"
             ></textarea>
@@ -1147,23 +1420,24 @@ footer {
 
                 <button
                     class="dev-save"
+                    type="button"
                     onclick="saveProduct()"
-                    id="saveProductButton"
                 >
                     Add Product
                 </button>
 
                 <button
                     class="dev-cancel"
-                    onclick="cancelEdit()"
-                    id="cancelEditButton"
+                    id="devCancel"
+                    type="button"
+                    onclick="clearDeveloperForm()"
                 >
                     Cancel
                 </button>
 
                 <span
                     class="dev-status"
-                    id="developerStatus"
+                    id="devStatus"
                 ></span>
 
             </div>
@@ -1172,12 +1446,16 @@ footer {
 
     </section>
 
-    <section class="shop-controls">
+
+    <!-- FILTERS -->
+
+    <div class="shop-controls">
 
         <div class="filters">
 
             <button
                 class="filter-btn active"
+                type="button"
                 onclick="filterCategory('all', this)"
             >
                 All
@@ -1185,6 +1463,7 @@ footer {
 
             <button
                 class="filter-btn"
+                type="button"
                 onclick="filterCategory('Men', this)"
             >
                 Men
@@ -1192,6 +1471,7 @@ footer {
 
             <button
                 class="filter-btn"
+                type="button"
                 onclick="filterCategory('Women', this)"
             >
                 Women
@@ -1199,6 +1479,7 @@ footer {
 
             <button
                 class="filter-btn"
+                type="button"
                 onclick="filterCategory('Electronics', this)"
             >
                 Electronics
@@ -1206,6 +1487,7 @@ footer {
 
             <button
                 class="filter-btn"
+                type="button"
                 onclick="filterCategory('Home', this)"
             >
                 Home
@@ -1213,6 +1495,7 @@ footer {
 
             <button
                 class="filter-btn"
+                type="button"
                 onclick="filterCategory('Shoes', this)"
             >
                 Shoes
@@ -1220,6 +1503,7 @@ footer {
 
             <button
                 class="filter-btn"
+                type="button"
                 onclick="filterCategory('Beauty', this)"
             >
                 Beauty
@@ -1227,6 +1511,7 @@ footer {
 
             <button
                 class="filter-btn"
+                type="button"
                 onclick="filterCategory('Gaming', this)"
             >
                 Gaming
@@ -1241,6 +1526,7 @@ footer {
                 id="sortSelect"
                 onchange="sortProducts()"
             >
+
                 <option value="default">
                     Sort: Default
                 </option>
@@ -1254,31 +1540,33 @@ footer {
                 </option>
 
                 <option value="name">
-                    Name: A-Z
+                    Name: A to Z
                 </option>
+
             </select>
 
         </div>
 
-    </section>
+    </div>
 
-    <section class="price-filter">
+
+    <!-- PRICE -->
+
+    <div class="price-filter">
 
         <div class="price-title">
-            Filter by Price
+            Price Range
         </div>
 
         <div class="price-values">
 
-            <span>
-                Min:
-                <strong id="minPriceLabel">0 MAD</strong>
-            </span>
+            <strong id="minPriceValue">
+                0 MAD
+            </strong>
 
-            <span>
-                Max:
-                <strong id="maxPriceLabel">2000 MAD</strong>
-            </span>
+            <strong id="maxPriceValue">
+                2000 MAD
+            </strong>
 
         </div>
 
@@ -1306,7 +1594,8 @@ footer {
 
         </div>
 
-    </section>
+    </div>
+
 
     <div
         class="product-count"
@@ -1315,40 +1604,59 @@ footer {
         Showing 0 products
     </div>
 
-    <section
+
+    <div
         class="products-grid"
         id="productsGrid"
-    ></section>
+    ></div>
 
-    <section
+
+    <div
         class="no-results"
         id="noResults"
     >
 
-        <h2>No products found</h2>
+        <h2>
+            No products found
+        </h2>
 
         <p>
-            Try changing your search, category, or price range.
+            Try another category, search or price range.
         </p>
 
-    </section>
+    </div>
 
 </main>
+
+
+<!-- =========================
+     CART MESSAGE
+     ========================= -->
 
 <div
     class="cart-message"
     id="cartMessage"
 ></div>
 
+
+<!-- =========================
+     ACCOUNT MODAL
+     ========================= -->
+
 <div
     class="account-modal"
     id="accountModal"
+    onclick="closeAccountOutside(event)"
 >
 
-    <div class="account-box">
+    <div
+        class="account-box"
+        onclick="event.stopPropagation()"
+    >
 
         <button
             class="account-close"
+            type="button"
             onclick="closeAccount()"
         >
             ×
@@ -1360,50 +1668,77 @@ footer {
 
 </div>
 
+
+<!-- =========================
+     FOOTER
+     ========================= -->
+
 <footer>
 
-    <div class="footer-grid">
+    <div class="footer-content">
 
-        <div class="footer-brand">
+        <div>
 
-            <h2>DEJALUXE</h2>
+            <div class="footer-title">
+                DEJALUXE
+            </div>
 
-            <p>
-                A modern online store bringing quality
-                products together in one place.
-            </p>
-
-        </div>
-
-        <div class="footer-column">
-
-            <h3>Shop</h3>
-
-            <a href="shop.html">All Products</a>
-            <a href="shop.html?category=Men">Men</a>
-            <a href="shop.html?category=Women">Women</a>
-            <a href="shop.html?category=Electronics">Electronics</a>
+            <div class="footer-text">
+                Discover quality products, carefully selected
+                for your everyday lifestyle.
+            </div>
 
         </div>
 
-        <div class="footer-column">
+        <div>
 
-            <h3>Categories</h3>
+            <div class="footer-heading">
+                SHOP
+            </div>
 
-            <a href="shop.html?category=Home">Home</a>
-            <a href="shop.html?category=Shoes">Shoes</a>
-            <a href="shop.html?category=Beauty">Beauty</a>
-            <a href="shop.html?category=Gaming">Gaming</a>
+            <div class="footer-links">
+
+                <a href="shop.html">
+                    All Products
+                </a>
+
+                <a href="shop.html">
+                    Men
+                </a>
+
+                <a href="shop.html">
+                    Women
+                </a>
+
+                <a href="shop.html">
+                    Electronics
+                </a>
+
+            </div>
 
         </div>
 
-        <div class="footer-column">
+        <div>
 
-            <h3>Help</h3>
+            <div class="footer-heading">
+                SUPPORT
+            </div>
 
-            <a href="#">Track Order</a>
-            <a href="#">Help Center</a>
-            <a href="#">Contact</a>
+            <div class="footer-links">
+
+                <a href="#">
+                    Help
+                </a>
+
+                <a href="#">
+                    Track Order
+                </a>
+
+                <a href="#">
+                    Contact
+                </a>
+
+            </div>
 
         </div>
 
@@ -1413,17 +1748,24 @@ footer {
         © 2026 DEJALUXE. All rights reserved.
     </div>
 
-</footer><script>
+</footer>
+
+
+<!-- =====================================================
+     IMPORTANT:
+     THE JAVASCRIPT GOES IN PART 2.
+     DO NOT PUT ANY OTHER SCRIPT BETWEEN HERE AND PART 2.
+     ===================================================== --><script>
 /* =========================================================
-   DEJALUXE SHOP
-   Supabase + Google Login + Products + Filters + Cart
+   DEJALUXE SHOP — PART 2
+   AUTH + PRODUCTS + DEVELOPER PANEL + CART
    ========================================================= */
 
 const SUPABASE_URL =
-    "https://zinpicammabuvkdtpftj.supabase.co";
+    "https://zinpicammabuvkdtj.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_nbKKuwqFd6eSz02ayriC0w_K_sNx8JX";
+    "sb_publishable_nbKKuwqFd6eSzayriC0w_K_sNx8JX";
 
 const DEVELOPER_EMAIL =
     "fakchichbaboui@gmail.com";
@@ -1434,163 +1776,20 @@ const supabaseClient =
         SUPABASE_PUBLISHABLE_KEY
     );
 
-
-/* =========================================================
-   STATE
-   ========================================================= */
-
 let currentUser = null;
-let developerMode = false;
-let editingProductId = null;
-
 let products = [];
+let cart = JSON.parse(
+    localStorage.getItem("dejaluxeCart") || "[]"
+);
 
 let selectedCategory = "All";
-let minPrice = 0;
-let maxPrice = 2000;
-
-let accountIsSignup = false;
+let selectedSort = "default";
+let editingProductId = null;
 
 
 /* =========================================================
-   FALLBACK PRODUCTS
+   DEVELOPER
    ========================================================= */
-
-const fallbackProducts = [
-    {
-        id: "local-1",
-        name: "Smart Watch",
-        price: 299,
-        category: "Electronics",
-        description: "Modern smart watch with health and fitness features.",
-        image: ""
-    },
-    {
-        id: "local-2",
-        name: "Classic Sneakers",
-        price: 399,
-        category: "Shoes",
-        description: "Clean everyday sneakers with a comfortable design.",
-        image: ""
-    },
-    {
-        id: "local-3",
-        name: "Urban Backpack",
-        price: 249,
-        category: "Men",
-        description: "Practical backpack for school, work and travel.",
-        image: ""
-    },
-    {
-        id: "local-4",
-        name: "Wireless Headphones",
-        price: 349,
-        category: "Electronics",
-        description: "Wireless headphones with immersive sound.",
-        image: ""
-    },
-    {
-        id: "local-5",
-        name: "Minimal Hoodie",
-        price: 299,
-        category: "Men",
-        description: "Comfortable minimalist hoodie for everyday wear.",
-        image: ""
-    },
-    {
-        id: "local-6",
-        name: "Elegant Handbag",
-        price: 449,
-        category: "Women",
-        description: "Elegant handbag designed for everyday style.",
-        image: ""
-    },
-    {
-        id: "local-7",
-        name: "Home Candle Set",
-        price: 179,
-        category: "Home",
-        description: "Beautiful scented candles for a relaxing home.",
-        image: ""
-    },
-    {
-        id: "local-8",
-        name: "Gaming Mouse",
-        price: 229,
-        category: "Gaming",
-        description: "Responsive gaming mouse with ergonomic design.",
-        image: ""
-    },
-    {
-        id: "local-9",
-        name: "Face Care Set",
-        price: 199,
-        category: "Beauty",
-        description: "Simple daily skincare essentials.",
-        image: ""
-    },
-    {
-        id: "local-10",
-        name: "Women's Sneakers",
-        price: 379,
-        category: "Shoes",
-        description: "Lightweight sneakers with a modern silhouette.",
-        image: ""
-    },
-    {
-        id: "local-11",
-        name: "Bluetooth Speaker",
-        price: 279,
-        category: "Electronics",
-        description: "Compact portable speaker with clear audio.",
-        image: ""
-    },
-    {
-        id: "local-12",
-        name: "Desk Organizer",
-        price: 129,
-        category: "Home",
-        description: "Keep your desk clean and organized.",
-        image: ""
-    }
-];
-
-
-/* =========================================================
-   HELPERS
-   ========================================================= */
-
-function escapeHTML(value) {
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-
-function formatPrice(value) {
-    const number = Number(value) || 0;
-
-    return number.toLocaleString("en-US", {
-        maximumFractionDigits: 2
-    }) + " MAD";
-}
-
-
-function normalizeCategory(category) {
-    if (!category) {
-        return "All";
-    }
-
-    if (String(category).toLowerCase() === "all") {
-        return "All";
-    }
-
-    return String(category);
-}
-
 
 function isDeveloper() {
     return !!(
@@ -1601,23 +1800,739 @@ function isDeveloper() {
     );
 }
 
+function updateDeveloperMode() {
+    const tools =
+        document.getElementById("developerTools");
+
+    if (!tools) return;
+
+    if (isDeveloper()) {
+        tools.classList.add("visible");
+        document.body.classList.add("dev-tools-active");
+        tools.style.display = "block";
+    } else {
+        tools.classList.remove("visible");
+        document.body.classList.remove("dev-tools-active");
+        tools.style.display = "none";
+    }
+}
+
 
 /* =========================================================
-   HOME / CART
+   AUTH GATE
    ========================================================= */
 
-function goHome() {
-    window.location.href = "index.html";
+function showAuthGate(show) {
+    const gate =
+        document.getElementById("authGate");
+
+    if (!gate) return;
+
+    if (show) {
+        gate.classList.remove("hidden");
+        document.body.classList.add("auth-required");
+    } else {
+        gate.classList.add("hidden");
+        document.body.classList.remove("auth-required");
+    }
 }
 
+async function gateLogin() {
+    const email =
+        document.getElementById("gateEmail")?.value.trim();
 
-function goCart() {
-    window.location.href = "cart.html";
+    const password =
+        document.getElementById("gatePassword")?.value;
+
+    if (!email || !password) {
+        alert("Please enter your email and password.");
+        return;
+    }
+
+    try {
+        const { error } =
+            await supabaseClient.auth.signInWithPassword({
+                email,
+                password
+            });
+
+        if (error) {
+            alert(error.message);
+            return;
+        }
+
+        document.getElementById("gatePassword").value = "";
+
+    } catch (error) {
+        console.error(error);
+        alert("Login failed. Please try again.");
+    }
+}
+
+async function gateSignup() {
+    const email =
+        document.getElementById("gateEmail")?.value.trim();
+
+    const password =
+        document.getElementById("gatePassword")?.value;
+
+    if (!email || !password) {
+        alert("Enter an email and password first.");
+        return;
+    }
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+    }
+
+    try {
+        const { data, error } =
+            await supabaseClient.auth.signUp({
+                email,
+                password
+            });
+
+        if (error) {
+            alert(error.message);
+            return;
+        }
+
+        if (data.session) {
+            alert("Account created successfully.");
+        } else {
+            alert(
+                "Account created! Check your email if confirmation is required."
+            );
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Signup failed. Please try again.");
+    }
+}
+
+async function googleLogin() {
+    try {
+        const { error } =
+            await supabaseClient.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                    redirectTo:
+                        "https://dejaluxe.netlify.app/shop.html"
+                }
+            });
+
+        if (error) {
+            alert(error.message);
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Google login failed.");
+    }
 }
 
 
 /* =========================================================
-   SEARCH
+   SESSION
+   ========================================================= */
+
+async function checkSession() {
+    try {
+        const {
+            data: { session }
+        } = await supabaseClient.auth.getSession();
+
+        currentUser =
+            session ? session.user : null;
+
+        updateAccountUI();
+        updateDeveloperMode();
+
+        if (currentUser) {
+            showAuthGate(false);
+            await loadProducts();
+        } else {
+            showAuthGate(true);
+        }
+
+    } catch (error) {
+        console.error("Session error:", error);
+        currentUser = null;
+        showAuthGate(true);
+        updateDeveloperMode();
+    }
+}
+
+supabaseClient.auth.onAuthStateChange(
+    async (event, session) => {
+
+        currentUser =
+            session ? session.user : null;
+
+        updateAccountUI();
+        updateDeveloperMode();
+
+        if (currentUser) {
+            showAuthGate(false);
+            await loadProducts();
+        } else {
+            showAuthGate(true);
+        }
+    }
+);
+
+
+/* =========================================================
+   ACCOUNT
+   ========================================================= */
+
+function updateAccountUI() {
+    const profile =
+        document.getElementById("profileIcon");
+
+    if (!profile) return;
+
+    if (currentUser) {
+        profile.title =
+            currentUser.user_metadata?.full_name ||
+            currentUser.user_metadata?.name ||
+            currentUser.email ||
+            "Account";
+    } else {
+        profile.title = "Login";
+    }
+}
+
+function openAccount() {
+    const modal =
+        document.getElementById("accountModal");
+
+    const content =
+        document.getElementById("accountContent");
+
+    if (!modal || !content) return;
+
+    if (!currentUser) {
+        content.innerHTML = `
+            <h2>Login</h2>
+
+            <input
+                id="accountEmail"
+                type="email"
+                placeholder="Email"
+            >
+
+            <input
+                id="accountPassword"
+                type="password"
+                placeholder="Password"
+            >
+
+            <button onclick="accountLogin()">
+                Login
+            </button>
+
+            <button onclick="googleLogin()">
+                Continue with Google
+            </button>
+
+            <button onclick="accountSignup()">
+                Create Account
+            </button>
+        `;
+
+    } else {
+
+        const name =
+            currentUser.user_metadata?.full_name ||
+            currentUser.user_metadata?.name ||
+            "DEJALUXE Customer";
+
+        const avatar =
+            currentUser.user_metadata?.avatar_url ||
+            currentUser.user_metadata?.picture ||
+            "";
+
+        content.innerHTML = `
+            ${
+                avatar
+                ? `<img
+                    src="${escapeHtml(avatar)}"
+                    class="account-avatar"
+                    alt="Profile"
+                >`
+                : ""
+            }
+
+            <h2>${escapeHtml(name)}</h2>
+
+            <p>${escapeHtml(currentUser.email || "")}</p>
+
+            ${
+                isDeveloper()
+                ? `
+                    <div class="developer-badge">
+                        DEVELOPER
+                    </div>
+                `
+                : ""
+            }
+
+            <button onclick="logout()">
+                Logout
+            </button>
+        `;
+    }
+
+    modal.classList.add("open");
+}
+
+function closeAccount() {
+    const modal =
+        document.getElementById("accountModal");
+
+    if (modal) {
+        modal.classList.remove("open");
+    }
+}
+
+function closeAccountOutside(event) {
+    if (
+        event.target &&
+        event.target.id === "accountModal"
+    ) {
+        closeAccount();
+    }
+}
+
+async function accountLogin() {
+    const email =
+        document.getElementById("accountEmail")?.value.trim();
+
+    const password =
+        document.getElementById("accountPassword")?.value;
+
+    if (!email || !password) {
+        alert("Enter your email and password.");
+        return;
+    }
+
+    const { error } =
+        await supabaseClient.auth.signInWithPassword({
+            email,
+            password
+        });
+
+    if (error) {
+        alert(error.message);
+        return;
+    }
+
+    closeAccount();
+}
+
+async function accountSignup() {
+    const email =
+        document.getElementById("accountEmail")?.value.trim();
+
+    const password =
+        document.getElementById("accountPassword")?.value;
+
+    if (!email || !password) {
+        alert("Enter your email and password.");
+        return;
+    }
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient.auth.signUp({
+            email,
+            password
+        });
+
+    if (error) {
+        alert(error.message);
+        return;
+    }
+
+    if (data.session) {
+        closeAccount();
+        return;
+    }
+
+    alert(
+        "Account created. Check your email if confirmation is required."
+    );
+}
+
+async function logout() {
+    const { error } =
+        await supabaseClient.auth.signOut();
+
+    if (error) {
+        alert(error.message);
+        return;
+    }
+
+    closeAccount();
+    products = [];
+    renderProducts([]);
+    showAuthGate(true);
+}
+
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+
+async function loadProducts() {
+    try {
+        const { data, error } =
+            await supabaseClient
+                .from("products")
+                .select("*")
+                .order("created_at", {
+                    ascending: false
+                });
+
+        if (error) {
+            console.error("Product error:", error);
+            showDeveloperStatus(
+                "Could not load products."
+            );
+            return;
+        }
+
+        products = data || [];
+
+        renderProducts();
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function getFilteredProducts() {
+    const search =
+        document.getElementById("searchInput")
+            ?.value
+            .trim()
+            .toLowerCase() || "";
+
+    const min =
+        Number(
+            document.getElementById("minPrice")?.value
+        ) || 0;
+
+    const max =
+        Number(
+            document.getElementById("maxPrice")?.value
+        ) || 2000;
+
+    let result =
+        products.filter(product => {
+
+            const categoryMatch =
+                selectedCategory === "All" ||
+                String(product.category)
+                    .toLowerCase() ===
+                selectedCategory.toLowerCase();
+
+            const searchMatch =
+                !search ||
+                String(product.name || "")
+                    .toLowerCase()
+                    .includes(search) ||
+                String(product.description || "")
+                    .toLowerCase()
+                    .includes(search) ||
+                String(product.category || "")
+                    .toLowerCase()
+                    .includes(search);
+
+            const price =
+                Number(product.price) || 0;
+
+            const priceMatch =
+                price >= min && price <= max;
+
+            return (
+                categoryMatch &&
+                searchMatch &&
+                priceMatch
+            );
+        });
+
+    if (selectedSort === "low") {
+        result.sort(
+            (a, b) =>
+                Number(a.price) -
+                Number(b.price)
+        );
+    }
+
+    if (selectedSort === "high") {
+        result.sort(
+            (a, b) =>
+                Number(b.price) -
+                Number(a.price)
+        );
+    }
+
+    if (selectedSort === "name") {
+        result.sort(
+            (a, b) =>
+                String(a.name)
+                    .localeCompare(String(b.name))
+        );
+    }
+
+    return result;
+}
+
+function renderProducts(list = null) {
+    const grid =
+        document.getElementById("productsGrid");
+
+    const count =
+        document.getElementById("productCount");
+
+    const noResults =
+        document.getElementById("noResults");
+
+    if (!grid) return;
+
+    const visible =
+        list === null
+            ? getFilteredProducts()
+            : list;
+
+    grid.innerHTML = "";
+
+    if (count) {
+        count.textContent =
+            `Showing ${visible.length} product${visible.length === 1 ? "" : "s"}`;
+    }
+
+    if (!visible.length) {
+        if (noResults) {
+            noResults.style.display = "block";
+        }
+        return;
+    }
+
+    if (noResults) {
+        noResults.style.display = "none";
+    }
+
+    visible.forEach(product => {
+        grid.appendChild(
+            createProductCard(product)
+        );
+    });
+}
+
+function createProductCard(product) {
+    const card =
+        document.createElement("article");
+
+    card.className = "product-card";
+
+    const image =
+        product.image ||
+        "https://via.placeholder.com/600x700?text=DEJALUXE";
+
+    const price =
+        Number(product.price || 0)
+            .toFixed(2);
+
+    const developerButtons =
+        isDeveloper()
+        ? `
+            <div class="dev-product-tools">
+
+                <button
+                    class="dev-edit-btn"
+                    onclick="editProduct('${product.id}')"
+                >
+                    Edit
+                </button>
+
+                <button
+                    class="dev-remove-btn"
+                    onclick="deleteProduct('${product.id}')"
+                >
+                    Delete
+                </button>
+
+            </div>
+        `
+        : "";
+
+    card.innerHTML = `
+        <div class="product-image-wrap">
+            <img
+                src="${escapeHtml(image)}"
+                alt="${escapeHtml(product.name || "Product")}"
+                class="product-image"
+                onerror="this.src='https://via.placeholder.com/600x700?text=DEJALUXE'"
+            >
+        </div>
+
+        <div class="product-info">
+
+            <div class="category-label">
+                ${escapeHtml(product.category || "")}
+            </div>
+
+            <h3 class="product-name">
+                ${escapeHtml(product.name || "Unnamed Product")}
+            </h3>
+
+            <p class="product-description">
+                ${escapeHtml(product.description || "")}
+            </p>
+
+            <div class="product-bottom">
+
+                <span class="price">
+                    ${price} MAD
+                </span>
+
+                <button
+                    class="add-btn"
+                    onclick="addToCart('${product.id}')"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+            ${developerButtons}
+
+        </div>
+    `;
+
+    return card;
+}
+
+
+/* =========================================================
+   FILTERING
+   ========================================================= */
+
+function filterCategory(category, button = null) {
+
+    if (
+        !category ||
+        String(category).toLowerCase() === "all"
+    ) {
+        selectedCategory = "All";
+    } else {
+        selectedCategory = String(category);
+    }
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    if (button) {
+        button.classList.add("active");
+    } else {
+        document
+            .querySelectorAll(".filter-btn")
+            .forEach(btn => {
+                if (
+                    btn.textContent
+                        .trim()
+                        .toLowerCase() ===
+                    selectedCategory.toLowerCase()
+                ) {
+                    btn.classList.add("active");
+                }
+            });
+    }
+
+    renderProducts();
+}
+
+function filterProducts() {
+    renderProducts();
+}
+
+function sortProducts() {
+    const sort =
+        document.getElementById("sortSelect");
+
+    selectedSort =
+        sort ? sort.value : "default";
+
+    renderProducts();
+}
+
+
+/* =========================================================
+   PRICE FILTER
+   ========================================================= */
+
+function updatePriceFilter() {
+    const minInput =
+        document.getElementById("minPrice");
+
+    const maxInput =
+        document.getElementById("maxPrice");
+
+    const minValue =
+        document.getElementById("minPriceValue");
+
+    const maxValue =
+        document.getElementById("maxPriceValue");
+
+    if (!minInput || !maxInput) return;
+
+    let min =
+        Number(minInput.value);
+
+    let max =
+        Number(maxInput.value);
+
+    if (min > max) {
+        if (
+            document.activeElement ===
+            minInput
+        ) {
+            min = max;
+            minInput.value = min;
+        } else {
+            max = min;
+            maxInput.value = max;
+        }
+    }
+
+    if (minValue) {
+        minValue.textContent =
+            `${min} MAD`;
+    }
+
+    if (maxValue) {
+        maxValue.textContent =
+            `${max} MAD`;
+    }
+
+    renderProducts();
+}
+
+
+/* =========================================================
+   SEARCH PANEL
    ========================================================= */
 
 function toggleSearch() {
@@ -1629,22 +2544,20 @@ function toggleSearch() {
     panel.classList.toggle("open");
 
     if (panel.classList.contains("open")) {
-        const input =
-            document.getElementById("searchInput");
-
-        if (input) {
-            setTimeout(() => input.focus(), 100);
-        }
+        setTimeout(() => {
+            document
+                .getElementById("searchInput")
+                ?.focus();
+        }, 100);
     }
 }
 
 
 /* =========================================================
-   CATEGORIES
+   CATEGORY MENU
    ========================================================= */
 
-function toggleCategories(event) {
-
+function toggleCategories(event = null) {
     if (event) {
         event.stopPropagation();
     }
@@ -1657,484 +2570,54 @@ function toggleCategories(event) {
     menu.classList.toggle("open");
 }
 
-
-document.addEventListener("click", function(event) {
+document.addEventListener("click", event => {
 
     const menu =
         document.getElementById("categoriesMenu");
 
-    if (!menu) return;
-
-    if (!menu.contains(event.target)) {
+    if (
+        menu &&
+        !menu.contains(event.target)
+    ) {
         menu.classList.remove("open");
     }
 
+    const search =
+        document.getElementById("searchPanel");
+
+    const searchButton =
+        document.getElementById("searchButton");
+
+    if (
+        search &&
+        search.classList.contains("open") &&
+        !search.contains(event.target) &&
+        !searchButton?.contains(event.target)
+    ) {
+        search.classList.remove("open");
+    }
 });
-
-
-/* =========================================================
-   CATEGORY FILTER
-   ========================================================= */
-
-function filterCategory(category, button) {
-
-    selectedCategory =
-        normalizeCategory(category);
-
-    document
-        .querySelectorAll(".filter-btn")
-        .forEach(btn => {
-            btn.classList.remove("active");
-        });
-
-    if (button) {
-        button.classList.add("active");
-    } else {
-
-        document
-            .querySelectorAll(".filter-btn")
-            .forEach(btn => {
-
-                if (
-                    btn.textContent.trim().toLowerCase() ===
-                    selectedCategory.toLowerCase()
-                ) {
-                    btn.classList.add("active");
-                }
-
-            });
-
-    }
-
-    renderProducts();
-}
-
-
-/* =========================================================
-   SEARCH FILTER
-   ========================================================= */
-
-function filterProducts() {
-    renderProducts();
-}
-
-
-/* =========================================================
-   SORT
-   ========================================================= */
-
-function sortProducts() {
-    renderProducts();
-}
-
-
-/* =========================================================
-   PRICE FILTER
-   ========================================================= */
-
-function updatePriceFilter() {
-
-    const minInput =
-        document.getElementById("minPrice");
-
-    const maxInput =
-        document.getElementById("maxPrice");
-
-    if (!minInput || !maxInput) return;
-
-    let min =
-        Number(minInput.value);
-
-    let max =
-        Number(maxInput.value);
-
-    if (min > max) {
-
-        if (document.activeElement === minInput) {
-            min = max;
-            minInput.value = min;
-        } else {
-            max = min;
-            maxInput.value = max;
-        }
-
-    }
-
-    minPrice = min;
-    maxPrice = max;
-
-    const minLabel =
-        document.getElementById("minPriceLabel");
-
-    const maxLabel =
-        document.getElementById("maxPriceLabel");
-
-    if (minLabel) {
-        minLabel.textContent =
-            formatPrice(minPrice);
-    }
-
-    if (maxLabel) {
-        maxLabel.textContent =
-            formatPrice(maxPrice);
-    }
-
-    renderProducts();
-}
-
-
-/* =========================================================
-   LOAD PRODUCTS
-   ========================================================= */
-
-async function loadProducts() {
-
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient
-            .from("products")
-            .select("*")
-            .order("created_at", {
-                ascending: false
-            });
-
-        if (error) {
-            console.warn(
-                "Supabase products error:",
-                error
-            );
-
-            products =
-                [...fallbackProducts];
-
-        } else if (data && data.length > 0) {
-
-            products = data;
-
-        } else {
-
-            products =
-                [...fallbackProducts];
-
-        }
-
-    } catch (error) {
-
-        console.warn(
-            "Could not load products:",
-            error
-        );
-
-        products =
-            [...fallbackProducts];
-    }
-
-    renderProducts();
-}
-
-
-/* =========================================================
-   RENDER PRODUCTS
-   ========================================================= */
-
-function renderProducts() {
-
-    const grid =
-        document.getElementById("productsGrid");
-
-    const noResults =
-        document.getElementById("noResults");
-
-    const count =
-        document.getElementById("productCount");
-
-    if (!grid) return;
-
-
-    const searchInput =
-        document.getElementById("searchInput");
-
-    const searchTerm =
-        searchInput
-            ? searchInput.value.trim().toLowerCase()
-            : "";
-
-
-    let filtered =
-        products.filter(product => {
-
-            const category =
-                normalizeCategory(product.category);
-
-            const price =
-                Number(product.price) || 0;
-
-
-            const categoryMatch =
-                selectedCategory === "All" ||
-                category.toLowerCase() ===
-                selectedCategory.toLowerCase();
-
-
-            const priceMatch =
-                price >= minPrice &&
-                price <= maxPrice;
-
-
-            const searchMatch =
-                !searchTerm ||
-                String(product.name || "")
-                    .toLowerCase()
-                    .includes(searchTerm) ||
-
-                String(product.description || "")
-                    .toLowerCase()
-                    .includes(searchTerm) ||
-
-                category
-                    .toLowerCase()
-                    .includes(searchTerm);
-
-
-            return (
-                categoryMatch &&
-                priceMatch &&
-                searchMatch
-            );
-
-        });
-
-
-    const sortSelect =
-        document.getElementById("sortSelect");
-
-    const sort =
-        sortSelect
-            ? sortSelect.value
-            : "default";
-
-
-    if (sort === "low") {
-
-        filtered.sort(
-            (a, b) =>
-                Number(a.price) -
-                Number(b.price)
-        );
-
-    } else if (sort === "high") {
-
-        filtered.sort(
-            (a, b) =>
-                Number(b.price) -
-                Number(a.price)
-        );
-
-    } else if (sort === "name") {
-
-        filtered.sort(
-            (a, b) =>
-                String(a.name || "")
-                    .localeCompare(
-                        String(b.name || "")
-                    )
-        );
-
-    }
-
-
-    grid.innerHTML =
-        filtered
-            .map(product =>
-                createProductCard(product)
-            )
-            .join("");
-
-
-    if (count) {
-
-        count.textContent =
-            `Showing ${filtered.length} product${
-                filtered.length === 1
-                    ? ""
-                    : "s"
-            }`;
-
-    }
-
-
-    if (noResults) {
-
-        noResults.style.display =
-            filtered.length === 0
-                ? "block"
-                : "none";
-
-    }
-
-}
-
-
-/* =========================================================
-   PRODUCT CARD
-   ========================================================= */
-
-function createProductCard(product) {
-
-    const id =
-        String(product.id || "");
-
-    const name =
-        escapeHTML(product.name);
-
-    const description =
-        escapeHTML(
-            product.description ||
-            "Quality product from DEJALUXE."
-        );
-
-    const category =
-        escapeHTML(
-            product.category || "Product"
-        );
-
-    const image =
-        String(product.image || "").trim();
-
-    const price =
-        formatPrice(product.price);
-
-
-    const imageHTML =
-        image
-            ? `
-                <img
-                    src="${escapeHTML(image)}"
-                    alt="${name}"
-                    loading="lazy"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                >
-                <div
-                    class="placeholder"
-                    style="display:none"
-                >
-                    Image unavailable
-                </div>
-              `
-            : `
-                <div class="placeholder">
-                    DEJALUXE
-                </div>
-              `;
-
-
-    const developerButtons =
-        developerMode
-            ? `
-                <div class="dev-product-tools">
-
-                    <button
-                        class="dev-edit-btn"
-                        onclick="editProduct('${escapeHTML(id)}')"
-                    >
-                        Edit
-                    </button>
-
-                    <button
-                        class="dev-remove-btn"
-                        onclick="deleteProduct('${escapeHTML(id)}')"
-                    >
-                        Remove
-                    </button>
-
-                </div>
-              `
-            : "";
-
-
-    return `
-        <article class="product-card">
-
-            <div class="product-image">
-
-                ${imageHTML}
-
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="category-label">
-                    ${category}
-                </div>
-
-                <div class="product-name">
-                    ${name}
-                </div>
-
-                <div class="product-description">
-                    ${description}
-                </div>
-
-                <div class="product-bottom">
-
-                    <span class="price">
-                        ${price}
-                    </span>
-
-                    <button
-                        class="add-btn"
-                        onclick="addToCart('${escapeHTML(id)}')"
-                    >
-                        Add to Cart
-                    </button>
-
-                </div>
-
-                ${developerButtons}
-
-            </div>
-
-        </article>
-    `;
-}
 
 
 /* =========================================================
    CART
    ========================================================= */
 
-function getCart() {
+function updateCartCount() {
+    const count =
+        document.getElementById("cartCount");
 
-    try {
+    if (!count) return;
 
-        const saved =
-            localStorage.getItem(
-                "dejaluxeCart"
-            );
-
-        if (!saved) {
-            return [];
-        }
-
-        const cart =
-            JSON.parse(saved);
-
-        return Array.isArray(cart)
-            ? cart
-            : [];
-
-    } catch {
-        return [];
-    }
+    count.textContent =
+        cart.reduce(
+            (total, item) =>
+                total + Number(item.quantity || 1),
+            0
+        );
 }
 
-
-function saveCart(cart) {
-
+function saveCart() {
     localStorage.setItem(
         "dejaluxeCart",
         JSON.stringify(cart)
@@ -2143,252 +2626,436 @@ function saveCart(cart) {
     updateCartCount();
 }
 
-
 function addToCart(productId) {
-
     const product =
         products.find(
-            item =>
-                String(item.id) ===
-                String(productId)
+            item => item.id === productId
         );
 
     if (!product) return;
 
-
-    const cart =
-        getCart();
-
-
     const existing =
         cart.find(
-            item =>
-                String(item.id) ===
-                String(product.id)
+            item => item.id === productId
         );
 
-
     if (existing) {
-
         existing.quantity =
-            Number(existing.quantity || 0) + 1;
-
+            Number(existing.quantity || 1) + 1;
     } else {
-
         cart.push({
             id: product.id,
             name: product.name,
-            price: Number(product.price) || 0,
-            category: product.category,
+            price: Number(product.price || 0),
             image: product.image || "",
             quantity: 1
         });
-
     }
 
-
-    saveCart(cart);
+    saveCart();
 
     showCartMessage(
-        `${product.name} added to cart`
+        `${product.name} added to your cart.`
     );
 }
 
-
-function updateCartCount() {
-
-    const count =
-        document.getElementById("cartCount");
-
-    if (!count) return;
-
-
-    const cart =
-        getCart();
-
-
-    const total =
-        cart.reduce(
-            (sum, item) =>
-                sum +
-                Number(item.quantity || 0),
-            0
-        );
-
-
-    count.textContent =
-        total > 99
-            ? "99+"
-            : total;
-}
-
-
+function showCartMessage(message)
+<script>
 function showCartMessage(message) {
-
     const box =
-        document.getElementById(
-            "cartMessage"
-        );
+        document.getElementById("cartMessage");
 
-    if (!box) return;
+    if (!box) {
+        alert(message);
+        return;
+    }
 
-
-    box.textContent =
-        message;
-
-    box.style.display =
-        "block";
-
+    box.textContent = message;
+    box.classList.add("show");
 
     clearTimeout(
-        window.dejaluxeCartTimer
+        window.dejaluxeCartMessageTimer
     );
 
-
-    window.dejaluxeCartTimer =
+    window.dejaluxeCartMessageTimer =
         setTimeout(() => {
-
-            box.style.display =
-                "none";
-
+            box.classList.remove("show");
         }, 2200);
+}
+
+function showCart() {
+    if (!cart.length) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    let total = 0;
+
+    const lines = cart.map(item => {
+        const quantity =
+            Number(item.quantity || 1);
+
+        const price =
+            Number(item.price || 0);
+
+        total += quantity * price;
+
+        return `${item.name} × ${quantity} — ${(quantity * price).toFixed(2)} MAD`;
+    });
+
+    alert(
+        "YOUR DEJALUXE CART\n\n" +
+        lines.join("\n") +
+        "\n\nTotal: " +
+        total.toFixed(2) +
+        " MAD"
+    );
 }
 
 
 /* =========================================================
-   ACCOUNT UI
+   DEVELOPER PRODUCT MANAGEMENT
    ========================================================= */
 
-function openAccount() {
+function showDeveloperStatus(message) {
+    const status =
+        document.getElementById("devStatus");
 
-    const modal =
-        document.getElementById(
-            "accountModal"
-        );
+    if (!status) return;
 
-    if (!modal) return;
-
-    renderAccount();
-
-    modal.classList.add("open");
+    status.textContent = message;
 }
 
+function clearDeveloperForm() {
+    editingProductId = null;
 
-function closeAccount() {
+    const name =
+        document.getElementById("devName");
 
-    const modal =
-        document.getElementById(
-            "accountModal"
-        );
+    const price =
+        document.getElementById("devPrice");
 
-    if (!modal) return;
+    const category =
+        document.getElementById("devCategory");
 
-    modal.classList.remove("open");
+    const image =
+        document.getElementById("devImage");
+
+    const description =
+        document.getElementById("devDescription");
+
+    if (name) name.value = "";
+    if (price) price.value = "";
+    if (category) category.value = "Men";
+    if (image) image.value = "";
+    if (description) description.value = "";
+
+    showDeveloperStatus("");
 }
 
-
-function renderAccount() {
-
-    const content =
-        document.getElementById(
-            "accountContent"
-        );
-
-    if (!content) return;
-
-
-    if (currentUser) {
-
-        const metadata =
-            currentUser.user_metadata || {};
-
-        const name =
-            metadata.full_name ||
-            metadata.name ||
-            currentUser.email ||
-            "DEJALUXE Customer";
-
-
-        const avatar =
-            metadata.avatar_url ||
-            metadata.picture ||
-            "";
-
-
-        content.innerHTML = `
-
-            <div class="logged-user">
-
-                ${
-                    avatar
-                        ? `
-                            <img
-                                class="logged-avatar"
-                                src="${escapeHTML(avatar)}"
-                                alt="Profile"
-                            >
-                          `
-                        : ""
-                }
-
-                <h2>
-                    Welcome
-                </h2>
-
-                <p class="account-subtitle">
-                    ${escapeHTML(name)}
-                </p>
-
-                <p class="account-subtitle">
-                    ${escapeHTML(currentUser.email || "")}
-                </p>
-
-                <button
-                    class="logout-btn"
-                    onclick="logout()"
-                >
-                    Log Out
-                </button>
-
-            </div>
-        `;
-
+async function saveProduct() {
+    if (!isDeveloper()) {
+        alert("Developer access required.");
         return;
     }
 
+    const name =
+        document.getElementById("devName")?.value.trim();
 
-    content.innerHTML = `
+    const price =
+        Number(document.getElementById("devPrice")?.value);
 
-        <div class="account-logo">
-            DEJA
-        </div>
+    const category =
+        document.getElementById("devCategory")?.value;
 
-        <h2 id="accountTitle">
-            ${accountIsSignup ? "Create Account" : "Welcome Back"}
-        </h2>
+    const image =
+        document.getElementById("devImage")?.value.trim();
 
-        <p class="account-subtitle">
-            ${
-                accountIsSignup
-                    ? "Create your DEJALUXE account"
-                    : "Sign in to your DEJALUXE account"
-            }
-        </p>
+    const description =
+        document.getElementById("devDescription")?.value.trim();
 
-        <input
-            id="accountEmail"
-            class="account-input"
-            type="email"
-            placeholder="Email address"
-            autocomplete="email"
-        >
+    if (!name) {
+        alert("Enter a product name.");
+        return;
+    }
 
-        <input
-            id="accountPassword"
-            class="account-input"
-            type="password"
-            placeholder="Password"
-            autocomplete="${
-                accountIsSignup
-                    ? "new-password"
-                    : "current-pa
+    if (!Number.isFinite(price) || price < 0) {
+        alert("Enter a valid price.");
+        return;
+    }
+
+    if (!category) {
+        alert("Choose a category.");
+        return;
+    }
+
+    showDeveloperStatus("Saving...");
+
+    try {
+        if (editingProductId) {
+
+            const { error } =
+                await supabaseClient
+                    .from("products")
+                    .update({
+                        name,
+                        price,
+                        category,
+                        image,
+                        description
+                    })
+                    .eq("id", editingProductId);
+
+            if (error) throw error;
+
+            showDeveloperStatus(
+                "Product updated successfully."
+            );
+
+        } else {
+
+            const { error } =
+                await supabaseClient
+                    .from("products")
+                    .insert({
+                        name,
+                        price,
+                        category,
+                        image,
+                        description
+                    });
+
+            if (error) throw error;
+
+            showDeveloperStatus(
+                "Product added successfully."
+            );
+        }
+
+        clearDeveloperForm();
+        await loadProducts();
+
+    } catch (error) {
+        console.error(error);
+
+        showDeveloperStatus(
+            error.message ||
+            "Could not save product."
+        );
+    }
+}
+
+function editProduct(productId) {
+    if (!isDeveloper()) return;
+
+    const product =
+        products.find(item => item.id === productId);
+
+    if (!product) return;
+
+    editingProductId = productId;
+
+    document.getElementById("devName").value =
+        product.name || "";
+
+    document.getElementById("devPrice").value =
+        product.price ?? "";
+
+    document.getElementById("devCategory").value =
+        product.category || "Men";
+
+    document.getElementById("devImage").value =
+        product.image || "";
+
+    document.getElementById("devDescription").value =
+        product.description || "";
+
+    showDeveloperStatus(
+        "Editing product. Change the fields and save."
+    );
+
+    document
+        .getElementById("developerTools")
+        ?.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+}
+
+async function deleteProduct(productId) {
+    if (!isDeveloper()) {
+        alert("Developer access required.");
+        return;
+    }
+
+    const product =
+        products.find(item => item.id === productId);
+
+    if (!product) return;
+
+    if (!confirm(`Delete "${product.name}"?`)) {
+        return;
+    }
+
+    try {
+        const { error } =
+            await supabaseClient
+                .from("products")
+                .delete()
+                .eq("id", productId);
+
+        if (error) throw error;
+
+        showDeveloperStatus(
+            "Product deleted."
+        );
+
+        await loadProducts();
+
+    } catch (error) {
+        console.error(error);
+
+        alert(
+            error.message ||
+            "Could not delete product."
+        );
+    }
+}
+
+
+/* =========================================================
+   HTML SAFETY
+   ========================================================= */
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =========================================================
+   KEYBOARD SHORTCUTS
+   ========================================================= */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+        document
+            .getElementById("categoriesMenu")
+            ?.classList.remove("open");
+
+        document
+            .getElementById("searchPanel")
+            ?.classList.remove("open");
+
+        closeAccount();
+    }
+
+    if (
+        event.key === "/" &&
+        !["INPUT", "TEXTAREA"].includes(
+            document.activeElement?.tagName
+        )
+    ) {
+        event.preventDefault();
+        toggleSearch();
+    }
+});
+
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        updateCartCount();
+
+        const min =
+            document.getElementById("minPrice");
+
+        const max =
+            document.getElementById("maxPrice");
+
+        if (min) {
+            min.addEventListener(
+                "input",
+                updatePriceFilter
+            );
+        }
+
+        if (max) {
+            max.addEventListener(
+                "input",
+                updatePriceFilter
+            );
+        }
+
+        const sort =
+            document.getElementById("sortSelect");
+
+        if (sort) {
+            sort.addEventListener(
+                "change",
+                sortProducts
+            );
+        }
+
+        const accountModal =
+            document.getElementById("accountModal");
+
+        if (accountModal) {
+            accountModal.addEventListener(
+                "click",
+                closeAccountOutside
+            );
+        }
+
+        await checkSession();
+
+        updatePriceFilter();
+        updateCartCount();
+    }
+);
+
+
+/* =========================================================
+   GLOBAL FUNCTIONS
+   ========================================================= */
+
+window.gateLogin = gateLogin;
+window.gateSignup = gateSignup;
+window.googleLogin = googleLogin;
+
+window.openAccount = openAccount;
+window.closeAccount = closeAccount;
+window.logout = logout;
+
+window.accountLogin = accountLogin;
+window.accountSignup = accountSignup;
+
+window.filterCategory = filterCategory;
+window.filterProducts = filterProducts;
+window.sortProducts = sortProducts;
+
+window.toggleSearch = toggleSearch;
+window.toggleCategories = toggleCategories;
+
+window.addToCart = addToCart;
+window.showCart = showCart;
+
+window.saveProduct = saveProduct;
+window.editProduct = editProduct;
+window.deleteProduct = deleteProduct;
+window.clearDeveloperForm = clearDeveloperForm;
+
+</script>
+
+</body>
+</html>
