@@ -1,30 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DEJALUXE — Shop</title>
+
+<title>DEJALUXE</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box}
 
-body{
+*{
+    box-sizing:border-box;
+}
+
+html,body{
     margin:0;
+    padding:0;
     font-family:Arial,sans-serif;
     background:#fff;
-    color:#222
+    color:#222;
 }
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+#authPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        linear-gradient(
+            rgba(255,255,255,.94),
+            rgba(255,255,255,.94)
+        ),
+        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600")
+        center/cover;
+    padding:25px;
+}
+
+.authBox{
+    width:100%;
+    max-width:430px;
+    background:white;
+    border-radius:18px;
+    padding:38px;
+    box-shadow:0 15px 50px rgba(0,0,0,.15);
+    border:1px solid #eee;
+}
+
+.authLogo{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#f58220;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-weight:bold;
+    font-size:15px;
+    line-height:16px;
+    margin:0 auto 25px;
+}
+
+.authBox h1{
+    text-align:center;
+    margin:0;
+    font-size:32px;
+    letter-spacing:1px;
+}
+
+.authSubtitle{
+    text-align:center;
+    color:#777;
+    margin:10px 0 28px;
+}
+
+.authBox input{
+    width:100%;
+    padding:14px;
+    margin:7px 0;
+    border:1px solid #ddd;
+    border-radius:9px;
+    font-size:15px;
+    outline:none;
+}
+
+.authBox input:focus{
+    border-color:#f58220;
+}
+
+.authButton{
+    width:100%;
+    padding:14px;
+    margin-top:9px;
+    border:0;
+    border-radius:9px;
+    background:#f58220;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.authButton:hover{
+    background:#e86f0b;
+}
+
+.googleButton{
+    background:#222;
+}
+
+.googleButton:hover{
+    background:#111;
+}
+
+.authDivider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:20px 0;
+    color:#999;
+    font-size:13px;
+}
+
+.authDivider::before,
+.authDivider::after{
+    content:"";
+    height:1px;
+    background:#eee;
+    flex:1;
+}
+
+#authMessage{
+    text-align:center;
+    font-size:13px;
+    min-height:18px;
+    color:#777;
+    margin-top:15px;
+}
+
+/* =========================
+   STORE
+========================= */
+
+#store{
+    display:none;
+}
+
+#store.visible{
+    display:block;
+}
+
+/* TOP BAR */
 
 .top{
     background:#f58220;
-    color:#fff;
+    color:white;
     padding:9px 5%;
     display:flex;
     justify-content:space-between;
-    font-size:13px
+    font-size:13px;
 }
+
+/* NAV */
 
 nav{
     height:72px;
@@ -33,741 +177,630 @@ nav{
     gap:28px;
     padding:0 5%;
     border-bottom:1px solid #eee;
-    background:#fff;
+    background:white;
     position:sticky;
     top:0;
-    z-index:20
+    z-index:50;
 }
 
 .logo{
-    width:45px;
-    height:45px;
+    width:48px;
+    height:48px;
     border-radius:50%;
     background:#f58220;
-    color:#fff;
+    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-weight:bold;
-    font-size:12px;
     text-align:center;
-    line-height:12px
+    font-weight:bold;
+    font-size:11px;
+    line-height:12px;
 }
 
 nav a{
     color:#222;
     text-decoration:none;
-    font-size:15px
+    font-size:15px;
 }
 
 nav a:hover{
-    color:#f58220
+    color:#f58220;
 }
 
 .navicons{
     margin-left:auto;
     display:flex;
-    gap:18px;
+    gap:20px;
     align-items:center;
-    font-size:22px
+    font-size:22px;
 }
 
 .icon{
-    cursor:pointer
-}
-
-.cart{
-    position:relative
-}
-
-.count{
-    position:absolute;
-    background:#f58220;
-    color:#fff;
-    border-radius:50%;
-    font-size:10px;
-    padding:3px 6px;
-    top:-9px;
-    right:-10px
-}
-
-.dropdown{
-    position:relative
-}
-
-.drop{
-    display:none;
-    position:absolute;
-    top:25px;
-    left:-15px;
-    background:#fff;
-    box-shadow:0 5px 20px #0002;
-    padding:10px;
-    width:170px;
-    border-radius:8px
-}
-
-.dropdown:hover .drop{
-    display:block
-}
-
-.drop a{
-    display:block;
-    padding:9px
-}
-
-.search{
-    display:none;
-    padding:15px 5%;
-    background:#fafafa
-}
-
-.search.open{
-    display:block
-}
-
-.search input{
-    width:100%;
-    padding:14px;
-    border:1px solid #ddd;
-    border-radius:25px;
-    font-size:15px;
-    outline:none
-}
-
-.hero{
-    text-align:center;
-    padding:55px 20px;
-    background:#fff
-}
-
-.hero small{
-    color:#f58220;
-    font-weight:bold;
-    letter-spacing:2px
-}
-
-.hero h1{
-    font-size:42px;
-    margin:12px 0
-}
-
-.hero p{
-    color:#777
-}
-
-.filters{
-    padding:15px 5%;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    align-items:center;
-    border-bottom:1px solid #eee
-}
-
-.filters button,
-.filters select{
-    padding:10px 14px;
-    border:1px solid #ddd;
-    background:#fff;
-    border-radius:20px;
-    cursor:pointer
-}
-
-.filters button.active{
-    background:#f58220;
-    color:#fff;
-    border-color:#f58220
-}
-
-.price{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-left:auto
-}
-
-.price input{
-    width:80px;
-    padding:8px;
-    border:1px solid #ddd;
-    border-radius:8px
-}
-
-.products{
-    padding:35px 5%;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:25px;
-    min-height:250px
-}
-
-.card{
-    border:1px solid #eee;
-    border-radius:12px;
-    overflow:hidden;
-    background:#fff;
-    transition:.2s
-}
-
-.card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 8px 25px #0001
-}
-
-.pic{
-    height:230px;
-    background:#f5f5f5;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden
-}
-
-.pic img{
-    width:100%;
-    height:100%;
-    object-fit:cover
-}
-
-.info{
-    padding:17px
-}
-
-.cat{
-    font-size:11px;
-    color:#f58220;
-    text-transform:uppercase
-}
-
-.info h3{
-    margin:7px 0
-}
-
-.desc{
-    font-size:13px;
-    color:#777;
-    min-height:36px
-}
-
-.bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:15px
-}
-
-.price2{
-    font-weight:bold
-}
-
-.add{
-    background:#f58220;
-    color:#fff;
-    border:0;
-    border-radius:7px;
-    padding:9px 12px;
-    cursor:pointer
-}
-
-.editBtn{
-    background:#222;
-    color:#fff;
-    border:0;
-    border-radius:7px;
-    padding:8px 12px;
-    cursor:pointer
-}
-
-.deleteBtn{
-    background:#d93025;
-    color:#fff;
-    border:0;
-    border-radius:7px;
-    padding:8px 12px;
-    cursor:pointer
-}
-
-footer{
-    background:#222;
-    color:#fff;
-    text-align:center;
-    padding:35px;
-    margin-top:30px
-}
-
-.overlay{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:#0008;
-    z-index:100;
-    align-items:center;
-    justify-content:center
-}
-
-.overlay.show{
-    display:flex
-}
-
-.box{
-    background:#fff;
-    width:90%;
-    max-width:400px;
-    padding:28px;
-    border-radius:15px
-}
-
-.box h2{
-    text-align:center
-}
-
-.box input{
-    width:100%;
-    padding:12px;
-    margin:7px 0;
-    border:1px solid #ddd;
-    border-radius:8px
-}
-
-.box button{
-    width:100%;
-    padding:12px;
-    margin-top:8px;
-    border:0;
-    border-radius:8px;
-    background:#f58220;
-    color:#fff;
-    cursor:pointer
-}
-
-.google{
-    background:#222!important
-}
-
-.close{
-    text-align:right;
     cursor:pointer;
-    font-size:20px
 }
+
+/* ACCOUNT */
 
 .account{
     display:none;
     position:fixed;
     right:25px;
-    top:75px;
-    background:#fff;
-    padding:18px;
-    width:240px;
+    top:80px;
+    width:250px;
+    background:white;
+    padding:20px;
     border-radius:12px;
-    box-shadow:0 8px 30px #0003;
-    z-index:50
+    box-shadow:0 10px 35px #0003;
+    z-index:100;
 }
 
 .account.show{
-    display:block
+    display:block;
 }
 
-.avatar{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    object-fit:cover;
-    vertical-align:middle;
-    margin-right:8px
-}
-
-/* DEVELOPER PANEL */
-
-.dev{
-    display:none;
-    background:#fff7ef;
-    border:1px solid #ffd5ad;
-    margin:20px 5%;
-    padding:20px;
-    border-radius:12px
-}
-
-.dev.visible{
-    display:block
-}
-
-.dev h3{
-    margin-top:0;
-    color:#f58220
-}
-
-.dev input,
-.dev select,
-.dev textarea{
+.account button{
+    width:100%;
+    margin-top:15px;
     padding:10px;
-    margin:5px;
-    width:calc(25% - 12px);
-    border:1px solid #ddd;
-    border-radius:7px
-}
-
-.dev textarea{
-    min-height:42px;
-    vertical-align:top
-}
-
-.dev button{
-    padding:10px 15px;
-    margin:5px;
     border:0;
     border-radius:7px;
+    background:#222;
+    color:white;
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    min-height:560px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px 20px;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.93),
+            rgba(255,255,255,.93)
+        ),
+        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600")
+        center/cover;
+}
+
+.heroContent{
+    max-width:800px;
+}
+
+.hero small{
+    color:#f58220;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.hero h1{
+    font-size:64px;
+    margin:18px 0 12px;
+    letter-spacing:2px;
+}
+
+.hero p{
+    color:#777;
+    font-size:18px;
+    margin-bottom:32px;
+}
+
+.shopButton{
+    display:inline-block;
     background:#f58220;
-    color:#fff;
-    cursor:pointer
+    color:white;
+    text-decoration:none;
+    padding:15px 32px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:.2s;
 }
 
-.dev .clearBtn{
-    background:#222
+.shopButton:hover{
+    background:#222;
+    transform:translateY(-2px);
 }
 
-.devStatus{
-    margin-top:10px;
-    font-size:13px;
-    color:#777
+/* SECTION */
+
+.section{
+    padding:70px 5%;
 }
 
-.empty{
-    grid-column:1/-1;
+.sectionTitle{
     text-align:center;
-    padding:70px 20px;
-    color:#777
+    margin-bottom:40px;
 }
 
-.empty h2{
+.sectionTitle small{
+    color:#f58220;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.sectionTitle h2{
+    font-size:36px;
+    margin:10px 0;
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.category{
+    height:180px;
+    border-radius:12px;
+    background:#f7f7f7;
+    border:1px solid #eee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    text-decoration:none;
     color:#222;
-    margin-bottom:8px
+    font-size:20px;
+    font-weight:bold;
+    transition:.2s;
 }
 
-.error{
-    grid-column:1/-1;
+.category:hover{
+    background:#f58220;
+    color:white;
+    transform:translateY(-4px);
+}
+
+/* PROMO */
+
+.promo{
+    margin:0 5% 70px;
+    padding:55px 25px;
+    background:#fff5ec;
+    border-radius:15px;
     text-align:center;
-    padding:50px 20px;
-    color:#d93025
 }
 
-@media(max-width:900px){
+.promo h2{
+    font-size:34px;
+    margin:0 0 12px;
+}
 
-    .products{
-        grid-template-columns:repeat(2,1fr)
-    }
+.promo p{
+    color:#777;
+    margin-bottom:25px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+}
+
+footer strong{
+    color:#f58220;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
 
     nav{
-        gap:15px
+        gap:15px;
     }
 
-    .hideMob{
-        display:none
-    }
-
-    .price{
-        margin-left:0
-    }
-}
-
-@media(max-width:550px){
-
-    .products{
-        grid-template-columns:1fr 1fr;
-        gap:10px
-    }
-
-    .pic{
-        height:160px
+    .hideMobile{
+        display:none;
     }
 
     .hero h1{
-        font-size:30px
+        font-size:45px;
     }
 
-    .dev input,
-    .dev select,
-    .dev textarea{
-        width:100%;
-        margin:4px 0
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:500px){
+
+    .authBox{
+        padding:28px 22px;
+    }
+
+    .authBox h1{
+        font-size:28px;
     }
 
     .top{
-        font-size:11px
+        font-size:10px;
     }
 
-    .navicons{
-        gap:12px
+    .hero{
+        min-height:500px;
     }
+
+    .hero h1{
+        font-size:37px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .categories{
+        gap:10px;
+    }
+
+    .category{
+        height:135px;
+        font-size:16px;
+    }
+
+    .sectionTitle h2{
+        font-size:28px;
+    }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
-<div class="top">
-    <span>Free delivery on orders over 500 MAD</span>
-    <span>Track Order &nbsp; Help &nbsp; EN</span>
+
+<!-- =====================================
+     LOGIN / ACCOUNT REQUIRED
+====================================== -->
+
+<section id="authPage">
+
+<div class="authBox">
+
+<div class="authLogo">
+DEJA<br>LUXE
 </div>
+
+<h1>DEJALUXE</h1>
+
+<p class="authSubtitle">
+Sign in to continue shopping
+</p>
+
+
+<input
+    id="email"
+    type="email"
+    placeholder="Email"
+    autocomplete="email"
+>
+
+
+<input
+    id="password"
+    type="password"
+    placeholder="Password"
+    autocomplete="current-password"
+>
+
+
+<button
+    class="authButton"
+    onclick="login()"
+>
+    Login
+</button>
+
+
+<button
+    class="authButton"
+    onclick="signup()"
+>
+    Create Account
+</button>
+
+
+<div class="authDivider">
+    OR
+</div>
+
+
+<button
+    class="authButton googleButton"
+    onclick="googleLogin()"
+>
+    Continue with Google
+</button>
+
+
+<p id="authMessage"></p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================
+     STORE
+====================================== -->
+
+<div id="store">
+
+
+<!-- TOP -->
+
+<div class="top">
+
+<span>
+Free delivery on orders over 500 MAD
+</span>
+
+<span>
+Track Order &nbsp; Help &nbsp; EN
+</span>
+
+</div>
+
+
+<!-- NAV -->
 
 <nav>
 
 <a href="index.html">
-    <div class="logo">DEJA<br>LUXE</div>
+
+<div class="logo">
+DEJA<br>LUXE
+</div>
+
 </a>
 
-<a class="hideMob" href="index.html">Home</a>
-<a class="hideMob" href="shop.html">Shop</a>
 
-<div class="dropdown hideMob">
+<a
+    class="hideMobile"
+    href="index.html"
+>
+Home
+</a>
 
-<a href="#">Categories ▾</a>
 
-<div class="drop">
+<a
+    class="hideMobile"
+    href="shop.html"
+>
+Shop
+</a>
 
-<a href="#" onclick="filter('All');return false">All Products</a>
-<a href="#" onclick="filter('Men');return false">Men</a>
-<a href="#" onclick="filter('Women');return false">Women</a>
-<a href="#" onclick="filter('Electronics');return false">Electronics</a>
-<a href="#" onclick="filter('Home');return false">Home</a>
-<a href="#" onclick="filter('Shoes');return false">Shoes</a>
-<a href="#" onclick="filter('Beauty');return false">Beauty</a>
-<a href="#" onclick="filter('Gaming');return false">Gaming</a>
 
-</div>
-</div>
+<a
+    class="hideMobile"
+    href="about.html"
+>
+About Us
+</a>
 
-<a class="hideMob" href="about.html">About Us</a>
 
 <div class="navicons">
 
-<span class="icon" onclick="toggleSearch()">⌕</span>
 
-<span class="icon" onclick="toggleAccount()" id="profile">♙</span>
-
-<span class="icon cart" onclick="location.href='cart.html'">
-    🛒
-    <b class="count" id="cartCount">0</b>
+<span
+    class="icon"
+    onclick="toggleAccount()"
+>
+♙
 </span>
+
+
+<span
+    class="icon"
+    onclick="location.href='cart.html'"
+>
+🛒
+</span>
+
 
 </div>
 
 </nav>
 
 
-<div class="search" id="searchPanel">
+<!-- ACCOUNT MENU -->
 
-<input
-    id="searchInput"
-    oninput="render()"
-    placeholder="Search products..."
+<div
+    class="account"
+    id="account"
 >
+
+<div id="accountInfo"></div>
+
+<button onclick="logout()">
+Logout
+</button>
 
 </div>
 
+
+<!-- HERO -->
 
 <section class="hero">
 
-<small>DEJALUXE COLLECTION</small>
+<div class="heroContent">
 
-<h1>All Products</h1>
-
-<p>Discover everything available in our store.</p>
-
-</section>
+<small>
+WELCOME TO DEJALUXE
+</small>
 
 
-<section class="filters">
+<h1>
+Discover Your Style
+</h1>
 
-<button class="active" onclick="filter('All',this)">
-    All
-</button>
 
-<button onclick="filter('Men',this)">
-    Men
-</button>
+<p>
+Explore fashion, electronics, accessories,
+gaming, beauty and more.
+</p>
 
-<button onclick="filter('Women',this)">
-    Women
-</button>
 
-<button onclick="filter('Electronics',this)">
-    Electronics
-</button>
-
-<button onclick="filter('Home',this)">
-    Home
-</button>
-
-<button onclick="filter('Shoes',this)">
-    Shoes
-</button>
-
-<button onclick="filter('Beauty',this)">
-    Beauty
-</button>
-
-<button onclick="filter('Gaming',this)">
-    Gaming
-</button>
-
-<select id="sort" onchange="render()">
-
-<option value="">Sort by</option>
-<option value="low">Price Low-High</option>
-<option value="high">Price High-Low</option>
-<option value="name">Name A-Z</option>
-
-</select>
-
-<div class="price">
-
-Max MAD
-
-<input
-    id="maxPrice"
-    type="number"
-    value="2000"
-    min="0"
-    oninput="render()"
+<a
+    class="shopButton"
+    href="shop.html"
 >
+SHOP NOW
+</a>
 
 </div>
 
 </section>
 
 
-<!-- DEVELOPER MODE -->
+<!-- CATEGORIES -->
 
-<div class="dev" id="developer">
+<section class="section">
 
-<h3>Developer Mode</h3>
+<div class="sectionTitle">
 
-<input
-    id="pname"
-    placeholder="Product name"
->
+<small>
+EXPLORE
+</small>
 
-<input
-    id="pprice"
-    type="number"
-    placeholder="Price"
->
-
-<select id="pcat">
-
-<option>Men</option>
-<option>Women</option>
-<option>Electronics</option>
-<option>Home</option>
-<option>Shoes</option>
-<option>Beauty</option>
-<option>Gaming</option>
-
-</select>
-
-<input
-    id="pimage"
-    placeholder="Image URL"
->
-
-<textarea
-    id="pdesc"
-    placeholder="Description"
-></textarea>
-
-<button onclick="saveProduct()">
-    Save Product
-</button>
-
-<button class="clearBtn" onclick="clearForm()">
-    Clear
-</button>
-
-<input type="hidden" id="pid">
-
-<div class="devStatus" id="devStatus">
-    Developer access enabled.
-</div>
+<h2>
+Shop by Category
+</h2>
 
 </div>
 
 
-<main class="products" id="products"></main>
+<div class="categories">
 
+
+<a
+    class="category"
+    href="shop.html"
+>
+Men
+</a>
+
+
+<a
+    class="category"
+    href="shop.html"
+>
+Women
+</a>
+
+
+<a
+    class="category"
+    href="shop.html"
+>
+Electronics
+</a>
+
+
+<a
+    class="category"
+    href="shop.html"
+>
+Shoes
+</a>
+
+
+<a
+    class="category"
+    href="shop.html"
+>
+Beauty
+</a>
+
+
+<a
+    class="category"
+    href="shop.html"
+>
+Gaming
+</a>
+
+
+<a
+    class="category"
+    href="shop.html"
+>
+Home
+</a>
+
+
+<a
+    class="category"
+    href="shop.html"
+>
+View All
+</a>
+
+
+</div>
+
+</section>
+
+
+<!-- PROMO -->
+
+<section class="promo">
+
+<h2>
+Find Something You Love
+</h2>
+
+<p>
+Browse the DEJALUXE collection and discover
+products available in our store.
+</p>
+
+
+<a
+    class="shopButton"
+    href="shop.html"
+>
+VIEW PRODUCTS
+</a>
+
+</section>
+
+
+<!-- FOOTER -->
 
 <footer>
+
+<p>
+<strong>DEJALUXE</strong>
+</p>
+
+<p>
 © 2026 DEJALUXE — All rights reserved.
+</p>
+
 </footer>
 
-
-<!-- ACCOUNT -->
-
-<div class="account" id="account">
-
-<div id="accountInfo">
-    Not signed in
-</div>
-
-<button
-    onclick="logout()"
-    style="margin-top:12px;padding:9px;width:100%"
->
-    Logout
-</button>
-
-</div>
-
-
-<!-- LOGIN -->
-
-<div class="overlay" id="login">
-
-<div class="box">
-
-<div class="close" onclick="closeLogin()">×</div>
-
-<h2>DEJALUXE</h2>
-
-<input
-    id="email"
-    type="email"
-    placeholder="Email"
->
-
-<input
-    id="password"
-    type="password"
-    placeholder="Password"
->
-
-<button onclick="login()">
-    Login
-</button>
-
-<button onclick="signup()">
-    Create Account
-</button>
-
-<button class="google" onclick="googleLogin()">
-    Continue with Google
-</button>
-
-<p
-    id="msg"
-    style="text-align:center;font-size:13px;color:#777"
-></p>
-
-</div>
 
 </div>
 
 
 <script>
 
-/* =========================
+/* =====================================
    SUPABASE
-========================= */
+===================================== */
 
 const SUPABASE_URL =
 "https://zinpicammabuvkdtpftj.supabase.co";
@@ -782,509 +815,99 @@ supabase.createClient(
 );
 
 
-/* =========================
-   DEVELOPER ACCOUNT
-========================= */
+/* =====================================
+   ELEMENTS
+===================================== */
 
-const DEV =
-"fakchichbaboui@gmail.com";
+const authPage =
+document.getElementById("authPage");
 
+const store =
+document.getElementById("store");
 
-/* =========================
-   VARIABLES
-========================= */
+const authMessage =
+document.getElementById("authMessage");
 
-let products = [];
+const account =
+document.getElementById("account");
 
-let category = "All";
+const accountInfo =
+document.getElementById("accountInfo");
 
-let cart =
-JSON.parse(
-    localStorage.getItem("dejaluxe_cart") || "[]"
-);
 
 let currentUser = null;
 
 
-/* =========================
-   LOAD PRODUCTS
-========================= */
+/* =====================================
+   SHOW STORE
+===================================== */
 
-async function load(){
+function showStore(user){
 
-    const container =
-        document.getElementById("products");
+    currentUser = user;
 
-    container.innerHTML = `
-        <div class="empty">
-            <h2>Loading products...</h2>
-        </div>
+    if(!user){
+
+        authPage.style.display = "flex";
+
+        store.classList.remove("visible");
+
+        return;
+
+    }
+
+
+    authPage.style.display = "none";
+
+    store.classList.add("visible");
+
+
+    const name =
+        user.user_metadata?.full_name ||
+        user.user_metadata?.name ||
+        user.email;
+
+
+    accountInfo.innerHTML = `
+        <b>${escapeHTML(name)}</b>
+        <br>
+        <small>${escapeHTML(user.email)}</small>
     `;
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .from("products")
-        .select("*")
-        .order("created_at", {
-            ascending:false
-        });
-
-
-    if(error){
-
-        console.error(error);
-
-        products = [];
-
-        container.innerHTML = `
-            <div class="error">
-                <h2>Could not load products</h2>
-                <p>${esc(error.message)}</p>
-            </div>
-        `;
-
-        return;
-    }
-
-
-    /*
-       IMPORTANT:
-       There are NO DEFAULT PRODUCTS anymore.
-
-       If the database is empty,
-       the shop stays empty.
-    */
-
-    products = data || [];
-
-    render();
-
 }
 
 
-/* =========================
-   RENDER
-========================= */
-
-function render(){
-
-    let list =
-        products.filter(
-            p =>
-            category === "All" ||
-            p.category === category
-        );
-
-
-    let q =
-        (
-            document.getElementById("searchInput")?.value
-            || ""
-        )
-        .toLowerCase()
-        .trim();
-
-
-    let max =
-        Number(
-            document.getElementById("maxPrice")?.value
-            || 2000
-        );
-
-
-    list =
-        list.filter(
-            p => {
-
-                const text =
-                    (
-                        (p.name || "") +
-                        " " +
-                        (p.description || "") +
-                        " " +
-                        (p.category || "")
-                    )
-                    .toLowerCase();
-
-                return (
-                    text.includes(q) &&
-                    Number(p.price) <= max
-                );
-
-            }
-        );
-
-
-    const sort =
-        document.getElementById("sort").value;
-
-
-    if(sort === "low"){
-
-        list.sort(
-            (a,b) =>
-            Number(a.price) -
-            Number(b.price)
-        );
-
-    }
-
-
-    if(sort === "high"){
-
-        list.sort(
-            (a,b) =>
-            Number(b.price) -
-            Number(a.price)
-        );
-
-    }
-
-
-    if(sort === "name"){
-
-        list.sort(
-            (a,b) =>
-            (a.name || "")
-            .localeCompare(b.name || "")
-        );
-
-    }
-
-
-    const container =
-        document.getElementById("products");
-
-
-    if(list.length === 0){
-
-        container.innerHTML = `
-            <div class="empty">
-
-                <h2>No products yet</h2>
-
-                <p>
-                    ${
-                        isDev()
-                        ? "Use Developer Mode above to add your first product."
-                        : "Products will appear here when they are added."
-                    }
-                </p>
-
-            </div>
-        `;
-
-        updateCart();
-
-        return;
-    }
-
-
-    container.innerHTML =
-        list.map(
-            p => `
-
-<article class="card">
-
-    <div class="pic">
-
-        ${
-            p.image
-
-            ? `
-            <img
-                src="${esc(p.image)}"
-                alt="${esc(p.name)}"
-                onerror="this.style.display='none'"
-            >
-            `
-
-            : `
-            <span>No image</span>
-            `
-        }
-
-    </div>
-
-
-    <div class="info">
-
-        <span class="cat">
-            ${esc(p.category)}
-        </span>
-
-        <h3>
-            ${esc(p.name)}
-        </h3>
-
-        <div class="desc">
-            ${esc(p.description || "")}
-        </div>
-
-
-        <div class="bottom">
-
-            <span class="price2">
-                ${Number(p.price).toFixed(0)} MAD
-            </span>
-
-            <button
-                class="add"
-                onclick="addToCart('${esc(p.id)}')"
-            >
-                Add to Cart
-            </button>
-
-        </div>
-
-
-        ${
-            isDev()
-
-            ? `
-
-            <div
-                style="
-                    margin-top:12px;
-                    display:flex;
-                    gap:7px;
-                "
-            >
-
-                <button
-                    class="editBtn"
-                    onclick="editProduct('${esc(p.id)}')"
-                >
-                    Edit
-                </button>
-
-                <button
-                    class="deleteBtn"
-                    onclick="deleteProduct('${esc(p.id)}')"
-                >
-                    Delete
-                </button>
-
-            </div>
-
-            `
-
-            : ""
-        }
-
-    </div>
-
-</article>
-
-`
-        )
-        .join("");
-
-
-    updateCart();
-
-}
-
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function esc(v){
-
-    return String(v ?? "")
-        .replace(
-            /[&<>"']/g,
-            m => ({
-                "&":"&amp;",
-                "<":"&lt;",
-                ">":"&gt;",
-                '"':"&quot;",
-                "'":"&#39;"
-            }[m])
-        );
-
-}
-
-
-/* =========================
-   FILTER
-========================= */
-
-function filter(c,btn){
-
-    category = c;
-
-    document
-        .querySelectorAll(".filters button")
-        .forEach(
-            b =>
-            b.classList.remove("active")
-        );
-
-
-    if(btn){
-
-        btn.classList.add("active");
-
-    }
-
-
-    render();
-
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-function toggleSearch(){
-
-    document
-        .getElementById("searchPanel")
-        .classList.toggle("open");
-
-}
-
-
-/* =========================
-   ACCOUNT
-========================= */
-
-function toggleAccount(){
-
-    const account =
-        document.getElementById("account");
-
-
-    if(!currentUser){
-
-        document
-            .getElementById("login")
-            .classList.add("show");
-
-        return;
-    }
-
-
-    account.classList.toggle("show");
-
-}
-
-
-/* =========================
-   DEVELOPER CHECK
-========================= */
-
-function isDev(){
-
-    return (
-        currentUser &&
-        currentUser.email &&
-        currentUser.email.toLowerCase() ===
-        DEV.toLowerCase()
-    );
-
-}
-
-
-/* =========================
-   UPDATE USER
-========================= */
-
-function updateUser(){
-
-    const developer =
-        document.getElementById("developer");
-
-    const profile =
-        document.getElementById("profile");
-
-    const accountInfo =
-        document.getElementById("accountInfo");
-
-
-    developer.classList.toggle(
-        "visible",
-        isDev()
-    );
-
-
-    if(currentUser){
-
-        const name =
-            currentUser.user_metadata?.full_name ||
-            currentUser.user_metadata?.name ||
-            currentUser.email;
-
-
-        const avatar =
-            currentUser.user_metadata?.avatar_url ||
-            currentUser.user_metadata?.picture;
-
-
-        profile.innerHTML =
-            avatar
-
-            ? `
-            <img
-                class="avatar"
-                src="${esc(avatar)}"
-                alt="Profile"
-            >
-            `
-
-            : "♙";
-
-
-        accountInfo.innerHTML = `
-            <b>${esc(name)}</b>
-            <br>
-            <small>${esc(currentUser.email)}</small>
-        `;
-
-    }
-
-    else{
-
-        profile.textContent = "♙";
-
-        accountInfo.textContent =
-            "Not signed in";
-
-    }
-
-
-    render();
-
-}
-
-
-/* =========================
+/* =====================================
    LOGIN
-========================= */
+===================================== */
 
 async function login(){
 
-    const emailValue =
+    const email =
         document
         .getElementById("email")
         .value
         .trim();
 
 
-    const passwordValue =
+    const password =
         document
         .getElementById("password")
         .value;
 
 
-    const msgElement =
-        document.getElementById("msg");
+    if(!email || !password){
+
+        authMessage.textContent =
+            "Enter your email and password.";
+
+        return;
+
+    }
+
+
+    authMessage.textContent =
+        "Signing in...";
 
 
     const {
@@ -1294,49 +917,72 @@ async function login(){
     await supabaseClient.auth
         .signInWithPassword({
 
-            email:emailValue,
+            email:email,
 
-            password:passwordValue
+            password:password
 
         });
 
 
-    msgElement.textContent =
-        error
-        ? error.message
-        : "Logged in!";
+    if(error){
 
+        authMessage.textContent =
+            error.message;
 
-    if(!error){
-
-        closeLogin();
+        return;
 
     }
+
+
+    authMessage.textContent =
+        "";
+
+    showStore(data.user);
 
 }
 
 
-/* =========================
-   SIGN UP
-========================= */
+/* =====================================
+   CREATE ACCOUNT
+===================================== */
 
 async function signup(){
 
-    const emailValue =
+    const email =
         document
         .getElementById("email")
         .value
         .trim();
 
 
-    const passwordValue =
+    const password =
         document
         .getElementById("password")
         .value;
 
 
-    const msgElement =
-        document.getElementById("msg");
+    if(!email || !password){
+
+        authMessage.textContent =
+            "Enter an email and password.";
+
+        return;
+
+    }
+
+
+    if(password.length < 6){
+
+        authMessage.textContent =
+            "Password must be at least 6 characters.";
+
+        return;
+
+    }
+
+
+    authMessage.textContent =
+        "Creating account...";
 
 
     const {
@@ -1346,27 +992,58 @@ async function signup(){
     await supabaseClient.auth
         .signUp({
 
-            email:emailValue,
+            email:email,
 
-            password:passwordValue
+            password:password
 
         });
 
 
-    msgElement.textContent =
-        error
-        ? error.message
-        : "Account created. Check your email if confirmation is required.";
+    if(error){
+
+        authMessage.textContent =
+            error.message;
+
+        return;
+
+    }
+
+
+    /*
+       Depending on your Supabase settings,
+       the user may need to confirm their
+       email before they can log in.
+    */
+
+    if(data.session && data.user){
+
+        authMessage.textContent = "";
+
+        showStore(data.user);
+
+    }else{
+
+        authMessage.textContent =
+            "Account created. Check your email to confirm your account.";
+
+    }
 
 }
 
 
-/* =========================
+/* =====================================
    GOOGLE LOGIN
-========================= */
+===================================== */
 
 async function googleLogin(){
 
+    authMessage.textContent =
+        "Opening Google login...";
+
+
+    const {
+        error
+    } =
     await supabaseClient.auth
         .signInWithOAuth({
 
@@ -1375,616 +1052,119 @@ async function googleLogin(){
             options:{
 
                 redirectTo:
-                window.location.origin +
-                window.location.pathname
+                    window.location.origin +
+                    window.location.pathname
 
             }
 
         });
 
-}
 
+    if(error){
 
-/* =========================
-   CLOSE LOGIN
-========================= */
+        authMessage.textContent =
+            error.message;
 
-function closeLogin(){
-
-    document
-        .getElementById("login")
-        .classList.remove("show");
+    }
 
 }
 
 
-/* =========================
+/* =====================================
    LOGOUT
-========================= */
+===================================== */
 
 async function logout(){
 
     await supabaseClient.auth.signOut();
 
-    document
-        .getElementById("account")
-        .classList.remove("show");
+    account.classList.remove("show");
+
+    showStore(null);
 
 }
 
 
-/* =========================
-   ADD TO CART
-========================= */
+/* =====================================
+   ACCOUNT MENU
+===================================== */
 
-function addToCart(id){
+function toggleAccount(){
 
-    const product =
-        products.find(
-            x => String(x.id) === String(id)
-        );
-
-
-    if(!product){
+    if(!currentUser){
 
         return;
 
     }
 
 
-    cart.push(product);
-
-
-    localStorage.setItem(
-        "dejaluxe_cart",
-        JSON.stringify(cart)
-    );
-
-
-    updateCart();
+    account.classList.toggle("show");
 
 }
 
 
-/* =========================
-   CART COUNT
-========================= */
+/* =====================================
+   ESCAPE HTML
+===================================== */
 
-function updateCart(){
+function escapeHTML(value){
 
-    document
-        .getElementById("cartCount")
-        .textContent =
-        cart.length;
+    return String(value ?? "")
+        .replace(
+            /[&<>"']/g,
+            function(match){
+
+                return {
+
+                    "&":"&amp;",
+                    "<":"&lt;",
+                    ">":"&gt;",
+                    '"':"&quot;",
+                    "'":"&#39;"
+
+                }[match];
+
+            }
+        );
 
 }
 
 
-/* =========================
-   SAVE PRODUCT
-========================= */
-
-async function saveProduct(){
-
-    if(!isDev()){
-
-        alert(
-            "Developer access only."
-        );
-
-        return;
-
-    }
-
-
-    const name =
-        document
-        .getElementById("pname")
-        .value
-        .trim();
-
-
-    const price =
-        Number(
-            document
-            .getElementById("pprice")
-            .value
-        );
-
-
-    const categoryValue =
-        document
-        .getElementById("pcat")
-        .value;
-
-
-    const image =
-        document
-        .getElementById("pimage")
-        .value
-        .trim();
-
-
-    const description =
-        document
-        .getElementById("pdesc")
-        .value
-        .trim();
-
-
-    const id =
-        document
-        .getElementById("pid")
-        .value;
-
-
-    if(!name){
-
-        alert(
-            "Enter a product name."
-        );
-
-        return;
-
-    }
-
-
-    if(!Number.isFinite(price) || price < 0){
-
-        alert(
-            "Enter a valid price."
-        );
-
-        return;
-
-    }
-
-
-    const obj = {
-
-        name:name,
-
-        price:price,
-
-        category:categoryValue,
-
-        image:image,
-
-        description:description
-
-    };
-
-
-    let result;
-
-
-    if(id){
-
-        result =
-            await supabaseClient
-                .from("products")
-                .update(obj)
-                .eq("id",id);
-
-    }
-
-    else{
-
-        result =
-            await supabaseClient
-                .from("products")
-                .insert(obj);
-
-    }
-
-
-    if(result.error){
-
-        alert(
-            result.error.message
-        );
-
-        console.error(result.error);
-
-        return;
-
-    }
-
-
-    document
-        .getElementById("devStatus")
-        .textContent =
-        id
-        ? "Product updated successfully."
-        : "Product added successfully.";
-
-
-    clearForm();
-
-    await load();
-
-}
-
-
-/* =========================
-   EDIT PRODUCT
-========================= */
-
-function editProduct(id){
-
-    if(!isDev()){
-
-        return;
-
-    }
-
-
-    const product =
-        products.find(
-            x => String(x.id) === String(id)
-        );
-
-
-    if(!product){
-
-        return;
-
-    }
-
-
-    document
-        .getElementById("pid")
-        .value =
-        product.id;
-
-
-    document
-        .getElementById("pname")
-        .value =
-        product.name || "";
-
-
-    document
-        .getElementById("pprice")
-        .value =
-        product.price || "";
-
-
-    document
-        .getElementById("pcat")
-        .value =
-        product.category || "Men";
-
-
-    document
-        .getElementById("pimage")
-        .value =
-        product.image || "";
-
-
-    document
-        .getElementById("pdesc")
-        .value =
-        product.description || "";
-
-
-    document
-        .getElementById("devStatus")
-        .textContent =
-        "Editing: " +
-        product.name;
-
-
-    window.scrollTo({
-
-        top:
-        document
-            .getElementById("developer")
-            .offsetTop - 80,
-
-        behavior:"smooth"
-
-    });
-
-}
-
-
-/* =========================
-   DELETE PRODUCT
-========================= */
-
-async function deleteProduct(id){
-
-    if(!isDev()){
-
-        return;
-
-    }
-
-
-    const product =
-        products.find(
-            x => String(x.id) === String(id)
-        );
-
-
-    if(!product){
-
-        return;
-
-    }
-
-
-    const confirmed =
-        confirm(
-            "Delete " +
-            product.name +
-            "?"
-        );
-
-
-    if(!confirmed){
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
-    await supabaseClient
-        .from("products")
-        .delete()
-        .eq("id",id);
-
-
-    if(error){
-
-        alert(error.message);
-
-        return;
-
-    }
-
-
-    await load();
-
-}
-
-
-/* =========================
-   CLEAR FORM
-========================= */
-
-function clearForm(){
-
-    document
-        .getElementById("pid")
-        .value = "";
-
-
-    document
-        .getElementById("pname")
-        .value = "";
-
-
-    document
-        .getElementById("pprice")
-        .value = "";
-
-
-    document
-        .getElementById("pimage")
-        .value = "";
-
-
-    document
-        .getElementById("pdesc")
-        .value = "";
-
-
-    document
-        .getElementById("pcat")
-        .value = "Men";
-
-
-    document
-        .getElementById("devStatus")
-        .textContent =
-        "Developer access enabled.";
-
-}
-
-
-/* =========================
-   SUPABASE SESSION
-========================= */
+/* =====================================
+   CHECK CURRENT LOGIN
+===================================== */
 
 supabaseClient.auth
     .getSession()
     .then(
         ({data}) => {
 
-            currentUser =
-                data.session?.user ||
-                null;
+            const user =
+                data.session?.user || null;
 
-            updateUser();
+            showStore(user);
 
         }
     );
 
+
+/* =====================================
+   WATCH LOGIN STATE
+===================================== */
 
 supabaseClient.auth
     .onAuthStateChange(
         (event,session) => {
 
-            currentUser =
-                session?.user ||
-                null;
+            const user =
+                session?.user || null;
 
-            updateUser();
+            showStore(user);
 
         }
     );
 
-
-/* =========================
-   START SHOP
-========================= */
-
-load();
-
 </script>
 
 </body>
-</html>  
-<button class="active" onclick="filter('All',this)">All</button>  
-<button onclick="filter('Men',this)">Men</button><button onclick="filter('Women',this)">Women</button>  
-<button onclick="filter('Electronics',this)">Electronics</button><button onclick="filter('Home',this)">Home</button>  
-<button onclick="filter('Shoes',this)">Shoes</button><button onclick="filter('Beauty',this)">Beauty</button><button onclick="filter('Gaming',this)">Gaming</button>  
-<select id="sort" onchange="render()"><option value="">Sort by</option><option value="low">Price Low-High</option><option value="high">Price High-Low</option><option value="name">Name A-Z</option></select>  
-<div class="price">Max MAD <input id="maxPrice" type="number" value="2000" min="0" oninput="render()"></div>  
-</section>  <div class="dev" id="developer">  
-<h3>🛠 Developer Mode</h3>  
-<input id="pname" placeholder="Product name"><input id="pprice" type="number" placeholder="Price">  
-<select id="pcat"><option>Men</option><option>Women</option><option>Electronics</option><option>Home</option><option>Shoes</option><option>Beauty</option><option>Gaming</option></select>  
-<input id="pimage" placeholder="Image URL"><textarea id="pdesc" placeholder="Description"></textarea>  
-<button onclick="saveProduct()">Save Product</button> <button onclick="clearForm()">Clear</button>  
-<input type="hidden" id="pid">  
-</div>  <main class="products" id="products"></main>  <footer>© 2026 DEJALUXE — All rights reserved.</footer>  <div class="account" id="account">  
-<div id="accountInfo">Not signed in</div><button onclick="logout()" style="margin-top:12px;padding:9px;width:100%">Logout</button>  
-</div>  <div class="overlay" id="login">  
-<div class="box"><div class="close" onclick="closeLogin()">×</div><h2>DEJALUXE</h2>  
-<input id="email" type="email" placeholder="Email"><input id="password" type="password" placeholder="Password">  
-<button onclick="login()">Login</button><button onclick="signup()">Create Account</button><button class="google" onclick="googleLogin()">Continue with Google</button>  
-<p id="msg" style="text-align:center;font-size:13px;color:#777"></p></div>  
-</div>  <script>  
-const SUPABASE_URL="https://zinpicammabuvkdtpftj.supabase.co";  
-const SUPABASE_KEY="sb_publishable_nbKKuwqFd6eSz02ayriC0w_K_sNx8JX";  
-const supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);  
-const DEV="fakchichbaboui@gmail.com";  
-  
-let products=[], category="All", cart=JSON.parse(localStorage.getItem("dejaluxe_cart")||"[]");  
-  
-const defaults=[  
-["Smart Watch",299,"Electronics","Modern smart watch with useful everyday features.","https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700"],  
-["Classic Sneakers",399,"Shoes","Comfortable everyday sneakers with a clean design.","https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"],  
-["Urban Backpack",249,"Men","Stylish backpack designed for everyday use.","https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700"],  
-["Wireless Headphones",349,"Electronics","Wireless headphones with immersive sound.","https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700"],  
-["Elegant Handbag",499,"Women","Elegant handbag for everyday style.","https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=700"],  
-["Beauty Essentials",199,"Beauty","Essential beauty products for your routine.","https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=700"],  
-["Gaming Controller",449,"Gaming","Comfortable controller for your gaming setup.","https://images.unsplash.com/photo-1605901309584-818e25960a8f?w=700"],  
-["Home Accent",179,"Home","Simple modern accent for your home.","https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700"],  
-["Classic T-Shirt",149,"Men","Clean classic t-shirt for everyday wear.","https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700"],  
-["Women's Jacket",599,"Women","Modern jacket with an elegant look.","https://images.unsplash.com/photo-1548624313-039e0c5c5f8b?w=700"],  
-["Wireless Speaker",299,"Electronics","Compact speaker with clear sound.","https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=700"],  
-["Running Shoes",529,"Shoes","Lightweight shoes made for active days.","https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"]  
-].map((x,i)=>({id:"default"+i,name:x[0],price:x[1],category:x[2],description:x[3],image:x[4]}));  
-  
-async function load(){  
- const {data,error}=await supabaseClient.from("products").select("*").order("created_at",{ascending:false});  
- products=data&&data.length?data:defaults;  
- render();  
-}  
-  
-function render(){  
- let list=products.filter(p=>(category=="All"||p.category==category));  
- let q=(document.getElementById("searchInput")?.value||"").toLowerCase();  
- let max=Number(document.getElementById("maxPrice")?.value||2000);  
- list=list.filter(p=>(p.name+" "+p.description+" "+p.category).toLowerCase().includes(q)&&Number(p.price)<=max);  
- let s=document.getElementById("sort").value;  
- if(s=="low")list.sort((a,b)=>a.price-b.price);  
- if(s=="high")list.sort((a,b)=>b.price-a.price);  
- if(s=="name")list.sort((a,b)=>a.name.localeCompare(b.name));  
-  
- document.getElementById("products").innerHTML=list.map(p=>`  
- <article class="card">  
- <div class="pic">${p.image?`<img src="${esc(p.image)}" onerror="this.style.display='none'">`:"📦"}</div>  
- <div class="info"><span class="cat">${esc(p.category)}</span><h3>${esc(p.name)}</h3>  
- <div class="desc">${esc(p.description||"")}</div><div class="bottom"><span class="price2">${Number(p.price).toFixed(0)} MAD</span>  
- <button class="add" onclick="addToCart('${p.id}')">Add to Cart</button></div>  
- ${isDev()?`<div style="margin-top:10px"><button onclick="editProduct('${p.id}')">Edit</button> <button onclick="deleteProduct('${p.id}')">Delete</button></div>`:""}  
- </div></article>`).join("")||"<p>No products found.</p>";  
- updateCart();  
-}  
-  
-function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}  
-  
-function filter(c,btn){  
- category=c;  
- document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));  
- if(btn)btn.classList.add("active");  
- render();  
-}  
-  
-function toggleSearch(){document.getElementById("searchPanel").classList.toggle("open")}  
-function toggleAccount(){  
- const a=document.getElementById("account");  
- if(!currentUser){document.getElementById("login").classList.add("show");return}  
- a.classList.toggle("show");  
-}  
-  
-let currentUser=null;  
-function isDev(){return currentUser?.email?.toLowerCase()===DEV}  
-function updateUser(){  
- const d=document.getElementById("developer"),p=document.getElementById("profile"),a=document.getElementById("accountInfo");  
- d.classList.toggle("visible",isDev());  
- if(currentUser){  
-  let name=currentUser.user_metadata?.full_name||currentUser.user_metadata?.name||currentUser.email;  
-  let av=currentUser.user_metadata?.avatar_url||currentUser.user_metadata?.picture;  
-  p.innerHTML=av?`<img class="avatar" src="${esc(av)}">`:"♙";  
-  a.innerHTML=`<b>${esc(name)}</b><br><small>${esc(currentUser.email)}</small>`;  
- }else{p.textContent="♙";a.textContent="Not signed in"}  
- render();  
-}  
-  
-async function login(){  
- const {data,error}=await supabaseClient.auth.signInWithPassword({email:email.value,password:password.value});  
- msg.textContent=error?error.message:"Logged in!";  
- if(!error)closeLogin();  
-}  
-async function signup(){  
- const {data,error}=await supabaseClient.auth.signUp({email:email.value,password:password.value});  
- msg.textContent=error?error.message:"Account created. Check your email if confirmation is required.";  
-}  
-async function googleLogin(){  
- await supabaseClient.auth.signInWithOAuth({provider:"google",options:{redirectTo:"https://dejaluxe.netlify.app/"}});  
-}  
-async function logout(){await supabaseClient.auth.signOut();document.getElementById("account").classList.remove("show")}  
-function closeLogin(){document.getElementById("login").classList.remove("show")}  
-  
-function addToCart(id){  
- const p=products.find(x=>x.id===id);if(!p)return;  
- cart.push(p);localStorage.setItem("dejaluxe_cart",JSON.stringify(cart));updateCart();  
-}  
-function updateCart(){document.getElementById("cartCount").textContent=cart.length}  
-  
-async function saveProduct(){  
- if(!isDev())return alert("Developer access only");  
- const obj={name:pname.value.trim(),price:Number(pprice.value),category:pcat.value,image:pimage.value.trim(),description:pdesc.value.trim()};  
- if(!obj.name)return alert("Enter a product name");  
- let id=pid.value, result;  
- if(id)result=await supabaseClient.from("products").update(obj).eq("id",id);  
- else result=await supabaseClient.from("products").insert(obj);  
- if(result.error)return alert(result.error.message);  
- clearForm();load();  
-}  
-function editProduct(id){  
- const p=products.find(x=>x.id===id);if(!p)return;  
- pid.value=p.id;pname.value=p.name;pprice.value=p.price;pcat.value=p.category;pimage.value=p.image||"";pdesc.value=p.description||"";  
- scrollTo({top:document.getElementById("developer").offsetTop-80,behavior:"smooth"});  
-}  
-async function deleteProduct(id){  
- if(!isDev()||!confirm("Delete this product?"))return;  
- const {error}=await supabaseClient.from("products").delete().eq("id",id);  
- if(error)alert(error.message);else load();  
-}  
-function clearForm(){pid.value="";pname.value="";pprice.value="";pimage.value="";pdesc.value=""}  
-  
-supabaseClient.auth.getSession().then(({data})=>{currentUser=data.session?.user||null;updateUser()});  
-supabaseClient.auth.onAuthStateChange((event,session)=>{currentUser=session?.user||null;updateUser()});  
-load();  
-</script>  </body>  
 </html>
