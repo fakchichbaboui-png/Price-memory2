@@ -863,17 +863,11 @@ footer p {
 
 <div id="authGate">
 
-    <div class="auth-box">
+    <div class="login-box">
 
-        <div class="auth-logo">
-            DL
-        </div>
+        <h1>DEJALUXE</h1>
 
-        <h1>Welcome to DEJALUXE</h1>
-
-        <p>
-            Login to continue shopping.
-        </p>
+        <p>Sign in to continue</p>
 
         <input
             type="email"
@@ -889,25 +883,35 @@ footer p {
             autocomplete="current-password"
         >
 
+        <div
+            id="gateError"
+            class="gate-error"
+        ></div>
+
         <button
-            class="auth-main-btn"
+            type="button"
             onclick="gateLogin()"
         >
             Login
         </button>
 
         <button
-            class="auth-google-btn"
-            onclick="googleLogin()"
-        >
-            Continue with Google
-        </button>
-
-        <button
-            class="auth-signup-btn"
+            type="button"
             onclick="gateSignup()"
         >
             Create Account
+        </button>
+
+        <div class="login-divider">
+            OR
+        </div>
+
+        <button
+            type="button"
+            onclick="googleLogin()"
+            class="google-button"
+        >
+            Continue with Google
         </button>
 
     </div>
