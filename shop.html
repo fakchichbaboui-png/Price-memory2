@@ -1,53 +1,1845 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width,initial-scale=1">  
-<title>DEJALUXE — Shop</title>  
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  
-<style>  
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#fff;color:#222}  
-.top{background:#f58220;color:#fff;padding:9px 5%;display:flex;justify-content:space-between;font-size:13px}  
-nav{height:72px;display:flex;align-items:center;gap:28px;padding:0 5%;border-bottom:1px solid #eee;background:#fff;position:sticky;top:0;z-index:20}  
-.logo{width:45px;height:45px;border-radius:50%;background:#f58220;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:12px}  
-nav a{color:#222;text-decoration:none;font-size:15px}nav a:hover{color:#f58220}  
-.navicons{margin-left:auto;display:flex;gap:18px;align-items:center;font-size:22px}  
-.icon{cursor:pointer}.cart{position:relative}.count{position:absolute;background:#f58220;color:#fff;border-radius:50%;font-size:10px;padding:3px 6px;top:-9px;right:-10px}  
-.dropdown{position:relative}.drop{display:none;position:absolute;top:25px;left:-15px;background:#fff;box-shadow:0 5px 20px #0002;padding:10px;width:170px;border-radius:8px}.dropdown:hover .drop{display:block}.drop a{display:block;padding:9px}  
-.search{display:none;padding:15px 5%;background:#fafafa}.search.open{display:block}.search input{width:100%;padding:14px;border:1px solid #ddd;border-radius:25px;font-size:15px}  
-.hero{text-align:center;padding:55px 20px;background:#fff}.hero small{color:#f58220;font-weight:bold;letter-spacing:2px}.hero h1{font-size:42px;margin:12px 0}.hero p{color:#777}  
-.filters{padding:15px 5%;display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-bottom:1px solid #eee}  
-.filters button,.filters select{padding:10px 14px;border:1px solid #ddd;background:#fff;border-radius:20px;cursor:pointer}.filters button.active{background:#f58220;color:#fff;border-color:#f58220}  
-.price{display:flex;align-items:center;gap:8px;margin-left:auto}.price input{width:80px;padding:8px;border:1px solid #ddd;border-radius:8px}  
-.products{padding:35px 5%;display:grid;grid-template-columns:repeat(4,1fr);gap:25px}  
-.card{border:1px solid #eee;border-radius:12px;overflow:hidden;background:#fff;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 8px 25px #0001}  
-.pic{height:230px;background:#f5f5f5;display:flex;align-items:center;justify-content:center}.pic img{width:100%;height:100%;object-fit:cover}  
-.info{padding:17px}.cat{font-size:11px;color:#f58220;text-transform:uppercase}.info h3{margin:7px 0}.desc{font-size:13px;color:#777;min-height:36px}.bottom{display:flex;justify-content:space-between;align-items:center;margin-top:15px}.price2{font-weight:bold}.add{background:#f58220;color:#fff;border:0;border-radius:7px;padding:9px 12px;cursor:pointer}  
-footer{background:#222;color:#fff;text-align:center;padding:35px;margin-top:30px}  
-.overlay{display:none;position:fixed;inset:0;background:#0008;z-index:100;align-items:center;justify-content:center}.overlay.show{display:flex}  
-.box{background:#fff;width:90%;max-width:400px;padding:28px;border-radius:15px}.box h2{text-align:center}.box input{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:8px}.box button{width:100%;padding:12px;margin-top:8px;border:0;border-radius:8px;background:#f58220;color:#fff;cursor:pointer}.google{background:#222!important}.close{text-align:right;cursor:pointer;font-size:20px}  
-.account{display:none;position:fixed;right:25px;top:75px;background:#fff;padding:18px;width:240px;border-radius:12px;box-shadow:0 8px 30px #0003;z-index:50}.account.show{display:block}.avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:8px}  
-.dev{display:none;background:#fff7ef;border:1px solid #ffd5ad;margin:20px 5%;padding:20px;border-radius:12px}.dev.visible{display:block}.dev input,.dev select,.dev textarea{padding:10px;margin:5px;width:calc(25% - 12px);border:1px solid #ddd;border-radius:7px}.dev button{padding:10px;border:0;border-radius:7px;background:#f58220;color:#fff}  
-@media(max-width:900px){.products{grid-template-columns:repeat(2,1fr)}nav{gap:15px}.hideMob{display:none}.price{margin-left:0}}  
-@media(max-width:550px){.products{grid-template-columns:1fr 1fr;gap:10px}.pic{height:160px}.hero h1{font-size:30px}.dev input,.dev select,.dev textarea{width:100%;margin:4px 0}.top{font-size:11px}}  
-</style>  
-</head>  
-<body>  <div class="top"><span>Free delivery on orders over 500 MAD</span><span>Track Order &nbsp; Help &nbsp; EN</span></div>  <nav>  
-<a href="index.html"><div class="logo">DEJA<br>LUXE</div></a>  
-<a class="hideMob" href="index.html">Home</a>  
-<a class="hideMob" href="shop.html">Shop</a>  
-<div class="dropdown hideMob"><a href="#">Categories ▾</a><div class="drop">  
-<a href="#" onclick="filter('All')">All Products</a><a href="#" onclick="filter('Men')">Men</a>  
-<a href="#" onclick="filter('Women')">Women</a><a href="#" onclick="filter('Electronics')">Electronics</a>  
-<a href="#" onclick="filter('Home')">Home</a><a href="#" onclick="filter('Shoes')">Shoes</a>  
-<a href="#" onclick="filter('Beauty')">Beauty</a><a href="#" onclick="filter('Gaming')">Gaming</a>  
-</div></div>  
-<a class="hideMob" href="about.html">About Us</a>  
-<div class="navicons">  
-<span class="icon" onclick="toggleSearch()">⌕</span>  
-<span class="icon" onclick="toggleAccount()" id="profile">♙</span>  
-<span class="icon cart" onclick="location.href='cart.html'">🛒<b class="count" id="cartCount">0</b></span>  
-</div>  
-</nav>  <div class="search" id="searchPanel"><input id="searchInput" oninput="render()" placeholder="Search products..."></div>  <section class="hero"><small>DEJALUXE COLLECTION</small><h1>All Products</h1><p>Discover everything available in our store.</p></section>  <section class="filters">  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEJALUXE — Shop</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#fff;
+    color:#222
+}
+
+.top{
+    background:#f58220;
+    color:#fff;
+    padding:9px 5%;
+    display:flex;
+    justify-content:space-between;
+    font-size:13px
+}
+
+nav{
+    height:72px;
+    display:flex;
+    align-items:center;
+    gap:28px;
+    padding:0 5%;
+    border-bottom:1px solid #eee;
+    background:#fff;
+    position:sticky;
+    top:0;
+    z-index:20
+}
+
+.logo{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#f58220;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:12px;
+    text-align:center;
+    line-height:12px
+}
+
+nav a{
+    color:#222;
+    text-decoration:none;
+    font-size:15px
+}
+
+nav a:hover{
+    color:#f58220
+}
+
+.navicons{
+    margin-left:auto;
+    display:flex;
+    gap:18px;
+    align-items:center;
+    font-size:22px
+}
+
+.icon{
+    cursor:pointer
+}
+
+.cart{
+    position:relative
+}
+
+.count{
+    position:absolute;
+    background:#f58220;
+    color:#fff;
+    border-radius:50%;
+    font-size:10px;
+    padding:3px 6px;
+    top:-9px;
+    right:-10px
+}
+
+.dropdown{
+    position:relative
+}
+
+.drop{
+    display:none;
+    position:absolute;
+    top:25px;
+    left:-15px;
+    background:#fff;
+    box-shadow:0 5px 20px #0002;
+    padding:10px;
+    width:170px;
+    border-radius:8px
+}
+
+.dropdown:hover .drop{
+    display:block
+}
+
+.drop a{
+    display:block;
+    padding:9px
+}
+
+.search{
+    display:none;
+    padding:15px 5%;
+    background:#fafafa
+}
+
+.search.open{
+    display:block
+}
+
+.search input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:25px;
+    font-size:15px;
+    outline:none
+}
+
+.hero{
+    text-align:center;
+    padding:55px 20px;
+    background:#fff
+}
+
+.hero small{
+    color:#f58220;
+    font-weight:bold;
+    letter-spacing:2px
+}
+
+.hero h1{
+    font-size:42px;
+    margin:12px 0
+}
+
+.hero p{
+    color:#777
+}
+
+.filters{
+    padding:15px 5%;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+    border-bottom:1px solid #eee
+}
+
+.filters button,
+.filters select{
+    padding:10px 14px;
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:20px;
+    cursor:pointer
+}
+
+.filters button.active{
+    background:#f58220;
+    color:#fff;
+    border-color:#f58220
+}
+
+.price{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-left:auto
+}
+
+.price input{
+    width:80px;
+    padding:8px;
+    border:1px solid #ddd;
+    border-radius:8px
+}
+
+.products{
+    padding:35px 5%;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    min-height:250px
+}
+
+.card{
+    border:1px solid #eee;
+    border-radius:12px;
+    overflow:hidden;
+    background:#fff;
+    transition:.2s
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px #0001
+}
+
+.pic{
+    height:230px;
+    background:#f5f5f5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden
+}
+
+.pic img{
+    width:100%;
+    height:100%;
+    object-fit:cover
+}
+
+.info{
+    padding:17px
+}
+
+.cat{
+    font-size:11px;
+    color:#f58220;
+    text-transform:uppercase
+}
+
+.info h3{
+    margin:7px 0
+}
+
+.desc{
+    font-size:13px;
+    color:#777;
+    min-height:36px
+}
+
+.bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:15px
+}
+
+.price2{
+    font-weight:bold
+}
+
+.add{
+    background:#f58220;
+    color:#fff;
+    border:0;
+    border-radius:7px;
+    padding:9px 12px;
+    cursor:pointer
+}
+
+.editBtn{
+    background:#222;
+    color:#fff;
+    border:0;
+    border-radius:7px;
+    padding:8px 12px;
+    cursor:pointer
+}
+
+.deleteBtn{
+    background:#d93025;
+    color:#fff;
+    border:0;
+    border-radius:7px;
+    padding:8px 12px;
+    cursor:pointer
+}
+
+footer{
+    background:#222;
+    color:#fff;
+    text-align:center;
+    padding:35px;
+    margin-top:30px
+}
+
+.overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#0008;
+    z-index:100;
+    align-items:center;
+    justify-content:center
+}
+
+.overlay.show{
+    display:flex
+}
+
+.box{
+    background:#fff;
+    width:90%;
+    max-width:400px;
+    padding:28px;
+    border-radius:15px
+}
+
+.box h2{
+    text-align:center
+}
+
+.box input{
+    width:100%;
+    padding:12px;
+    margin:7px 0;
+    border:1px solid #ddd;
+    border-radius:8px
+}
+
+.box button{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border:0;
+    border-radius:8px;
+    background:#f58220;
+    color:#fff;
+    cursor:pointer
+}
+
+.google{
+    background:#222!important
+}
+
+.close{
+    text-align:right;
+    cursor:pointer;
+    font-size:20px
+}
+
+.account{
+    display:none;
+    position:fixed;
+    right:25px;
+    top:75px;
+    background:#fff;
+    padding:18px;
+    width:240px;
+    border-radius:12px;
+    box-shadow:0 8px 30px #0003;
+    z-index:50
+}
+
+.account.show{
+    display:block
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    object-fit:cover;
+    vertical-align:middle;
+    margin-right:8px
+}
+
+/* DEVELOPER PANEL */
+
+.dev{
+    display:none;
+    background:#fff7ef;
+    border:1px solid #ffd5ad;
+    margin:20px 5%;
+    padding:20px;
+    border-radius:12px
+}
+
+.dev.visible{
+    display:block
+}
+
+.dev h3{
+    margin-top:0;
+    color:#f58220
+}
+
+.dev input,
+.dev select,
+.dev textarea{
+    padding:10px;
+    margin:5px;
+    width:calc(25% - 12px);
+    border:1px solid #ddd;
+    border-radius:7px
+}
+
+.dev textarea{
+    min-height:42px;
+    vertical-align:top
+}
+
+.dev button{
+    padding:10px 15px;
+    margin:5px;
+    border:0;
+    border-radius:7px;
+    background:#f58220;
+    color:#fff;
+    cursor:pointer
+}
+
+.dev .clearBtn{
+    background:#222
+}
+
+.devStatus{
+    margin-top:10px;
+    font-size:13px;
+    color:#777
+}
+
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:70px 20px;
+    color:#777
+}
+
+.empty h2{
+    color:#222;
+    margin-bottom:8px
+}
+
+.error{
+    grid-column:1/-1;
+    text-align:center;
+    padding:50px 20px;
+    color:#d93025
+}
+
+@media(max-width:900px){
+
+    .products{
+        grid-template-columns:repeat(2,1fr)
+    }
+
+    nav{
+        gap:15px
+    }
+
+    .hideMob{
+        display:none
+    }
+
+    .price{
+        margin-left:0
+    }
+}
+
+@media(max-width:550px){
+
+    .products{
+        grid-template-columns:1fr 1fr;
+        gap:10px
+    }
+
+    .pic{
+        height:160px
+    }
+
+    .hero h1{
+        font-size:30px
+    }
+
+    .dev input,
+    .dev select,
+    .dev textarea{
+        width:100%;
+        margin:4px 0
+    }
+
+    .top{
+        font-size:11px
+    }
+
+    .navicons{
+        gap:12px
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+    <span>Free delivery on orders over 500 MAD</span>
+    <span>Track Order &nbsp; Help &nbsp; EN</span>
+</div>
+
+<nav>
+
+<a href="index.html">
+    <div class="logo">DEJA<br>LUXE</div>
+</a>
+
+<a class="hideMob" href="index.html">Home</a>
+<a class="hideMob" href="shop.html">Shop</a>
+
+<div class="dropdown hideMob">
+
+<a href="#">Categories ▾</a>
+
+<div class="drop">
+
+<a href="#" onclick="filter('All');return false">All Products</a>
+<a href="#" onclick="filter('Men');return false">Men</a>
+<a href="#" onclick="filter('Women');return false">Women</a>
+<a href="#" onclick="filter('Electronics');return false">Electronics</a>
+<a href="#" onclick="filter('Home');return false">Home</a>
+<a href="#" onclick="filter('Shoes');return false">Shoes</a>
+<a href="#" onclick="filter('Beauty');return false">Beauty</a>
+<a href="#" onclick="filter('Gaming');return false">Gaming</a>
+
+</div>
+</div>
+
+<a class="hideMob" href="about.html">About Us</a>
+
+<div class="navicons">
+
+<span class="icon" onclick="toggleSearch()">⌕</span>
+
+<span class="icon" onclick="toggleAccount()" id="profile">♙</span>
+
+<span class="icon cart" onclick="location.href='cart.html'">
+    🛒
+    <b class="count" id="cartCount">0</b>
+</span>
+
+</div>
+
+</nav>
+
+
+<div class="search" id="searchPanel">
+
+<input
+    id="searchInput"
+    oninput="render()"
+    placeholder="Search products..."
+>
+
+</div>
+
+
+<section class="hero">
+
+<small>DEJALUXE COLLECTION</small>
+
+<h1>All Products</h1>
+
+<p>Discover everything available in our store.</p>
+
+</section>
+
+
+<section class="filters">
+
+<button class="active" onclick="filter('All',this)">
+    All
+</button>
+
+<button onclick="filter('Men',this)">
+    Men
+</button>
+
+<button onclick="filter('Women',this)">
+    Women
+</button>
+
+<button onclick="filter('Electronics',this)">
+    Electronics
+</button>
+
+<button onclick="filter('Home',this)">
+    Home
+</button>
+
+<button onclick="filter('Shoes',this)">
+    Shoes
+</button>
+
+<button onclick="filter('Beauty',this)">
+    Beauty
+</button>
+
+<button onclick="filter('Gaming',this)">
+    Gaming
+</button>
+
+<select id="sort" onchange="render()">
+
+<option value="">Sort by</option>
+<option value="low">Price Low-High</option>
+<option value="high">Price High-Low</option>
+<option value="name">Name A-Z</option>
+
+</select>
+
+<div class="price">
+
+Max MAD
+
+<input
+    id="maxPrice"
+    type="number"
+    value="2000"
+    min="0"
+    oninput="render()"
+>
+
+</div>
+
+</section>
+
+
+<!-- DEVELOPER MODE -->
+
+<div class="dev" id="developer">
+
+<h3>Developer Mode</h3>
+
+<input
+    id="pname"
+    placeholder="Product name"
+>
+
+<input
+    id="pprice"
+    type="number"
+    placeholder="Price"
+>
+
+<select id="pcat">
+
+<option>Men</option>
+<option>Women</option>
+<option>Electronics</option>
+<option>Home</option>
+<option>Shoes</option>
+<option>Beauty</option>
+<option>Gaming</option>
+
+</select>
+
+<input
+    id="pimage"
+    placeholder="Image URL"
+>
+
+<textarea
+    id="pdesc"
+    placeholder="Description"
+></textarea>
+
+<button onclick="saveProduct()">
+    Save Product
+</button>
+
+<button class="clearBtn" onclick="clearForm()">
+    Clear
+</button>
+
+<input type="hidden" id="pid">
+
+<div class="devStatus" id="devStatus">
+    Developer access enabled.
+</div>
+
+</div>
+
+
+<main class="products" id="products"></main>
+
+
+<footer>
+© 2026 DEJALUXE — All rights reserved.
+</footer>
+
+
+<!-- ACCOUNT -->
+
+<div class="account" id="account">
+
+<div id="accountInfo">
+    Not signed in
+</div>
+
+<button
+    onclick="logout()"
+    style="margin-top:12px;padding:9px;width:100%"
+>
+    Logout
+</button>
+
+</div>
+
+
+<!-- LOGIN -->
+
+<div class="overlay" id="login">
+
+<div class="box">
+
+<div class="close" onclick="closeLogin()">×</div>
+
+<h2>DEJALUXE</h2>
+
+<input
+    id="email"
+    type="email"
+    placeholder="Email"
+>
+
+<input
+    id="password"
+    type="password"
+    placeholder="Password"
+>
+
+<button onclick="login()">
+    Login
+</button>
+
+<button onclick="signup()">
+    Create Account
+</button>
+
+<button class="google" onclick="googleLogin()">
+    Continue with Google
+</button>
+
+<p
+    id="msg"
+    style="text-align:center;font-size:13px;color:#777"
+></p>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://zinpicammabuvkdtpftj.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_nbKKuwqFd6eSz02ayriC0w_K_sNx8JX";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =========================
+   DEVELOPER ACCOUNT
+========================= */
+
+const DEV =
+"fakchichbaboui@gmail.com";
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let products = [];
+
+let category = "All";
+
+let cart =
+JSON.parse(
+    localStorage.getItem("dejaluxe_cart") || "[]"
+);
+
+let currentUser = null;
+
+
+/* =========================
+   LOAD PRODUCTS
+========================= */
+
+async function load(){
+
+    const container =
+        document.getElementById("products");
+
+    container.innerHTML = `
+        <div class="empty">
+            <h2>Loading products...</h2>
+        </div>
+    `;
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("products")
+        .select("*")
+        .order("created_at", {
+            ascending:false
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+        products = [];
+
+        container.innerHTML = `
+            <div class="error">
+                <h2>Could not load products</h2>
+                <p>${esc(error.message)}</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    /*
+       IMPORTANT:
+       There are NO DEFAULT PRODUCTS anymore.
+
+       If the database is empty,
+       the shop stays empty.
+    */
+
+    products = data || [];
+
+    render();
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render(){
+
+    let list =
+        products.filter(
+            p =>
+            category === "All" ||
+            p.category === category
+        );
+
+
+    let q =
+        (
+            document.getElementById("searchInput")?.value
+            || ""
+        )
+        .toLowerCase()
+        .trim();
+
+
+    let max =
+        Number(
+            document.getElementById("maxPrice")?.value
+            || 2000
+        );
+
+
+    list =
+        list.filter(
+            p => {
+
+                const text =
+                    (
+                        (p.name || "") +
+                        " " +
+                        (p.description || "") +
+                        " " +
+                        (p.category || "")
+                    )
+                    .toLowerCase();
+
+                return (
+                    text.includes(q) &&
+                    Number(p.price) <= max
+                );
+
+            }
+        );
+
+
+    const sort =
+        document.getElementById("sort").value;
+
+
+    if(sort === "low"){
+
+        list.sort(
+            (a,b) =>
+            Number(a.price) -
+            Number(b.price)
+        );
+
+    }
+
+
+    if(sort === "high"){
+
+        list.sort(
+            (a,b) =>
+            Number(b.price) -
+            Number(a.price)
+        );
+
+    }
+
+
+    if(sort === "name"){
+
+        list.sort(
+            (a,b) =>
+            (a.name || "")
+            .localeCompare(b.name || "")
+        );
+
+    }
+
+
+    const container =
+        document.getElementById("products");
+
+
+    if(list.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+
+                <h2>No products yet</h2>
+
+                <p>
+                    ${
+                        isDev()
+                        ? "Use Developer Mode above to add your first product."
+                        : "Products will appear here when they are added."
+                    }
+                </p>
+
+            </div>
+        `;
+
+        updateCart();
+
+        return;
+    }
+
+
+    container.innerHTML =
+        list.map(
+            p => `
+
+<article class="card">
+
+    <div class="pic">
+
+        ${
+            p.image
+
+            ? `
+            <img
+                src="${esc(p.image)}"
+                alt="${esc(p.name)}"
+                onerror="this.style.display='none'"
+            >
+            `
+
+            : `
+            <span>No image</span>
+            `
+        }
+
+    </div>
+
+
+    <div class="info">
+
+        <span class="cat">
+            ${esc(p.category)}
+        </span>
+
+        <h3>
+            ${esc(p.name)}
+        </h3>
+
+        <div class="desc">
+            ${esc(p.description || "")}
+        </div>
+
+
+        <div class="bottom">
+
+            <span class="price2">
+                ${Number(p.price).toFixed(0)} MAD
+            </span>
+
+            <button
+                class="add"
+                onclick="addToCart('${esc(p.id)}')"
+            >
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        ${
+            isDev()
+
+            ? `
+
+            <div
+                style="
+                    margin-top:12px;
+                    display:flex;
+                    gap:7px;
+                "
+            >
+
+                <button
+                    class="editBtn"
+                    onclick="editProduct('${esc(p.id)}')"
+                >
+                    Edit
+                </button>
+
+                <button
+                    class="deleteBtn"
+                    onclick="deleteProduct('${esc(p.id)}')"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+            `
+
+            : ""
+        }
+
+    </div>
+
+</article>
+
+`
+        )
+        .join("");
+
+
+    updateCart();
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function esc(v){
+
+    return String(v ?? "")
+        .replace(
+            /[&<>"']/g,
+            m => ({
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#39;"
+            }[m])
+        );
+
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+function filter(c,btn){
+
+    category = c;
+
+    document
+        .querySelectorAll(".filters button")
+        .forEach(
+            b =>
+            b.classList.remove("active")
+        );
+
+
+    if(btn){
+
+        btn.classList.add("active");
+
+    }
+
+
+    render();
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function toggleSearch(){
+
+    document
+        .getElementById("searchPanel")
+        .classList.toggle("open");
+
+}
+
+
+/* =========================
+   ACCOUNT
+========================= */
+
+function toggleAccount(){
+
+    const account =
+        document.getElementById("account");
+
+
+    if(!currentUser){
+
+        document
+            .getElementById("login")
+            .classList.add("show");
+
+        return;
+    }
+
+
+    account.classList.toggle("show");
+
+}
+
+
+/* =========================
+   DEVELOPER CHECK
+========================= */
+
+function isDev(){
+
+    return (
+        currentUser &&
+        currentUser.email &&
+        currentUser.email.toLowerCase() ===
+        DEV.toLowerCase()
+    );
+
+}
+
+
+/* =========================
+   UPDATE USER
+========================= */
+
+function updateUser(){
+
+    const developer =
+        document.getElementById("developer");
+
+    const profile =
+        document.getElementById("profile");
+
+    const accountInfo =
+        document.getElementById("accountInfo");
+
+
+    developer.classList.toggle(
+        "visible",
+        isDev()
+    );
+
+
+    if(currentUser){
+
+        const name =
+            currentUser.user_metadata?.full_name ||
+            currentUser.user_metadata?.name ||
+            currentUser.email;
+
+
+        const avatar =
+            currentUser.user_metadata?.avatar_url ||
+            currentUser.user_metadata?.picture;
+
+
+        profile.innerHTML =
+            avatar
+
+            ? `
+            <img
+                class="avatar"
+                src="${esc(avatar)}"
+                alt="Profile"
+            >
+            `
+
+            : "♙";
+
+
+        accountInfo.innerHTML = `
+            <b>${esc(name)}</b>
+            <br>
+            <small>${esc(currentUser.email)}</small>
+        `;
+
+    }
+
+    else{
+
+        profile.textContent = "♙";
+
+        accountInfo.textContent =
+            "Not signed in";
+
+    }
+
+
+    render();
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function login(){
+
+    const emailValue =
+        document
+        .getElementById("email")
+        .value
+        .trim();
+
+
+    const passwordValue =
+        document
+        .getElementById("password")
+        .value;
+
+
+    const msgElement =
+        document.getElementById("msg");
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.auth
+        .signInWithPassword({
+
+            email:emailValue,
+
+            password:passwordValue
+
+        });
+
+
+    msgElement.textContent =
+        error
+        ? error.message
+        : "Logged in!";
+
+
+    if(!error){
+
+        closeLogin();
+
+    }
+
+}
+
+
+/* =========================
+   SIGN UP
+========================= */
+
+async function signup(){
+
+    const emailValue =
+        document
+        .getElementById("email")
+        .value
+        .trim();
+
+
+    const passwordValue =
+        document
+        .getElementById("password")
+        .value;
+
+
+    const msgElement =
+        document.getElementById("msg");
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.auth
+        .signUp({
+
+            email:emailValue,
+
+            password:passwordValue
+
+        });
+
+
+    msgElement.textContent =
+        error
+        ? error.message
+        : "Account created. Check your email if confirmation is required.";
+
+}
+
+
+/* =========================
+   GOOGLE LOGIN
+========================= */
+
+async function googleLogin(){
+
+    await supabaseClient.auth
+        .signInWithOAuth({
+
+            provider:"google",
+
+            options:{
+
+                redirectTo:
+                window.location.origin +
+                window.location.pathname
+
+            }
+
+        });
+
+}
+
+
+/* =========================
+   CLOSE LOGIN
+========================= */
+
+function closeLogin(){
+
+    document
+        .getElementById("login")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout(){
+
+    await supabaseClient.auth.signOut();
+
+    document
+        .getElementById("account")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   ADD TO CART
+========================= */
+
+function addToCart(id){
+
+    const product =
+        products.find(
+            x => String(x.id) === String(id)
+        );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    cart.push(product);
+
+
+    localStorage.setItem(
+        "dejaluxe_cart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCart();
+
+}
+
+
+/* =========================
+   CART COUNT
+========================= */
+
+function updateCart(){
+
+    document
+        .getElementById("cartCount")
+        .textContent =
+        cart.length;
+
+}
+
+
+/* =========================
+   SAVE PRODUCT
+========================= */
+
+async function saveProduct(){
+
+    if(!isDev()){
+
+        alert(
+            "Developer access only."
+        );
+
+        return;
+
+    }
+
+
+    const name =
+        document
+        .getElementById("pname")
+        .value
+        .trim();
+
+
+    const price =
+        Number(
+            document
+            .getElementById("pprice")
+            .value
+        );
+
+
+    const categoryValue =
+        document
+        .getElementById("pcat")
+        .value;
+
+
+    const image =
+        document
+        .getElementById("pimage")
+        .value
+        .trim();
+
+
+    const description =
+        document
+        .getElementById("pdesc")
+        .value
+        .trim();
+
+
+    const id =
+        document
+        .getElementById("pid")
+        .value;
+
+
+    if(!name){
+
+        alert(
+            "Enter a product name."
+        );
+
+        return;
+
+    }
+
+
+    if(!Number.isFinite(price) || price < 0){
+
+        alert(
+            "Enter a valid price."
+        );
+
+        return;
+
+    }
+
+
+    const obj = {
+
+        name:name,
+
+        price:price,
+
+        category:categoryValue,
+
+        image:image,
+
+        description:description
+
+    };
+
+
+    let result;
+
+
+    if(id){
+
+        result =
+            await supabaseClient
+                .from("products")
+                .update(obj)
+                .eq("id",id);
+
+    }
+
+    else{
+
+        result =
+            await supabaseClient
+                .from("products")
+                .insert(obj);
+
+    }
+
+
+    if(result.error){
+
+        alert(
+            result.error.message
+        );
+
+        console.error(result.error);
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("devStatus")
+        .textContent =
+        id
+        ? "Product updated successfully."
+        : "Product added successfully.";
+
+
+    clearForm();
+
+    await load();
+
+}
+
+
+/* =========================
+   EDIT PRODUCT
+========================= */
+
+function editProduct(id){
+
+    if(!isDev()){
+
+        return;
+
+    }
+
+
+    const product =
+        products.find(
+            x => String(x.id) === String(id)
+        );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("pid")
+        .value =
+        product.id;
+
+
+    document
+        .getElementById("pname")
+        .value =
+        product.name || "";
+
+
+    document
+        .getElementById("pprice")
+        .value =
+        product.price || "";
+
+
+    document
+        .getElementById("pcat")
+        .value =
+        product.category || "Men";
+
+
+    document
+        .getElementById("pimage")
+        .value =
+        product.image || "";
+
+
+    document
+        .getElementById("pdesc")
+        .value =
+        product.description || "";
+
+
+    document
+        .getElementById("devStatus")
+        .textContent =
+        "Editing: " +
+        product.name;
+
+
+    window.scrollTo({
+
+        top:
+        document
+            .getElementById("developer")
+            .offsetTop - 80,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =========================
+   DELETE PRODUCT
+========================= */
+
+async function deleteProduct(id){
+
+    if(!isDev()){
+
+        return;
+
+    }
+
+
+    const product =
+        products.find(
+            x => String(x.id) === String(id)
+        );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Delete " +
+            product.name +
+            "?"
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+        .from("products")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
+
+
+    await load();
+
+}
+
+
+/* =========================
+   CLEAR FORM
+========================= */
+
+function clearForm(){
+
+    document
+        .getElementById("pid")
+        .value = "";
+
+
+    document
+        .getElementById("pname")
+        .value = "";
+
+
+    document
+        .getElementById("pprice")
+        .value = "";
+
+
+    document
+        .getElementById("pimage")
+        .value = "";
+
+
+    document
+        .getElementById("pdesc")
+        .value = "";
+
+
+    document
+        .getElementById("pcat")
+        .value = "Men";
+
+
+    document
+        .getElementById("devStatus")
+        .textContent =
+        "Developer access enabled.";
+
+}
+
+
+/* =========================
+   SUPABASE SESSION
+========================= */
+
+supabaseClient.auth
+    .getSession()
+    .then(
+        ({data}) => {
+
+            currentUser =
+                data.session?.user ||
+                null;
+
+            updateUser();
+
+        }
+    );
+
+
+supabaseClient.auth
+    .onAuthStateChange(
+        (event,session) => {
+
+            currentUser =
+                session?.user ||
+                null;
+
+            updateUser();
+
+        }
+    );
+
+
+/* =========================
+   START SHOP
+========================= */
+
+load();
+
+</script>
+
+</body>
+</html>  
 <button class="active" onclick="filter('All',this)">All</button>  
 <button onclick="filter('Men',this)">Men</button><button onclick="filter('Women',this)">Women</button>  
 <button onclick="filter('Electronics',this)">Electronics</button><button onclick="filter('Home',this)">Home</button>  
